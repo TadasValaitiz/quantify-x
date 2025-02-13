@@ -5,9 +5,8 @@ from typing import Optional, List
 import requests
 
 from dotenv import load_dotenv
-
+from discord_types import MessageType
 from database.database import Database
-from scraper.discord_types import MessageType
 
 load_dotenv()
 

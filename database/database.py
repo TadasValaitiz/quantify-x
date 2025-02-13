@@ -1,7 +1,7 @@
+from discord_types import MessageType
 import sqlite3
 import json
 from typing import List
-from scraper.discord_types import MessageType
 
 
 class Database:
