@@ -1,0 +1,1620 @@
+id,timestamp,author_id,author_username,content,attachments
+1339169352452145184,2025-02-12T09:40:54.188000+00:00,893679026911195157,nyl_lin,"**Bollinger Bands Range Scalping Strategy**
+
+*Source: https://www.dolphintrader.com/forex-scalping-strategy-bollinger-bands/*
+
+**Indicators:**
+
+* Bollinger Bands (BB): Period = 20, Standard Deviation = 2
+
+**Buy (Long) Entry:**
+
+*  Bollinger Bands are flat, indicating a range-bound market.
+*  Price touches the lower Bollinger Band (confirmation of support level).
+*  Enter a BUY trade.
+
+*  Exit: When the price reaches the upper Bollinger Band.
+
+**Sell (Short) Entry:**
+
+*  Bollinger Bands are flat, indicating a range-bound market.
+*  Price touches the upper Bollinger Band (confirmation of resistance level).
+*  Enter a SELL trade.
+
+*  Exit: When the price reaches the lower Bollinger Band.",1
+1339101279162728468,2025-02-12T05:10:24.251000+00:00,350235241249767425,shannelle_,"**Adaptive Trend Flow Multiple Filter Trading Strategy**
+
+**Indicators Used**:
+
+- Trend Recognition (EMA-based)
+- Fast EMA
+- Slow EMA
+- Trend Bands
+- MACD 
+
+**Long Entry (Buy Signal)**
+
+- The trend shifts from bearish (-1) to bullish (1).
+- Price is above the SMA (if enabled).
+- MACD Line > Signal Line (if enabled).
+- A breakout occurs above the lower volatility band.
+
+👉 Example Trade:
+
+1. Market was bearish (EMA crossover), but now bullish.
+2. MACD confirms momentum shift.
+3. Price breaks out from the lower band.
+4. SMA confirms uptrend.
+
+
+**Short Entry (Sell Signal)**
+
+- The trend shifts from bullish (1) to bearish (-1).
+- Price is below the SMA (if enabled).
+- MACD Line < Signal Line (if enabled).
+- A breakdown occurs below the upper volatility band.
+
+👉 Example Trade:
+
+1. Market was bullish, but now turns bearish.
+2. MACD confirms weakening trend.
+3. Price breaks down below the upper band.
+4. SMA confirms downtrend.",1
+1338440839348879433,2025-02-10T09:26:03.129000+00:00,893679026911195157,nyl_lin,"**Stochastic Oscillator and SMA Scalping Strategy**
+
+*Source: https://www.forextraders.com/forex-education/forex-scalping/simple-1-5-and-15-minute-forex-scalping-strategies/*
+
+**Indicators Used:**
+
+* Stochastic Oscillator (5, 3, 3)
+
+Overbought level: 80
+Oversold level: 20
+
+*25-period SMA (short-term trend)
+*50-period SMA (long-term trend)
+
+
+**Buy (Long) Entry Conditions:**
+
+* The 25-period SMA (green) is above the 50-period SMA (purple) – indicating an uptrend.
+* The Stochastic Oscillator lines are below the horizontal 20 level (oversold market condition).
+* Enter a long position when the Stochastic Oscillator crosses above the 20-level.
+
+**Sell (Short) Entry Conditions:**
+
+* The 25-period SMA is below the 50-period SMA – indicating a downtrend.
+* The Stochastic Oscillator lines are above the horizontal 80 level (overbought market condition).
+* Enter a short position when the Stochastic Oscillator crosses below the 80-level.",1
+1337209952653021194,2025-02-06T23:54:56.872000+00:00,849973198300643348,mridodablecrypto,"**SuperSar x Moving Average RSI**
+
+**Indicator**
+
+• Super-Trend-Sar
+• MAEMARSI
+
+**Settings**
+
+• STS Default
+• MAEMARSI 
+Length - 9
+EMA Length - 40
+Rest default
+
+**Trading Guide**
+
+• Crypto: BTCUSDT (Futures)
+• Timeframe: 15minute or up
+
+**LONG**
+
+• Buy Signal
+• MAEMARSI cross
+• Price above both indicator
+
+
+**SHORT**
+
+• Sell Signal
+• MAEMARSI cross
+• Price below both indicator
+
+**Stoploss**
+
+• SAR
+
+**Take Profit**
+
+• twice your stoploss
+
+
+Always backtest the strategy before using it in live trading.
+
+GOODLUCK Everyone!",2
+1336570874941145109,2025-02-05T05:35:28.872000+00:00,350235241249767425,shannelle_,"**Adaptive Fibonacci Bollinger Bands Strategy Analysis**
+
+S: https://medium.com/@redsword_23261/adaptive-fibonacci-bollinger-bands-strategy-analysis-d2c59652c679
+
+**Indicator Used:**
+- Simple Moving Average (SMA) 
+- Average True Range (ATR) 
+- Fibonacci-Based Bollinger Bands
+
+**Long Entry (Buy Signal):**
+
+- The low price of the candle is below the selected Fibonacci lower band (e.g., 1.618, 2.618, or 4.236, depending on user preference).
+- The high price of the candle crosses above the same Fibonacci band.
+- RSI above 40 and/or volume spike to reduce false breakouts.
+
+**Short Entry (Sell Signal):**
+
+- The low price of the candle is below the selected Fibonacci upper band (e.g., 1.618, 2.618, or 4.236).
+- The high price of the candle crosses above the same Fibonacci band.
+- RSI below 60 and/or bearish volume increase.",1
+1336517199866626151,2025-02-05T02:02:11.737000+00:00,893679026911195157,nyl_lin,"**ADX and EMA Trend Reversal Strategy**
+
+*Source: https://traders.com/Documentation/FEEDbk_docs/2007/03/Abstracts_new/Schaap/schapp.html*
+
+**Indicators:**
+* ADX (14-period)
+* Above 25: Strong trend.
+* Below 25: Weak trend, possible reversal.
+
+* +DMI above -DMI: Uptrend.
+* -DMI above +DMI: Downtrend.
+
+* 20-period EMA (short-term trend)
+
+
+**Buy Entry (Long Position)**
+* ADX is below 25, indicating a weak trend.
+* Price breaks above the 20-period EMA.
+* +DMI crosses above -DMI, confirming upward momentum.
+* ADX rises above 25 after the crossover, confirming a new strong trend.
+
+**Sell Entry (Short Position)**
+* ADX is below 25, indicating a weak trend.
+* Price breaks below the 20-period EMA.
+* -DMI crosses above +DMI, confirming downward momentum.
+* ADX rises above 25 after the crossover, confirming a new strong trend.
+
+**Exit Long (Sell to Close)**
+* ADX falls below 25, signaling trend weakness.
+* -DMI crosses above +DMI, indicating a possible downtrend.
+* Price closes below the 20-period EMA.
+
+**Exit Short (Buy to Close)**
+* ADX falls below 25, signaling trend weakness.
+* +DMI crosses above -DMI, indicating a possible uptrend.
+* Price closes above the 20-period EMA.",1
+1335967003021676617,2025-02-03T13:35:54.587000+00:00,893679026911195157,nyl_lin,"**VWMA & SMA Trend Reversal Strategy**
+
+*Source: https://www.tradingsim.com/blog/volume-weighted-moving-average*
+
+**Indicators Used:**
+
+* Volume Weighted Moving Average (VWMA): 30-period
+*  Simple Moving Average (SMA): 30-period
+
+
+**Buy Entry (Long Position):**
+
+*  VWMA crosses above the SMA, indicating a potential bullish trend shift.
+*  Price breaks above both VWMA and SMA, confirming bullish momentum.
+*  Entry is taken on the second bullish candle after the breakout.
+
+**Buy Exit:**
+
+*  VWMA begins to converge towards SMA, signaling a potential trend weakening.
+*  VWMA crosses below SMA and stays below for 3-4 periods, confirming a trend reversal.
+
+**Sell Entry (Short Position):**
+
+*  VWMA crosses below the SMA, indicating a potential bearish trend shift.
+*  Price breaks below both VWMA and SMA, confirming bearish momentum.
+*  Entry is taken on the second bearish candle after the breakout.
+
+**Sell Exit:**
+
+*  VWMA begins to converge towards SMA, signaling a potential trend weakening.
+*  VWMA crosses above SMA and stays above for 3-4 periods, confirming a trend reversal.",1
+1335415838592733235,2025-02-02T01:05:46.747000+00:00,849973198300643348,mridodablecrypto,"**Ehlers Sentimental Trend**
+
+**Indicators**
+⭐ Ehlers Instantaneous Trend [LazyBear]
+⭐ Market Sentiment Technicals [LuxAlgo]
+
+**Settings**
+Default for both indicators
+
+**Trading Guide**
+
+**⭐ LONG ⭐**
+
+• Price above Ehlers Indicator
+• Cross of Ehlers Blue above Red
+• Blue Market Sentiment 
+
+**⭐ SHORT ⭐**
+
+• Price below Ehlers Indicator
+• Cross of Ehlers Red above blue
+• Red Market Sentiment
+
+**⭐ STOPLOSS ⭐**
+
+• Swing Low ( for LONG Position )
+• Swing High ( for SHORT position )
+
+**⭐ Take Proft ⭐**
+
+• 1:2 
+• 1:3 Recommended 
+
+
+You can easily convert this to python by getting the pinescript of each indicator.
+
+GOODLUCK AND Have a blessed 2025 G! let's go!",1
+1334451226388992062,2025-01-30T09:12:45.276000+00:00,893679026911195157,nyl_lin,"**Parabolic SAR Bollinger Bands Scalping Strategy **
+
+*Source : https://alchemymarkets.com/education/indicators/parabolic-sar/*
+
+**Indicators :**
+
+__Bollinger Bands:__
+
+Standard Deviation: 1
+Middle Line: EMA 200
+
+__Parabolic SAR (PSAR):__
+
+Start: 0.01
+Step Value: 0.01
+Maximum: 0.2
+
+
+**Entry Conditions:**
+
+* Wait for the price to move beyond either the upper or lower Bollinger Band.
+* Price must reenter the Bollinger Bands and retest the EMA 200.
+* This confirms a rejection of extreme price levels.
+* If PSAR moves below price (bullish), enter a long position.
+* If PSAR moves above price (bearish), enter a short position.
+
+**Exit Conditions:**
+
+* If long, exit when PSAR moves above price.
+* If short, exit when PSAR moves below price.",1
+1334412344276811777,2025-01-30T06:38:15.058000+00:00,849973198300643348,mridodablecrypto,"**Intro Swing Trade**
+
+Source: https://www.investopedia.com/trading/introduction-to-swing-trading/
+
+**Indicators**
+EMA - 9
+EMA - 13
+EMA - 50
+
+Simple yet profitable
+
+**Trading Guidelines**
+
+**ENTRY**
+
+**LONG**
+• Price above EMA 50
+• EMA 9 Cross above EMA 13
+
+**SHORT**
+• Price below EMA 50
+• EMA 9 Cross below EMA 13
+
+**STOPLOSS**
+
+• EMA 50
+⭐ SECRET STOPLOSS FOR TRAILING AND BETTER RISK MANAGEMENT LOOK FOR CANDLE THAT SWEPT LIQUIDITY OF PREV CANDLE AND SET YOUR STOPLOSS just above or below it.
+
+**TakeProfit**
+
+• 1:2 Risk to reward
+• You can also target your take profit if you have a specific criteria",3
+1333967042197328073,2025-01-29T01:08:46.769000+00:00,350235241249767425,shannelle_,"**Heiken-Ashi EMA Crossover Trading Strategy**
+
+***Inspos:*** https://www.youtube.com/watch?v=G4-MPsYeqSw , https://www.investopedia.com/trading/heikin-ashi-better-candlestick/
+
+**Indicators Used**:
+- 30-period EMA 
+- 50-period EMA 
+- Heiken-Ashi Close Price
+
+**Entry**
+
+- 30-EMA crosses above 50-EMA (indicating a bullish trend).
+- Heiken-Ashi close price is above the 30-EMA (confirming bullish momentum).
+- Stop loss is set at 5% below the entry price.
+
+**Exit **
+
+- 30-EMA crosses below 50-EMA (indicating a trend reversal).
+- Heiken-Ashi close price drops below the 30-EMA (showing weakness in trend).",0
+1333370866494341203,2025-01-27T09:39:47.405000+00:00,893679026911195157,nyl_lin,"**CCI + MA Crossover Pullback Buy Strategy**
+
+Source: https://medium.com/@redsword_23261/cci-ma-crossover-pullback-buy-strategy-67c46d199e44
+
+**Indicators Used**
+* Commodity Channel Index (CCI): 
+Parameters: Source (e.g., close price), Period (e.g., 20), Overbought threshold (e.g., +100), Oversold threshold (e.g., -100).
+*Fast Moving Average (Fast MA):  Period  9
+* Slow Moving Average (Slow MA):  Period 21
+
+
+**Buy Entry (Long Position):**
+* The Fast MA is above the Slow MA (bullish crossover).
+* The CCI is below the oversold threshold (e.g., -100).
+
+**Sell Entry (Short Position):**
+* The Fast MA is below the Slow MA (bearish crossover).
+* The CCI is above the overbought threshold (e.g., +100).
+
+**Exit Long:**
+ * Price closes below the Slow MA.
+ * The CCI rises above the overbought threshold (e.g., +100).
+ * Close the long position.
+
+**Exit Short:**
+ * Price closes above the Slow MA.
+ * The CCI falls below the oversold threshold (e.g., -100).
+ * Close the short position.",0
+1333013695118180442,2025-01-26T10:00:31.113000+00:00,849973198300643348,mridodablecrypto,"**Dual Ribbon Money Flow**
+
+**Indicators**
+Alert DualRibbon - JustUncleL
+Twiggs Money Flow [TMF]- LazyBear
+
+**Settings**
+Dual Ribbon [REMOVE LONG AND SHORT IN STYLE]
+Fast Ribbon L MA - 3
+Fast Ribbon U Length - 17
+SLOW MA Ribbon Lower - 23
+SLOW MA Ribbon Upper - 45
+
+TMF
+Default Settings
+
+NOTE: Both indicator share their pinescript
+
+
+**Trading Guide**
+
+⭐**-LONG-**⭐
+
+• Ribbon Cross
+• Price above 2-3 line
+• TMF above 0.0
+• Candle change color
+
+⭐**-SHORT-**⭐
+
+• Ribbon Cross
+• Price below 2-3 line
+• TMF below 0.0
+• Candle change color
+
+⭐**-STOPLOSS-**⭐
+
+• RIBBON's LOW (long)
+• RIBBON's HIGH (short)
+
+⭐**-TAKE PROFIT-**⭐
+
+• 1:2
+• or whatever your target is
+
+
+
+HAPPY TRADING EVERYONE!",1
+1332185693786738729,2025-01-24T03:10:20.212000+00:00,350235241249767425,shannelle_,"** 3 Down, 3 Up Strategy**
+
+Source: https://www.tradingview.com/script/jsDwv2Mp-3-Down-3-Up-Strategy/
+
+**Indicators Used:**
+
+-Close Price
+-200-Period Exponential Moving Average (EMA - Optional Only)
+
+**Entry Conditions:**
+
+1. Consecutive Down Closes - identify a sequence of 3 consecutive bearish closes, where each close is lower than the previous close.
+2. Time Window - Ensure the entry signal occurs within the specified start and end time.
+3. EMA Filter (Optional) - If enabled, verify that the current close is above the 200-period EMA to confirm alignment with the bullish trend.
+4. Execute a buy order at the close of the third bearish candle that meets the criteria.
+
+
+**Exit Condition: **
+
+1. A sell signal is generated when there are 3 consecutive bullish closes, where each close is higher than the previous close.
+2. Close the position immediately after the third consecutive bullish close.",1
+1331552047224455182,2025-01-22T09:12:27.099000+00:00,893679026911195157,nyl_lin,"**On Balance Volume (OBV) Strategy **
+
+*Source: https://forextester.com/blog/on-balance-volume-indicator*
+
+**Indicators Used:**
+* On Balance Volume (OBV)
+* Moving Average (MA) 20
+
+**Buy Entry (Long):**
+
+* OBV crosses above its Moving Average (MA) from below.
+*  Price forms lower lows, but OBV forms higher lows.
+*  OBV shows a sharp upward move, indicating strong buying interest.
+
+**Sell Entry (Short):**
+
+* OBV crosses below its Moving Average (MA) from above.
+* Price forms higher highs, but OBV forms lower highs.
+* OBV shows a sharp downward move, indicating strong selling interest.
+
+**Exit Long:**
+*  OBV crosses below its MA, signaling a potential weakening of the uptrend.
+*  Price reaches a predefined resistance level or hits a take-profit target.
+
+**Exit Short:**
+*  OBV crosses above its MA, signaling a potential weakening of the downtrend.
+*  Price reaches a predefined support level or hits a take-profit target.",1
+1331058334077419592,2025-01-21T00:30:36.712000+00:00,849973198300643348,mridodablecrypto,"**TUX SCALPING LINE**
+
+**Indicator**
+Tux EMA Scalper
+Scalping Line
+
+**Settings**
+Tux EMA Scalper
+Check EMA and red Plot and Input 28 Source close
+
+Scalping line
+Source hl2
+Percent 1
+Main Period 100
+Signal Period 1
+
+
+**Trading Guidelines**
+
+Crypto: BTCUSDT (Futures)
+Timeframe: 5minutes
+
+
+**-LONG ENTRY-**
+
+⭐ Price above TUX Scalper (Blue Line) better if both
+⭐ Scalping line above 0.00
+⭐ Green Scalping line
+
+**-SHORT ENTRY-**
+
+⭐ Price below TUX Scalper (Blue Line) better if both
+⭐ Scalping line below 0.00
+⭐ Red Scalping line
+
+**-STOPLOSS-**
+⭐ Swing Low for Long
+⭐ Swing High for Short
+
+**-Take Profit-**
+
+⭐ Twice the stoploss
+
+
+Note: Adding confluence can make this strategy better.
+
+Do backtest before using this as your trading strategy!",3
+1330833705341550613,2025-01-20T09:38:01.048000+00:00,893679026911195157,nyl_lin,"**5-8-13 Simple Moving Average (SMA) Day Trading Strategy**
+
+Source : https://www.investopedia.com/articles/active-trading/010116/perfect-moving-averages-day-trading.asp
+
+**Indicators Used:**
+
+* 5-period SMA: Represents short-term price momentum.
+* 8-period SMA: Acts as an intermediate filter.
+* 13-period SMA: Represents longer-term trends within the intraday timeframe.
+
+
+**Buy Entry (Long):**
+
+* The 5-period SMA crosses above the 8-period SMA.
+* Both the 5-period and 8-period SMAs are above the 13-period SMA.
+* All SMAs have positive slopes, indicating upward momentum.
+
+
+**Sell Entry (Short):**
+
+* The 5-period SMA crosses below the 8-period SMA.
+* Both the 5-period and 8-period SMAs are below the 13-period SMA.
+* All SMAs have negative slopes, indicating downward momentum.
+
+
+**Exit Long:**
+
+* The 5-period SMA crosses below the 8-period SMA.
+* Price closes below the 13-period SMA.
+
+
+**Exit Short:**
+
+* The 5-period SMA crosses above the 8-period SMA.
+* Price closes above the 13-period SMA.",1
+1330775378972774410,2025-01-20T05:46:14.958000+00:00,350235241249767425,shannelle_,"**CryptoMomentum Scalper** 🦾 
+
+Source: https://doi.org/10.1080/08874417.2018.1552090
+
+**Timeframe**: 15 mins (Most Effective)
+
+**Indicators Used:**
+
+-Relative Strength Index (RSI)
+-Stochastic Oscillator
+-Williams %R
+-Moving Average Convergence Divergence (MACD)
+-On-Balance Volume (OBV)
+
+**Specific Entry**
+
+
+1.**RSI:** Moves from an oversold region (< 30) and begins trending upward.
+2.**Stochastic Oscillator**: Crosses above 20 from below.
+3.**Williams %R:** Exits the oversold region, crossing above -80.
+4.**MACD:** The MACD line crosses above the signal line.
+5.**OBV**: Shows increasing volume, indicating accumulation.
+
+For confirmation, the majority of indicators (3 out of 5) must align.
+
+
+**Specific Exit**
+
+
+1.**RSI:** Moves from an overbought region (> 70) and begins trending downward.
+2.**Stochastic Oscillator:** Crosses below 80 from above.
+3.**Williams %R:** Exits the overbought region, crossing below -20.
+4.**MACD:** The MACD line crosses below the signal line.
+5.**OBV:** Shows decreasing volume, signaling distribution.
+
+Similar to entry, at least 3 out of 5 indicators must align to confirm the exit signal.",1
+1329246322414452746,2025-01-16T00:30:19.466000+00:00,893679026911195157,nyl_lin,"**(Long) EMA + Stochastic RSI**
+
+*Source: https://www.tradingview.com/script/ViCQTwQB/*
+
+**Indicators:**
+
+4-Hour EMA:
+* Fast EMA: 24-period.
+* Slow EMA: 33-period.
+
+Stochastic RSI:
+* K Period: 3.
+* D Period: 3.
+* RSI Length: 16.
+* Stochastic Length: 5.
+
+**Entry Conditions (Long):**
+*  The chart timeframe must be ≤ 4 hours.
+* The 4-hour Fast EMA (24) must be above the Slow EMA (33), indicating an uptrend.
+* The Stochastic RSI K line crosses above the D line, and the intersection occurs below 20 (oversold condition).
+* If all three conditions are met, enter a long position.
+
+**Exit Conditions (Long):**
+*  The Stochastic RSI K line crosses below the D line, signaling a potential reversal or loss of momentum.",1
+1328296771054731437,2025-01-13T09:37:08.780000+00:00,893679026911195157,nyl_lin,"**100 SMA with MFI Strategy**
+
+*Source: https://tradingtact.com/money-flow-index*
+
+**Indicators Used:**
+Money Flow Index (MFI):
+* Period: 14 (default)
+* Overbought/Oversold Levels: 80/20
+
+Simple Moving Average (SMA):
+* Period: 100 (default)
+
+**Buy Entry (Long):**
+* The price is above the 100-period SMA (indicating an uptrend).
+* The MFI crosses above 20 from below (indicating the end of oversold conditions and a potential trend resumption).
+
+**Sell Entry (Short):**
+* The price is below the 100-period SMA (indicating a downtrend).
+* The MFI crosses below 80 from above (indicating the end of overbought conditions and a potential trend resumption).
+
+
+**Exit Long:**
+* The MFI crosses below 80 (indicating potential overbought conditions).
+* The price crosses below the 100-period SMA.
+
+**Exit Short:**
+* The MFI crosses above 20 (indicating potential oversold conditions).
+* The price crosses above the 100-period SMA.",1
+1328164148751765534,2025-01-13T00:50:09.159000+00:00,849973198300643348,mridodablecrypto,"**RK10 x RCI Ribbon Strategy**
+
+
+**Indicators**
+RK's 10 MA Types Ribbons
+RCI Ribbon
+
+**Settings**
+RK
+source : close
+Movine Average Setup : LSMA
+the rest default
+
+RCI Ribbon
+Default Settings 
+Change ribbon color
+
+**Trading Guidelines**
+Crypto: BTCUSDT(futures)
+Timeframe: 1hour
+
+
+
+**Entry conditions**
+
+**-LONG-**
+
+⭐ RK Green
+⭐ RCI Ribbon black and orange crossed
+⭐ Green RCI below black and orange line
+⭐ Rocket(Buy) signal
+
+**-SHORT-**
+
+⭐ RK Purple
+⭐ RCI Ribbon Green and orange crossed
+⭐ Green RCI line above both black and orange line
+⭐ Skull(sell) signal
+
+**-STOPLOSS-**
+
+⭐ Rockets low for LONG
+⭐ Skulls high for SHORT
+
+**-TAKEPROFIT-**
+
+⭐ 2x stoploss
+⭐ 3x stoploss
+
+
+NOTE: adding confluence may help with your take profit area",1
+1326666116306571354,2025-01-08T21:37:30.392000+00:00,849973198300643348,mridodablecrypto,"**Keltner Channel x CCI Strategy**
+
+**Indicators**
+
+Keltner Channel
+Klinger Oscillator
+
+**Settings**
+
+Keltner Channel: 20-period EMA, 2 ATR multiplier
+
+Klinger Oscillator: Default
+
+**Trading Rules**
+
+
+**Crypto:** XRPUSDT (Futures)
+**Timeframe:** 1 Hour
+
+**LONG**
+⭐ Klinger above 0
+⭐ Price is above middle band
+⭐ Klinger crosses
+
+**SHORT**
+⭐ Klinger below 0
+⭐ Price below middle band
+⭐ Klinger crosses
+
+**Stop Loss**
+⭐ Long – Lower band after entering trade
+⭐ Short – upper band after entering a trade
+
+**Take Profit**
+⭐ 2x stop loss
+⭐ 3x stop loss
+
+
+
+
+Adding confluence can make the strategy even better! 2025 is your year bro don't stop!",2
+1326478075403304971,2025-01-08T09:10:17.947000+00:00,893679026911195157,nyl_lin,"**ADXR Strategy**
+
+*Source https://www.dolphintrader.com/average-directional-movement-index-rating-adxr-forex-strategy/*
+
+**Indicators:**
+
+* ADXR (Average Directional Movement Index Rating):
+Levels: 25.0000 and 40.0000
+Indicates trend strength:
+Above 25.0000: Strong trend
+Above 40.0000: Very strong trend
+* 100 Pips Momentum Indicator:
+Blue Line: Momentum signal
+Red Line: Baseline
+
+**Long Entry (Buy)**
+*  Momentum Crossover: The blue line of the 100 Pips Momentum indicator crosses the red line from below.
+*  ADXR Trend Strength: ADXR line is above 25.0000 (strong trend) or 40.0000 (very strong trend).
+*  Directional Confirmation: The +DI line (dotted YellowGreen) is above the -DI line (dotted wheat), indicating a bullish trend.
+
+**Short Entry (Sell)**
+*  Momentum Crossover: The blue line of the 100 Pips Momentum indicator crosses the red line from above.
+*  ADXR Trend Strength: ADXR line is above 25.0000 (strong trend) or 40.0000 (very strong trend).
+*  Directional Confirmation: The -DI line (dotted wheat) is above the +DI line (dotted YellowGreen), indicating a bearish trend.
+
+
+**Exit Long (Buy Position)**
+*  Momentum Reversal: The blue line of the 100 Pips Momentum indicator crosses the red line downward.
+ADXR Weakening:
+* ADXR breaks below the 40.0000 level: Trend is no longer very strong.
+* ADXR breaks below the 25.0000 level: Trend strength is winding down.
+* Directional Reversal: The -DI line crosses above the +DI line.
+
+**Exit Short (Sell Position)**
+* Momentum Reversal: The blue line of the 100 Pips Momentum indicator crosses the red line upward.
+ADXR Weakening:
+* ADXR breaks below the 40.0000 level: Trend is no longer very strong.
+* ADXR breaks below the 25.0000 level: Trend strength is winding down.
+* Directional Reversal: The +DI line crosses above the -DI line.",1
+1325970524249129042,2025-01-06T23:33:28.322000+00:00,350235241249767425,shannelle_,"**1-Minute EMA and Stochastic Oscillator Scalping**
+
+https://howtotrade.com/wp-content/uploads/2024/04/1-Minute-Scalping-Strategy.pdf
+
+**Indicators Used:**
+
+-50 Exponential Moving Average (EMA)
+-200 Exponential Moving Average (EMA)
+-Stochastic Oscillator
+
+
+**Buy Entry Conditions:**
+
+-The current price must be above both the 50 EMA and the 200 EMA, indicating that the market is in a bullish phase.
+-Enter a buy trade immediately when the Stochastic Oscillator crosses above 20. This signals that momentum is shifting upwards.
+
+**Sell Entry Conditions:**
+
+-The current price must be below both the 50 EMA and the 200 EMA, indicating a bearish market condition.
+-Enter a sell trade immediately when the Stochastic Oscillator crosses below 80. This indicates that momentum is shifting downwards.
+
+
+**Stop Loss:**
+
+-For Long Positions (Buy) -  Place the stop loss 1 to 2 pips below the closest swing low.
+-For Short Positions (Sell) - Place the stop loss 1 to 2 pips above the closest swing high.
+
+
+**Take Profit:**
+
+-Set a target profit at a 1.5 risk-reward ratio relative to your stop loss.
+-Alternatively, manually close the trade when the Stochastic Oscillator reaches overbought levels (above 80) for long trades or oversold levels (below 20) for short trades.",2
+1325751134526115872,2025-01-06T09:01:41.736000+00:00,893679026911195157,nyl_lin,"**Keltner Channel Breakout and Trend-Following Strategy**
+
+*Source: https://www.babypips.com/learn/forex/keltner-channel*
+
+**Indicators:**
+Middle Line: 20-period Exponential Moving Average (EMA).
+Upper Line: Middle Line + (2 x 10-period Average True Range (ATR)).
+Lower Line: Middle Line - (2 x 10-period ATR).
+
+
+**Buy Entry (Long):**
+Price closes above the Upper Line, indicating a breakout.
+The trend is confirmed by higher highs and higher lows.
+
+**Sell Entry (Short):**
+Price closes below the Lower Line, indicating a breakout.
+The trend is confirmed by lower highs and lower lows.
+
+
+**Exit Long:**
+Price closes below the Middle Line, indicating a potential reversal.
+
+**Exit Short:**
+Price closes above the Middle Line, indicating a potential reversal.",1
+1325015309551145020,2025-01-04T08:17:47.391000+00:00,849973198300643348,mridodablecrypto,"**RSI Divergence x TOSMA Strategy**
+
+**Indicators**
+
+TMA + OSMA - skyline trader
+RSI Divergence Indicator
+
+**Settings**
+Default for both indicator
+
+**Trading Rules**
+
+**Crypto:** BTCUSDT (Futures)
+**Timeframe:** 2 Hour
+
+
+**-LONG-**
+**⭐** Bull signal
+**⭐** Blue and Green TSMA Crossover
+**⭐** Price above green line
+
+**-SHORT-**
+**⭐** Bear signal
+**⭐** Blue and Red TSMA Crossover
+**⭐** Price below Red Line
+
+**-Stoploss-**
+**⭐** Long - Swing Low
+**⭐** Short - Swing High
+
+**-Take Profit-**
+**⭐** Twice stoploss
+**⭐** Thrice stoploss
+
+
+
+Goodluck and happy trading!! 2025 is the year to make money",2
+1324627437262340106,2025-01-03T06:36:31.431000+00:00,350235241249767425,shannelle_,"**Supertrend with ADX and EMA**
+
+https://www.tradingview.com/script/ChaVrUF9-Triple-Supertrend-with-EMA-and-ADX-strategy/
+
+**Indicators Used:**
+
+-Supertrend
+-Average Directional Index (ADX)
+-Exponential Moving Average (EMA)
+
+**Long Entry Conditions:**
+
+-All three Supertrend indicators must turn positive (indicating a bullish trend).
+-Ensure that the ADX is above a specified level (commonly set at 25) to confirm trend strength.
+-Check that the closing price is above the EMA (e.g., 34 EMA) to ensure alignment with the bullish trend.
+-Execute a buy order when all conditions are met, or place a buy stop order a few pips above the high of the last bullish candle.
+
+**Short Entry Conditions:**
+
+-All three Supertrend indicators must turn negative (indicating a bearish trend).
+-Verify that the ADX is above the specified level (e.g., 25) to confirm a strong downtrend.
+-Confirm that the closing price is below the EMA.
+-Execute a sell order immediately when all conditions are satisfied, or place a sell stop order a few pips below the low of the last bearish candle.
+
+
+**Exit Condition Long:** Close the position when the first Supertrend indicator turns negative, signaling a potential trend reversal.
+**Exit Condition Short:** Close the position when the first Supertrend indicator turns positive, indicating a potential upward trend.",1
+1324297961513025579,2025-01-02T08:47:18.291000+00:00,893679026911195157,nyl_lin,"**The TEMA Crossover Strategy**
+
+https://howtotrade.com/trading-strategies/triple-moving-average-crossover/
+
+**Indicators:**
+* 9 EMA: Short-term trend.
+* 21 EMA: Medium-term trend.
+* 55 EMA: Long-term trend.
+
+**Entry Conditions:**
+**Buy Entry (Long):**
+
+* The 9 EMA crosses above the 21 EMA.
+* Both 9 EMA and 21 EMA are above the 55 EMA.
+* The price closes above the 9 EMA.
+
+**Sell Entry (Short):**
+
+* The 9 EMA crosses below the 21 EMA.
+* Both 9 EMA and 21 EMA are below the 55 EMA.
+* The price closes below the 9 EMA.
+
+**Exit Conditions:**
+**Exit Long:**
+
+* The 9 EMA crosses below the 21 EMA, or
+* The price closes below the 21 EMA.
+
+**Exit Short:**
+
+* The 9 EMA crosses above the 21 EMA, or
+* The price closes above the 21 EMA.",1
+1323210565979607063,2024-12-30T08:46:22.993000+00:00,893679026911195157,nyl_lin,"**Balance of Power Strategy**
+
+*Source https://forexbee.co/balance-of-power-indicator/*
+
+**Indicators Used:**
+* Balance of Power (BOP): Measures the balance between buyers and sellers.
+* Key Levels: 0, 1, and -1 to identify trends, overbought/oversold conditions, and divergences.
+
+**Entry Conditions:**
+**Buy Entry (Long):**
+
+* BOP crosses above 0, indicating buying pressure.
+* BOP crosses below -1 and then moves upward, suggesting selling pressure has been exhausted.
+* Price makes lower lows, but BOP makes higher lows, indicating potential bullish reversal.
+
+**Sell Entry (Short):**
+
+* BOP crosses below 0, indicating selling pressure.
+* BOP crosses above 1 and then moves downward, suggesting buying pressure has been exhausted.
+* Price makes higher highs, but BOP makes lower highs, indicating potential bearish reversal.
+
+**Exit Conditions:**
+**Exit Long:**
+
+* BOP crosses below 0, signaling a shift to selling pressure.
+* Price approaches a known resistance level.
+
+**Exit Short:**
+* BOP crosses above 0, signaling a shift to buying pressure.
+* Price approaches a known support level.",1
+1321800448209846395,2024-12-26T11:23:04.718000+00:00,849973198300643348,mridodablecrypto,"**MEDIAN x HMA 15min Scalper**
+
+**Indicators**
+Median
+Hull Moving Average
+
+**Settings**
+Median - Default ( you can remove the upper and lower band )
+HMA - 15 Source hl2
+
+**Trading Guidelines**
+Crypto: BTC(futures)
+Timeframe: 15minutes
+
+
+**-LONG-**
+• Price Above Hull moving average
+• Green Median
+
+**-SHORT-**
+• Price Below Hull moving average
+• Red Median
+
+**-STOPLOSS-**
+• Couple of points above or below HMA
+
+**-TAKEPROFIT-**
+• Twice our stoploss (conservative)
+• Thrice the stoploss (add confluence for better trading)
+
+
+
+Goodluck and happy trading everyone! You got this!!",2
+1321627997903781950,2024-12-25T23:57:49.361000+00:00,893679026911195157,nyl_lin,"**Absolute Price Oscillator Divergence**
+
+*Source: https://forexbee.co/absolute-price-oscillator/*
+
+**Indicators: **
+<:Greendot:1144591256270422057> Fast EMA: 11-period EMA
+<:Greendot:1144591256270422057> Slow EMA: 21-period EMA
+<:Greendot:1144591256270422057> Zero Line: Reference line at 0
+The calculation of the APO indicator is simple.
+
+APO formula = Value of Fast Period EMA – Value of Slow Period EMA
+
+**Entry Conditions:**
+**Buy Entry (Long):**
+
+<:Greendot:1144591256270422057> APO crosses above the zero line from below.
+<:Greendot:1144591256270422057> Confirmed by a bullish divergence (price makes lower lows, APO makes higher lows).
+
+**Sell Entry (Short):**
+
+<:Greendot:1144591256270422057> APO crosses below the zero line from above.
+<:Greendot:1144591256270422057> Confirmed by a bearish divergence (price makes higher highs, APO makes lower highs).
+
+**Exit Conditions:**
+**Exit Long:**
+
+<:Greendot:1144591256270422057> APO shows a bearish divergence.
+<:Greendot:1144591256270422057> APO crosses below the zero line.
+
+**Exit Short:**
+
+<:Greendot:1144591256270422057> APO shows a bullish divergence.
+<:Greendot:1144591256270422057> APO crosses above the zero line.",1
+1320682436195123230,2024-12-23T09:20:29.882000+00:00,893679026911195157,nyl_lin,"**Directional Movement Index Strategy**
+
+*Source: https://commodity.com/technical-analysis/dmi/*
+
+**Indicators Used:**
+
+* DMI+ (Directional Movement Index Plus)
+* DMI- (Directional Movement Index Minus)
+* ADX (Average Directional Index)
+* DMI Period: 14 (default)
+* ADX Threshold: 25 (to confirm strong trends)
+
+**Entry Conditions:**
+**Buy Entry (Long):**
+* DMI+ crosses above DMI- (Bullish Crossover).
+* ADX > 25: Confirms a strong trend.
+
+**Sell Entry (Short):**
+DMI- crosses above DMI+ (Bearish Crossover).
+ADX > 25: Confirms a strong trend.
+
+
+**Exit Conditions:**
+**Exit Long:**
+* DMI- crosses above DMI+ (Bearish Crossover).
+* ADX falls below 20: Indicates weakening trend.
+
+**Exit Short:**
+* DMI+ crosses above DMI- (Bullish Crossover).
+* ADX falls below 20: Indicates weakening trend.",1
+1320601864626110516,2024-12-23T04:00:20.123000+00:00,849973198300643348,mridodablecrypto,"**LSMA x Shortterm Guppy RSI**
+
+**Indicators**
+LSMA
+Short-term Guppy RSI
+
+**Settings**
+LSMA - 55
+Guppy RSI - Default
+
+
+**Trading Guide**
+Crypto: BTCUSDT ( FUTURES )
+Timeframe: 30mins
+
+
+**-LONG-**
+• Green Candlestick
+• Price above LSMA
+• Green GUPPY RSI (going up)
+
+**-SHORT-**
+• Red Candlestick
+• Price below LSMA
+• Red GUPPY RSI (going down)
+
+**-Stoploss-**
+• LSMA 
+
+**-Takeprofit-**
+• Twice stoploss
+
+
+
+
+Happy Trading G! and Enjoy the holiday!",2
+1319102720879235123,2024-12-19T00:43:16.401000+00:00,893679026911195157,nyl_lin,"**Price Oscillator Trend Reversal Strategy**
+
+Source: https://commodity.com/technical-analysis/price-oscillator/
+
+**Indicators:**
+
+Price Oscillator (PO): Calculated as the difference between two Exponential Moving Averages (EMAs):
+
+<:Reddot:1144591261383278752> Short EMA (Fast Period): 9 days
+<:Reddot:1144591261383278752>Long EMA (Slow Period): 18 days
+Thresholds:
+<:Reddot:1144591261383278752>Overbought Level: PO > +5
+<:Reddot:1144591261383278752>Oversold Level: PO < -5
+
+**Entry Conditions**
+**Buy Entry (Long Position):**
+
+<:Reddot:1144591261383278752>PO crosses above the zero line from below (bullish crossover).
+<:Reddot:1144591261383278752>OR PO moves into the oversold region (< -5) and starts to increase, indicating a potential reversal.
+
+**Sell Entry (Short Position):**
+
+<:Reddot:1144591261383278752>PO crosses below the zero line from above (bearish crossover).
+<:Reddot:1144591261383278752>OR PO moves into the overbought region (> +5) and starts to decrease, indicating a potential reversal.
+
+**Exit Conditions**
+**Exit Long:**
+
+<:Reddot:1144591261383278752>PO crosses back below the zero line.
+
+**Exit Short:**
+
+<:Reddot:1144591261383278752>PO crosses back above the zero line.",1
+1318589898416062505,2024-12-17T14:45:29.998000+00:00,350235241249767425,shannelle_,"**Breakout Pattern Trading Strategy: 2 SCENARIOS you can use**
+
+*It works for two scenarios:*
+
+1. Breakout with no retracement.
+2. Breakout with retracement.
+
+**Basic Indicators Used**
+
+• Support and Resistance Levels – Identify consolidation ""boxes"" or resistance areas.
+• Volume – Increased volume confirms a strong breakout.
+• 20-Period EMA (Exponential Moving Average) – Helps identify trend direction and support.
+• RSI (Relative Strength Index) – 14-period RSI to confirm momentum (above 50 but below 70 for strength).
+
+
+
+**Scenario 1: Breakout with No Retracement**
+
+• Identify the breakout with a strong bullish candle and increased volume.
+
+** Entry: **
+-Enter a small position immediately after the breakout (on candle close).
+-If price consolidates above the breakout level, add to your position after confirmation.
+
+**Scenario 2: Breakout with Retracement**
+
+• Identify a resistance level or consolidation ""box.""
+• Wait for a breakout above resistance with high volume.
+• Wait for a retracement back to the breakout level (resistance turns to support).
+
+** Entry:** 
+-Enter a long position once the breakout level holds as support. 
+-Look for Bullish candlestick confirmation (e.g., bullish engulfing or hammer).
+-RSI stays above 50.
+
+
+
+**Stop-Loss Placement:**
+
+***Initial Stop-Loss:*** Place stop-loss just below the breakout level (previous resistance turned support).
+***Trailing Stop-Loss:*** As price rises, adjust stop-loss to the next higher low or support level to lock in profits.",1
+1317277246397874268,2024-12-13T23:49:29.369000+00:00,849973198300643348,mridodablecrypto,"**15min EMA x BullBear Power**
+
+**Indicators**
+• EMA
+• Bull Bear Power
+
+
+**Settings**
+*EMA*
+-10
+-18
+-23
+
+*BBP*
+-13
+
+**Trading Guidelines**
+
+Crypto: BTC
+Timeframe: 15minute
+
+
+
+**-LONG-**
+• Price above EMA
+• BBP GREEN (after emas cross make sure 2 consecutive volume is rising[GREEN])
+
+
+**-SHORT-**
+• Price below EMA
+• BBP Red (after emas crosse make sure 2 consecutive volume is rising[RED])
+
+**-STOPLOSS-**
+• Fair Value GAP after the cross ( I can't add another indicator sorry lol )
+
+**-Take Profit-**
+• twice or thrice your stoploss
+
+
+GOODLUCK AND HAPPY TRADING G!",1
+1317117220597268552,2024-12-13T13:13:36.245000+00:00,893679026911195157,nyl_lin,"**Precision Trend-Momentum Strategy**
+
+*Source: https://www.tradingpedia.com/forex-trading-strategies/combining-rsi-full-stochastic-oscillator-and-sma/*
+
+**Indicators: **
+<:Whitedot:1144591258577277009> 150-Period Simple Moving Average (SMA):
+<:Whitedot:1144591258577277009> 3-Period Relative Strength Index (RSI):
+         Oversold zone: 20–30.
+        Overbought zone: 70–80.
+<:Whitedot:1144591258577277009> Full Stochastic Oscillator (6, 3, 3):
+        Oversold zone: 20–30.
+        Overbought zone: 70–80.
+
+**Entry Conditions**
+**Long Entry (Buy)**
+
+Trend Confirmation
+<:Whitedot:1144591258577277009> The price is above the 150 SMA (bullish trend).
+<:Whitedot:1144591258577277009> RSI drops into the oversold zone (20–30).
+<:Whitedot:1144591258577277009> Both %K and %D lines are in the oversold zone (20–30).
+<:Whitedot:1144591258577277009> A bullish crossover occurs (%K crosses above %D).
+<:Whitedot:1144591258577277009> Enter at the close of the price bar where the above conditions are met.
+
+**Short Entry (Sell)**
+<:Whitedot:1144591258577277009> The price is below the 150 SMA (bearish trend).
+<:Whitedot:1144591258577277009> RSI rises into the overbought zone (70–80).
+<:Whitedot:1144591258577277009> Both %K and %D lines are in the overbought zone (70–80).
+<:Whitedot:1144591258577277009> A bearish crossover occurs (%K crosses below %D).
+<:Whitedot:1144591258577277009> Enter at the close of the price bar where the above conditions are met.
+
+**Exit Conditions**
+Standard Exit:
+<:Whitedot:1144591258577277009> Exit when the Full Stochastic Oscillator reaches the opposite extreme zone:
+<:Whitedot:1144591258577277009> Overbought for long positions (70–80).
+<:Whitedot:1144591258577277009> Oversold for short positions (20–30).",1
+1316860220609138747,2024-12-12T20:12:22.673000+00:00,350235241249767425,shannelle_,"** 34 EMA with Trendline Breakout Strategy**
+
+-https://www.forex.academy/catch-the-breakout-with-34-ema-trading-strategy/
+
+**Indicators Used:**
+
+- **34 Exponential Moving Average (EMA)**: To determine the overall trend direction.
+- **Trendlines: **To identify potential breakout points.
+
+**Buy Entry Conditions:**
+
+1. Draw a downward trendline on the chart.
+2. Look for a breakout above the downward trendline.
+3. Confirm that the price is above the 34 EMA at the time of breakout.
+4. Identify the high of the last bullish candlestick (signal candle), ensuring it is lower than the previous candle's high.
+5. Enter a buy order if the high of the signal candle is broken, or place a buy stop order a few pips above the signal candle's high.
+
+**Sell Entry Conditions:**
+
+1. Draw an upward trendline on the chart.
+2. Look for a breakdown below the upward trendline.
+3. Confirm that the price is below the 34 EMA at the time of breakout.
+4. Identify the low of the last bearish candlestick (signal candle), ensuring it is higher than the previous candle's low.
+5. Enter a sell order if the low of the signal candle is broken, or place a sell stop order a few pips below the signal candle's low.
+
+**Stop Loss:**
+
+**LONG:** Below the breakout candle of the downward trend line.
+
+**SHORT:** Above the breakout candle of the upward trend line.",2
+1316219824602615890,2024-12-11T01:47:40.367000+00:00,893679026911195157,nyl_lin,"**MAMA Trend Reversal Strategy**
+
+*Source : https://trendspider.com/learning-center/what-is-the-mesa-adaptive-moving-average-mama/*
+
+**Indicators:**
+
+* Fast Line (MAMA): Default values (Alpha = 0.5, adaptivity based on dominant cycle).
+*  Slow Line (FAMA): Derived from MAMA but smoothed (e.g., Alpha = 0.1).
+
+**Buy Entry (Long Position):**
+
+*  The MAMA (fast line) crosses above the FAMA (slow line).
+*  MAMA and FAMA are sloping upwards, indicating a bullish trend.
+
+**Sell Entry (Short Position):**
+
+*  The MAMA (fast line) crosses below the FAMA (slow line).
+*  MAMA and FAMA are sloping downwards, indicating a bearish trend.
+
+**Exit Conditions:**
+
+**Exit Long Position:**
+
+*  The MAMA (fast line) crosses below the FAMA (slow line).
+*  Or, the price reaches a predetermined profit target.
+
+**Exit Short Position:**
+
+*  The MAMA (fast line) crosses above the FAMA (slow line).
+*  Or, the price reaches a predetermined profit target.",0
+1315877403691847742,2024-12-10T03:07:00.860000+00:00,849973198300643348,mridodablecrypto,"**RMI Nadaraya Sniper**
+
+**Indicator**
+
+RMI Trend Sniper - TZack88
+Nadaraya-Watson Oscillator - FractralTrade_
+
+
+**Settings**
+RMI Length - 7
+Positive 66 Negative 30
+
+Nadaraya - Default
+
+
+**Trading GUIDE**
+
+Crypto: BTC (Futures)
+Timeframe: 1hr (or higher)
+
+
+
+**-LONG-**
+
+• Nadaraya Cross above 0.0 with volume
+• Sniper BUY signal
+• Price above Trend
+
+
+**-SHORT-**
+
+• Nadaraya Cross below 0.0 with volume
+• Sniper Sell Signal
+• Price below Trend
+
+**-STOPLOSS-**
+
+• Trendline
+
+**-TAKE PROFIT-**
+
+• Twice your stoploss
+
+
+NOTE: BACKTEST IS A MUST!! 
+
+HAPPY EARNING!!",1
+1314045013658963973,2024-12-05T01:45:45.032000+00:00,893679026911195157,nyl_lin,"**Linear Regression Curve Strategy**
+
+*Source https://commodity.com/technical-analysis/lin-reg-curve/*
+
+**Indicators**
+* Linear Regression Curve (LRC): Plotted over a user-defined period (e.g., 9 days).
+* Deviation Threshold: Percentage or point deviation from the LRC to trigger trades (e.g., ±2%).
+
+**Buy Entry (Long)**
+* The price deviates below the Linear Regression Curve by more than the specified threshold (e.g., -2% or X points).
+* Optionally, in an uptrend, confirmed if:
+     Linear Regression Curve has a positive slope.
+     Price closes higher than the previous bar.
+
+
+**Sell Entry (Short)**
+* The price deviates above the Linear Regression Curve by more than the specified threshold (e.g., +2% or X points).
+* Optionally, in a downtrend, confirmed if:
+      Linear Regression Curve has a negative slope.
+      Price closes lower than the previous bar.
+
+**Exit Conditions**
+* Long Exit: Price returns to or exceeds the Linear Regression Curve.
+* Short Exit: Price returns to or falls below the Linear Regression Curve.",1
+1313442497741066292,2024-12-03T09:51:34.043000+00:00,849973198300643348,mridodablecrypto,"**Nadaraya Watson Smooth x CE** 
+Optimized by <@650054488522227712> 
+(if theres anything you like G! reply) thank you so much G!
+
+**Indicators**
+LuxAlgo - Nadaraya-Watson Smoothers
+Chandelier Exit - everget
+
+**Settings**
+**Nadaraya **
+Bandwidth - 11
+Source - CE:
+
+**Chandelier Exit**
+ATR P - 11
+ATR M - 4.213
+
+
+**Trading Guide**
+
+PAIR: XAU (GOLD)
+TIMEFRAME: 1minute
+
+**Entry Criteria**
+
+
+**BUY WHEN IT SAYS BUY**
+**SELL WHEN IT SAYS SELL**
+
+
+**NOTE:** BETTER TO PLACE POSITION IF CANDLE STICK IS ABOVE NADARAYA FOR LONG
+
+WHILE FOR SHORT ITS THE OPPOSITE
+
+
+
+GOODLUCK AND HAPPY EARNINGS FAM!! LET'S GO!",1
+1311504147442438166,2024-11-28T01:29:15.319000+00:00,893679026911195157,nyl_lin,"**Kaufman Adaptive Moving Average (KAMA) Strategy**
+
+*Source https://forex-station.com/download/file.php?id=3314561&sid=40024199b46a3a9480dd620114fee892*
+
+**Indicators: **
+* Kaufman Adaptive Moving Average (KAMA)
+* Fast Period: 2 bars
+* Slow Period: 30 bars
+
+**Entry Conditions:**
+
+Bullish Entry:
+* KAMA is sloping upward
+* Current price crosses above the KAMA
+*Efficiency Ratio (ER) is close to 1 (indicating a strong trend)
+
+Bearish Entry:
+* KAMA is sloping downward
+* Current price crosses below the KAMA
+* Efficiency Ratio (ER) is close to 1 (indicating a strong trend)
+
+
+**Exit Conditions:**
+
+Bullish Exit:
+* KAMA changes direction and starts sloping downward
+* Price crosses below the KAMA
+* Efficiency Ratio drops significantly (indicating market is losing momentum)
+
+
+Bearish Exit:
+* KAMA changes direction and starts sloping upward
+* Price crosses above the KAMA
+* Efficiency Ratio drops significantly (indicating market is losing momentum)",0
+1310537962869620777,2024-11-25T09:29:58.966000+00:00,849973198300643348,mridodablecrypto,"**Double Supertrend Strategy**
+
+Add two **Supertrend** in your chart.
+
+**Settings**
+10,1
+20,2
+
+**Trading Guide**
+
+Crypto: BTC
+Timeframe: 5 and 15 minutes (can be use in any timeframe)
+
+**-LONG SHORT-**
+
+• Both Supertrend are Green
+• Price above Supertrend
+
+**-SHORT Entry-**
+
+• Both Supertrend are Red
+• Price BBelow Supertrend
+
+**-STOPLOSS-**
+
+• Any Supertrend
+
+**-Take Profit-**
+
+• 1:2 (Conservative)
+• 1:3 (Recommended)
+• 1:5 (Aggressive) 
+
+
+Happy trading and goodluck",2
+1309792304290070549,2024-11-23T08:07:00.107000+00:00,350235241249767425,shannelle_,"**Breakout/Rejection with RSI Strategy**
+
+**Indicators**
+•**Resistance Level** - A fixed resistance level is set at 2670.00. Price action around this level will determine entry signals.
+
+•**Volume** - The strategy checks for an increase in volume, which is defined as the current volume being greater than 125% of the 10-period simple moving average (SMA) of volume. 
+
+•**Relative Strength Index (RSI)**: - The RSI is calculated over a 14-period timeframe
+
+***Buy Entry (Breakout):***
+
+•If the closing price (close) is greater than the resistance level (2670.00), and the volume is increasing (current volume > 1.25 * 10-period SMA of volume).
+•When this condition is met, it indicates a potential breakout, and you should enter a long position.
+
+***Sell Entry (Rejection):***
+
+• If the closing price is below the resistance level and the RSI value is greater than 70. This indicates that the price may be rejecting the resistance.
+• When this condition is met, it implies a potential price reversal, and you should enter a short position.",1
+1308966764872470558,2024-11-21T01:26:36.172000+00:00,893679026911195157,nyl_lin,"**TRIX Strategy**
+
+https://www.warriortrading.com/triple-exponential-moving-average-trix/
+
+**Indicators:**
+
+TRIX: Triple Exponential Moving Average indicator.
+Period: 14 (default, can be adjusted based on testing).
+Signal Line: EMA of TRIX.
+Period: 9 (default, can be adjusted).
+
+**Entry Conditions:**
+**Buy Entry (Long):**
+
+Zero-Line Crossover: TRIX crosses above zero, indicating a bullish trend.
+Signal Line Crossover: TRIX crosses above the Signal Line from below, confirming upward momentum.
+
+**Sell Entry (Short):**
+Zero-Line Crossover: TRIX crosses below zero, indicating a bearish trend.
+Signal Line Crossover: TRIX crosses below the Signal Line from above, confirming downward momentum.",1
+1307830740213563455,2024-11-17T22:12:26.787000+00:00,849973198300643348,mridodablecrypto,"**FLUX Trading Strategy**
+
+**Indicators**
+Support and Resistance (MTF) - FluxCharts
+VWAP Divergence - FluxChart
+
+**Settings**
+SNR
+Uncheck Chart
+Change timeframe to 30 minute and 1 hour
+
+
+**Trading Guide**
+
+Trade only the market trend if its **bullish** only take long
+if its **bearish** only take short
+
+Crypto: APT
+Timeframe: 30 minute
+
+**-Long-**
+• R Label
+• Price above VWAP
+• Green VWAP
+
+**-Short-**
+• R label
+• Price below VWAP
+• Red VWAP
+
+**-Stoploss-**
+• Below R Label (LONG)
+• Above R Label (SHORT)
+
+**-Take profit-**
+• 1:2 (conservative)
+• 1:3 (Recommended)
+
+
+
+Discipline is the key to success. Criteria not met? Don't take trades. Backtest is a must",2
+1307683630935576616,2024-11-17T12:27:53.202000+00:00,350235241249767425,shannelle_,"**Kijun Sen Cross with Ichimoku**
+
+***Indicators Used:***
+
+
+**Kijun Sen: **The baseline that represents price equilibrium and trend direction.
+**Chikou Span:** Used for confirming the direction of the trend with respect to price action.
+**Kumo (Cloud):** Adds strength to the Kijun Sen signals depending on whether the crossover occurs above or below the cloud.
+
+
+**Buy Entry Conditions:**
+
+-Confirm a bullish Kijun Sen cross where the Kijun Sen crosses the price curve from below.
+-Ensure the bullish cross occurs above the Kumo (cloud) for a strong signal.
+-Wait for the Chikou Span to be above the price curve to reinforce the buy signal.
+-Execute a buy order at the close of the candle that confirms the bullish cross.
+
+
+**Sell Entry Conditions:**
+
+-Identify a bearish Kijun Sen cross where the Kijun Sen crosses the price curve from above.
+-Ensure the bearish cross occurs below the Kumo (cloud) for a strong signal.
+-Wait for the Chikou Span to be below the price curve to reinforce the sell signal.
+-Execute a sell order at the close of the candle that confirms the bearish cross.",1
+1306435506514559017,2024-11-14T01:48:17.151000+00:00,893679026911195157,nyl_lin,"**WMA Crossover Trend Strategy**
+
+*Source: https://www.researchgate.net/publication/313992471_The_Weighted_Moving_Average_Technique*
+
+**Indicator Values: **
+
+* Use a 5-term WMA with weights 
+
+**Entry and Exit Conditions**
+**Long Entry (Buy):**
+
+* Enter a long position when the WMA crosses above the price from below, indicating upward momentum.
+* Optional condition: Verify that the price is also above the recent WMA over several periods for stronger signals.
+
+**Short Entry (Sell):**
+
+* Enter a short position when the WMA crosses below the price from above, indicating downward momentum.
+* Optional condition: Price should be below the recent WMA for a more reliable signal.
+
+**Exit Conditions:**
+
+* Long Exit: Exit when the WMA starts to turn downwards or crosses below the price.
+* Short Exit: Exit when the WMA starts to turn upwards or crosses above the price",0
+1305681212655927336,2024-11-11T23:50:59.481000+00:00,849973198300643348,mridodablecrypto,"**Xtrend Strategy**
+
+**Indicator**
+
+Xtreme Trend by KachraStocks
+Default Settings
+
+
+**TRADING GUIDES**
+
+This is a very straight forward startegy so here we go!
+
+CRYPTO: Bitcoin
+Timeframe: 1hour above
+
+**-LONG-**
+
+• Buy signal
+• Price above trend
+• Price above 200ema
+
+**-SHORT-**
+
+• Sell signal
+• Price below trend
+• Price below 200ema
+
+**-RISK TO REWARD-**
+
+• 1:2
+• 1:3",2
