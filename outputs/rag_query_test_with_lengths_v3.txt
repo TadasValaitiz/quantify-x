@@ -1,0 +1,1330 @@
+****************************************************************************************************
+Query: Create trading strategy for crypto trading?
+
+Distances: [0.7410821914672852, 0.8339478373527527, 0.8922818899154663, 0.9215490818023682, 0.9266632199287415, 0.741607666015625, 0.7577264308929443, 0.7615573406219482, 0.7791677117347717, 0.8196675181388855]
+Chunk sizes: [None, None, None, None, None, 500, 500, 500, 500, 500]
+Sources: ['resources/books/trading_strategies/forex_trading.pdf', 'resources/books/trading_strategies/forex_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/forex_trading.pdf', 'resources/books/trading_strategies/forex_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf']
+Splitters: ['paragraph', 'paragraph', 'paragraph', 'paragraph', 'paragraph', 'recursive', 'recursive', 'recursive', 'recursive', 'recursive']
+Lengths: [599, 920, 543, 1928, 624, 434, 488, 491, 459, 499]
+------------------------------
+Distance: 0.7410821914672852
+Chunk size: None
+Source: resources/books/trading_strategies/forex_trading.pdf
+Splitter: paragraph
+Length: 599
+
+Forex trading strategies can be developed by following popular trading styles which are day trad­
+ing, carry trade, buy and hold strategy, hedging, portfolio trading, spread trading, swing trading, 
+order trading and algorithmic trading.
+Using and developing trading strategies mostly depends on understanding your strengths and 
+weaknesses.In order to be successful in trade you should find the best way of trading that suits your 
+personality.There is no fixed “right” way of trading; the right way for others may not work for you. 
+Below you can read about each trading style and define your own.
+
+Distance: 0.8339478373527527
+Chunk size: None
+Source: resources/books/trading_strategies/forex_trading.pdf
+Splitter: paragraph
+Length: 920
+
+One of the most powerful means of winning a trade is the portfolio of Forex trading strat­
+egies applied by traders in different situations. Following a single system all the time is 
+not enough for a successful trade. Each trader should know how to face up to all market 
+conditions, which, however, is not so easy, and requires a deep study and understanding of 
+economics.
+In order to help you meet your educational needs and create your own portfolio of trading 
+strategies, IFC Markets provides you both with reliable resources on trading and with com­
+plete information of all the popular and simple forex trading strategies applied by successful 
+traders.
+The trading strategies we represent are suitable for all traders who are novice in trade or 
+want to improve their skills. All the strategies classified and explained below are for educa­
+tional purposes and can be applied by each trader in a different way.
+
+Distance: 0.8922818899154663
+Chunk size: None
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: paragraph
+Length: 543
+
+This book is deﬁnitely not designed as an encyclopedia of quantita-
+tive trading techniques or terminologies. It will not even be about
+speciﬁc proﬁtable strategies (although you can reﬁne the few ex-
+ample strategies embedded here to make them quite proﬁtable.) In-
+stead, this is a book that teaches you how to ﬁnd a proﬁtable strategy
+yourself. It teaches you the characteristics of a good strategy, how
+to reﬁne and backtest a strategy to ensure that it has good historical
+performance, and, more importantly, to ensure that it will remain
+
+Distance: 0.9215490818023682
+Chunk size: None
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: paragraph
+Length: 1928
+
+proﬁtable in the future. It teaches you a systematic way to scale up
+or wind down your strategies depending on their real-life proﬁtabil-
+ity. It teaches you some of the nuts and bolts of implementing an au-
+tomated execution system in your own home. Finally, it teaches you
+some basics of risk management, which is critical if you want to sur-
+vive over the long term, and also some psychological pitfalls to avoid
+if you want an enjoyable (and not just proﬁtable) life as a trader.
+Even though the basic techniques for ﬁnding a good strategy
+should work for any tradable securities, I have focused my ex-
+amples on an area of trading I personally know best: statistical
+arbitrage trading in stocks. While I discuss sources of historical
+data on stocks, futures, and foreign currencies in the chapter on
+backtesting, I did not include options because those are not in my
+area of expertise.
+The book is organized roughly in the order of the steps that
+traders need to undertake to set up their quantitative trading busi-
+ness. These steps begin at ﬁnding a viable trading strategy (Chap-
+ter 2), then backtesting the strategy to ensure that it at least has
+good historical performance (Chapter 3), setting up the business
+and technological infrastructure (Chapter 4), building an automated
+trading system to execute your strategy (Chapter 5), and managing
+the money and risks involved in holding positions generated by this
+strategy (Chapter 6). I will then describe in Chapter 7 a number of
+important advanced concepts with which most professional quan-
+titative traders are familiar, and ﬁnally conclude in Chapter 8 with
+reﬂections on how independent traders can ﬁnd their niche and how
+they can grow their business. I have also included an appendix that
+contains a tutorial on using MATLAB.
+You’ll see two different types of boxed material in this book:
+r Sidebars containing an elaboration or illustration of a concept, and
+
+Distance: 0.9266632199287415
+Chunk size: None
+Source: resources/books/trading_strategies/forex_trading.pdf
+Splitter: paragraph
+Length: 624
+
+Order trading helps traders to enter or exit a position at the most suitable moment by using differ­
+ent orders including market orders, pending orders, limit orders, stop orders, stop loss orders and 
+OCO orders.
+Currently, advanced trading platforms provide various types of orders in trading which are not 
+simply ‘’buy button’’ and ‘’sell button’’. Each type of trading order can represent a specific strategy.  
+It’s important to know when and how to trade and which order to use in a given situation in order to 
+develop the right order strategy.
+The most popular Forex orders that a trader can apply in his trade are:
+
+Distance: 0.741607666015625
+Chunk size: 500
+Source: resources/books/trading_strategies/forex_trading.pdf
+Splitter: recursive
+Length: 434
+
+Forex trading strategies can be developed by following popular trading styles which are day trad-
+ing, carry trade, buy and hold strategy, hedging, portfolio trading, spread trading, swing trading, 
+order trading and algorithmic trading.
+   Using and developing trading strategies mostly depends on understanding your strengths and 
+weaknesses.In order to be successful in trade you should find the best way of trading that suits your
+
+Distance: 0.7577264308929443
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 488
+
+trading quantitatively, this book skillfully addresses 
+how to:
+ Find a viable trading strategy that you’re both comfortable 
+w
+ith and confident in
+ Backtest your strategy—with MATLAB ®, Excel, and other 
+platforms—to ensure good historical performance
+ Build and implement an automated trading system to 
+e
+xecute your strategy
+ Scale up or wind down your strategies depending on their 
+r
+eal-world profitability
+ Manage the money and risks involved in holding positions 
+generated
+
+Distance: 0.7615573406219482
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 491
+
+trading quantitatively, this book skillfully addresses 
+how to:
+ Find a viable trading strategy that you’re both comfortable 
+wi
+th and confident in
+ Backtest your strategy—with MATLAB ®, Excel, and other 
+platforms—to ensure good historical performance
+ Build and implement an automated trading system to 
+ex
+ecute your strategy
+ Scale up or wind down your strategies depending on their 
+re
+al-world profitability
+ Manage the money and risks involved in holding positions 
+generated by
+
+Distance: 0.7791677117347717
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 459
+
+vive over the long term, and also some psychological pitfalls to avoid
+if you want an enjoyable (and not just proﬁtable) life as a trader.
+Even though the basic techniques for ﬁnding a good strategy
+should work for any tradable securities, I have focused my ex-
+amples on an area of trading I personally know best: statistical
+arbitrage trading in stocks. While I discuss sources of historical
+data on stocks, futures, and foreign currencies in the chapter on
+
+Distance: 0.8196675181388855
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 499
+
+the ﬁrst place.
+Your Programming Skills
+Are you good at programming? If you know some programming
+languages such as Visual Basic or even Java, C#, or C++, you can
+explore high-frequency strategies, and you can also trade a large
+number of securities. Otherwise, settle for strategies that trade only
+once a day, or trade just a few stocks, futures, or currencies. (This
+constraint may be overcome if you don’t mind the expense of hiring
+a software contractor. Again, see Chapter 5 for more details.)
+
+****************************************************************************************************
+Query: I need to optimize weights?
+
+Distances: [1.1176024675369263, 1.1639896631240845, 1.205750823020935, 1.2671217918395996, 1.2928667068481445, 1.0913068056106567, 1.1388581991195679, 1.1432873010635376, 1.1827192306518555, 1.1900384426116943]
+Chunk sizes: [None, None, None, None, None, 500, 500, 500, 500, 500]
+Sources: ['resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf', 'resources/books/trading_strategies/bayesen-neural-networks.pdf', 'resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf', 'resources/books/trading_strategies/optimizing-params-using-bayesen-optimization.pdf', 'resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf', 'resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf', 'resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf', 'resources/books/trading_strategies/bayesen-neural-networks.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf']
+Splitters: ['paragraph', 'paragraph', 'paragraph', 'paragraph', 'paragraph', 'recursive', 'recursive', 'recursive', 'recursive', 'recursive']
+Lengths: [1915, 600, 877, 622, 5036, 495, 470, 473, 467, 449]
+------------------------------
+Distance: 1.1176024675369263
+Chunk size: None
+Source: resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf
+Splitter: paragraph
+Length: 1915
+
+a. Ii .=
+Pi−1
+j=1 wj
+ti
+i−1
+is the initial weight assigned to i (ψi)
+every day lasted about two to three minutes with one ex-
+pert and about eight to ten minutes with the eleven experts
+that we had in total.
+We aggregated the daily results in 20 test sets (2,000
+observations per set equivalent to 20 trading days) that we
+used to calculate the performance and risk indicators. The
+average of these results are presented in the next section.
+We ran the expert weighting algorithm using its three ver-
+sions and the following values of the parameter C: 0, 0.05,
+0.5, 1, 5, 10, 20, 30, 40, and 50. When C is 0 is equiv-
+alent to apply bagging to Logitboost (bagged boosting) or
+to average all the experts. The threshold to eliminate very
+weak expert weights (γ0) is set to 0.20, and the threshold
+to restrict trading (γ1) is set to 0.
+We tested our results with transaction costs of $0,
+$0.001, $0.002, and $0.003 per stock. These values are
+realistic if we consider that ISLAND has the policy to pay
+a rebate of $0.002 per stock to the trader whose order was
+in the order books, and charges a rebate of $0.003 per stock
+to the trader that submitted the incoming order. Traders can
+use this policy in their favour and do not have to pay the full
+fee of $0.003. On the contrary, they can capture the rebate
+using only limit orders as the market maker strategy sug-
+gests. Even more, large brokerage ﬁrms have much lower
+direct transaction costs and the initial investment to trade
+becomes a sink cost that does not have a major impact in
+individual trades.
+We compare our results with a buy and hold (B&H)
+position, a constant rebalanced portfolio (CRP), and
+Cover’s universal portfolio (CUP) algorithm.
+CRP and
+CUP are implemented with uniform distributions, and with
+10 different portfolios for the case of CUP9.
+b. ramp(t −ti) .= min
+
+t−ti
+tt+1−ti , 1
+
+5
+Results
+c. ti+1 is the time that the next expert is added.
+
+Distance: 1.1639896631240845
+Chunk size: None
+Source: resources/books/trading_strategies/bayesen-neural-networks.pdf
+Splitter: paragraph
+Length: 600
+
+Due to the high complexity in neural networks, they have a tendency to
+overﬁt to the given training data, which yields poor generalization to unseen
+data points.
+To overcome this problem, several regularization techniques
+have been proposed. From a Bayesian viewpoint, this is often equal to in-
+troducing an informative prior on the weights, and ﬁnding the optimal set
+of weights via Maximum a posteriori estimation (MAP) [3]. More formally,
+given a data set D and a prior distribution of the weights, p(w), the optimal
+set of weights is estimated by
+wMAP = arg max
+w (log p(D|w) + log p(w)) .
+(3.5)
+
+Distance: 1.205750823020935
+Chunk size: None
+Source: resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf
+Splitter: paragraph
+Length: 877
+
+Input:
+Set of price series (close, open, high, and low), volume and beta excess return
+(BXRET )
+r is number of different values of parameters to calculate investment signals
+N is number of stocks to be selected from market
+d is number of days between experts’ training
+γ0 and γ1 are thresholds to ﬁlter experts’ weight.
+C is an exogenous parameter for expert weighting.
+Train with machine learning algorithm:
+1. Select a representative sample of N number of stocks from targeted market.
+2. Calculate investment signals, and labels a with basic parameters for a selected
+group of stocks.
+3.
+Recalculate investment signals with r variations of basic parameters, and
+include all of the investment signals as features in the training and test sets where
+the binary label is yt = sign(BXRET ).
+4. Integrate all the instances of the N stocks in a single training and single test set.
+
+Distance: 1.2671217918395996
+Chunk size: None
+Source: resources/books/trading_strategies/optimizing-params-using-bayesen-optimization.pdf
+Splitter: paragraph
+Length: 622
+
+• Hyperparameter Tuning: BO excels at optimizing hyperparameters in algorithmic trading strategies, such as
+the atr_multiplier and atr_period of the Supertrend indicator. By finding the optimal settings, BO can
+potentially enhance the strategy’s performance and profitability.
+• Portfolio Allocation: BO can be applied to optimize portfolio allocation across various assets, balancing risk
+and return based on historical data and market conditions.
+• Risk Management: BO can be used to optimize risk management parameters, such as stop-loss and take-profit
+levels, helping to mitigate potential losses.
+3
+Problem Statement
+
+Distance: 1.2928667068481445
+Chunk size: None
+Source: resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf
+Splitter: paragraph
+Length: 5036
+
+Transaction costs
+Thresholds
+difference when we used only four different variations of
+the parameters. So, we included four different versions of
+most of the technical indicators in our training, validation,
+and testing set. In total, each instance of the training, val-
+idation, and testing set had 112 inputs. We were able to
+use this approach because of the boosting’s feature selec-
+tion capability (see the appendix for a presentation of the
+parameters used).
+In our experiments we observed that a small change in
+the sample may lead to diferent ADTs changing the invest-
+ment recommendation. In order to prevent this problem,
+our algorithm generates different ADTs and, in the next
+layer, selects the output of the best ADTs.
+3.2
+Layer 2:
+Online learning and expert
+weighting
+Figure 4. Trading system as a process ﬂow. The inputs
+of the algorithm are price series that are transformed into
+technical indicators and trading rules. The ﬁrst component
+trains several ADTs (experts) and each of them generates
+an investment signal. The second layer weights the invest-
+ment signals of each ADT, and generates a weighted single
+investment signal for each stock using an online learning
+algorithm. The third layer ﬁlters the weak investment sig-
+nals, and restricts not proﬁtable trading strategies.
+sis. We calculated these indicators using R and its ﬁnancial
+engineering package called Rmetrics.6
+We improved the performance of the boosting algorithm
+by adding online learning capacity with expert weighting.
+Our algorithm is derived from a previous algorithm pro-
+posed by Freund, Manssour and Schapire [34] that predicts
+with a exponentially weighted average of the training er-
+ror of all hypotheses. The “exponential weights” formula
+comes from the weighted majority algorithm introduced by
+Littlestone and Warmuth [52] and further studied by Cesa-
+Bianchi et al. [12]. The “exponential weights” is a different
+formula to compute the posterior distribution as it would
+be proposed by Bayesian analysis. An interesting feature
+of this algorithm is that it abstains to predict on certain in-
+stances, so the predictions that it makes are very reliable.
+The algorithm that we present in the next subsection is
+an extension of this original algorithm applied to ﬁnancial
+time series prediction, and therefore is an online learning
+model.8 The machine learning layer introduced in the pre-
+vious section and the online learning layer of our trading
+system have two different functions:
+• The machine learning layer generates several “ex-
+perts” or ADTs using historical stock price informa-
+tion. Each ADT has a set of rules that combines the
+technical indicators, and generates an investment sig-
+nal for each stock.
+• The online learning layer receives the new prices,
+combines the signals of the different ADTs gener-
+ated by the machine learning layer, and reallocates
+the portfolio according to the recommendations of the
+“experts”, and the input received from the risk man-
+agement module (see section 3.3.1).
+In the next section, we describe the algorithm used by the
+online learning layer.
+Our goal was to predict the trend of beta excess
+returns (BXRET)7 using the above investment signals.
+yt ∈[−1, +1] is the binary label to be predicted where 1
+represents the expectation of a positive beta excess return,
+and -1 otherwise.
+A major problem with the use of technical indica-
+tors is their calibration or the adequate selection of their
+best parameters, as with the optimal number of days to
+calculate the moving averages used by stochastic indica-
+tors or the number of standard deviations used to calcu-
+late the Bollinger bands. There are many versions of op-
+timizers such as the “brute force” approach where all the
+alternatives are tested one-at-a-time, and simulated anneal-
+ing or genetic optimizers as suggested by Katz and Mc-
+Cormick [44]. In our case, we initially tried one-at-a-time
+optimization where each parameter was tested with several
+values while keeping the others constant. We found that
+this approach was very inefﬁcient because it required too
+much computer power and time.
+The solution that we implemented was the simulta-
+neous recalculation of the technical indicators with several
+values of their parameters. Then the boosting algorithm
+would select the best combination of parameters and tech-
+nical indicators. Our initial parameters were the parame-
+ters recommended in the literature. We tested 16 different
+variations of the initial parameters and did not ﬁnd a major
+6Information about R and Rmetrics can be found at <http://cran.r-
+project.org> and at <http://www.rmetrics.org> respectively.
+7Beta excess return is the excess return of a speciﬁc asset less the av-
+erage return of all assets in its beta portfolio for each trading date.
+8Borodin and El-Yaniv [11, 28] propose a different approach to use
+online learning for trading and portfolio selection. They measure the per-
+formance of their trading algorithm in relation to a “statistical adversary”,
+and an optimal ofﬂine algorithm.
+
+Distance: 1.0913068056106567
+Chunk size: 500
+Source: resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf
+Splitter: recursive
+Length: 495
+
+4. Integrate all the instances of the Nstocks in a single training and single test set.
+5. Train an initial expert ( ψ1) with Logitboost. Every ddays train a new expert
+i ψi. Call the sequence of experts as ψ = ψ1,ψ2,...,ψ E where E is the
+number of experts.
+6. Every day recalculate test set and weight experts as in next steps.
+Expert weighting algorithm(this part is simpliﬁed for one asset, even though can
+be extended to Nassets):
+6. Calculate the weight of the ﬁrst expert at time tas w1
+t
+
+Distance: 1.1388581991195679
+Chunk size: 500
+Source: resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf
+Splitter: recursive
+Length: 470
+
+j=1 wj
+ti
+i−1 is the initial weight assigned to i(ψi)
+b. ramp (t−ti) .= min
+( t−ti
+tt+1−ti
+,1
+)
+c. ti+1 is the time that the next expert is added.
+8. Calculate the experts’ weight as Wt = Lt −St where Lt =
+∑
+i:Si
+t>0 wi
+t
+∑
+iwi
+t
+and St = 1−Li
+t.
+Risk management:
+9. if |Wt|<γ0, then Wt = 0
+10. If for stock i, Di,t−1 == min(Dt−1) then Wi,t = 0, else if Di,t−1 <
+γ1 then Wi,t = Wi,t−1 where:
+a. Di,t
+.= max(Ri,tx −Ri,ty|t0 ≤tx ≤ty ≤t) is the maximum
+drawdown for stock i
+
+Distance: 1.1432873010635376
+Chunk size: 500
+Source: resources/books/trading_strategies/bayesen-neural-networks.pdf
+Splitter: recursive
+Length: 473
+
+data points. To overcome this problem, several regularization techniques
+have been proposed. From a Bayesian viewpoint, this is often equal to in-
+troducing an informative prior on the weights, and ﬁnding the optimal set
+of weights via Maximum a posteriori estimation (MAP) [3]. More formally,
+given a data set Dand a prior distribution of the weights, p(w), the optimal
+set of weights is estimated by
+wMAP = arg max
+w
+(log p(D|w) + logp(w)) . (3.5)
+3.4.1 L1-regularization
+
+Distance: 1.1827192306518555
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 467
+
+strategy without transaction cost:
+clear;
+startDate=20060101;
+endDate=20061231;
+load(‘SPX 20071123’, ‘tday’, ‘stocks’, ‘cl’);
+% daily returns
+dailyret=(cl-lag1(cl))./lag1(cl);
+% equal weighted market index return
+marketDailyret=smartmean(dailyret, 2);
+% weight of a stock is proportional to the negative
+% distance to the market index.
+weights=...
+-(dailyret-repmat(marketDailyret,[1 size(dailyret,2)]))./
+repmat(smartsum(isfinite(cl), 2), ...
+[1 size(dailyret, 2)]);
+
+Distance: 1.1900384426116943
+Chunk size: 500
+Source: resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf
+Splitter: recursive
+Length: 449
+
+3.2.1 The expert weighting algorithm
+To simplify the presentation of our algorihtm, we introduce
+the case of one asset which can easily be extended to N as-
+sets. The ﬁnal outcome sequence are the net weights of an
+asset (W = W1,W2,..,W t,...,W l) where Wt ∈[−1,1],
+trefers to a time step and l represents the last step of the
+sequence.
+In this research, every expert is an ADT calculated
+with the training set which is a sequence of pairs as intro-
+
+****************************************************************************************************
+Query: How to do backtesting?
+
+Distances: [0.8486999273300171, 0.9147361516952515, 0.9931603074073792, 1.0015490055084229, 1.0063227415084839, 0.6040545701980591, 0.6274168491363525, 0.8337527513504028, 0.8627266883850098, 0.8663150072097778]
+Chunk sizes: [None, None, None, None, None, 500, 500, 500, 500, 500]
+Sources: ['resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf']
+Splitters: ['paragraph', 'paragraph', 'paragraph', 'paragraph', 'paragraph', 'recursive', 'recursive', 'recursive', 'recursive', 'recursive']
+Lengths: [602, 1403, 2169, 724, 1537, 491, 232, 472, 460, 448]
+------------------------------
+Distance: 0.8486999273300171
+Chunk size: None
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: paragraph
+Length: 602
+
+Backtesting is the process of creating the historical trades given the
+historical information available at that time, and then ﬁnding out
+what the subsequent performance of those trades is. This process
+seems easy given that the trades were made using a computer algo-
+rithm in our case, but there are numerous ways in which it can go
+wrong. Usually, an erroneous backtest would produce a historical
+performance that is better than what we would have obtained in ac-
+tual trading. We have already seen how survivorship bias in the data
+used for backtesting can result in inﬂated performance. There are,
+
+Distance: 0.9147361516952515
+Chunk size: None
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: paragraph
+Length: 1403
+
+A key difference between a traditional investment management pro-
+cess and a quantitative investment process is the possibility of back-
+testing a quantitative investment strategy to see how it would have
+performed in the past. Even if you found a strategy described in
+complete detail with all the historical performance data available,
+you would still need to backtest it yourself. This exercise serves
+several purposes. If nothing else, this replication of the research will
+ensure that you have understood the strategy completely and have
+reproduced it exactly for implementation as a trading system. Just
+as in any medical or scientiﬁc research, replicating others’ results
+also ensures that the original research did not commit any of the
+common errors plaguing this process. But more than just perform-
+ing due diligence, doing the backtest yourself allows you to exper-
+iment with variations of the original strategy, thereby reﬁning and
+improving the strategy.
+In this chapter, I will describe the common platforms that can
+be used for backtesting, various sources of historical data useful for
+backtesting, a minimal set of standard performance measures that a
+backtest should provide, common pitfalls to avoid, and simple re-
+ﬁnements and improvements to strategies. A few fully developed
+backtesting examples will also be presented to illustrate the prin-
+ciples and techniques described.
+31
+
+Distance: 0.9931603074073792
+Chunk size: None
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: paragraph
+Length: 2169
+
+After you have built your automated trading system, it is a good idea
+to test it in a paper trading account, if your brokerage provides one.
+Paper trading has a number of beneﬁts; chief among them is that
+this is practically the only way to see if your ATS software has bugs
+without losing a lot of real money.
+Often, the moment you start paper trading you will realize that
+there is a glaring look-ahead bias in your strategy—there may just be
+no way you could have obtained some crucial piece of data before
+you enter an order! If this happens, it is “back to the drawing board.”
+You should be able run your ATS, execute paper trades, and then
+compare the paper trades and proﬁt and loss (P&L) with the theoret-
+ical ones generated by your backtest program using the latest data.
+If the difference is not due to transaction costs (including an ex-
+pected delay in execution for the paper trades), then your software
+likely has bugs. (I mentioned the names of some of the brokerages
+that offer paper trading accounts in Chapter 4.)
+Another beneﬁt of paper trading is that it gives you better in-
+tuitive understanding of your strategy, including the volatility of its
+P&L, the typical amount of capital utilized, the number of trades per
+day, and the various operational difﬁculties including data issues.
+Even though you can theoretically check out most of these features
+of your strategy in a backtest, one will usually gain intuition only if
+one faces them on a daily, ongoing basis. Backtesting also won’t re-
+veal the operational difﬁculties, such as how fast you can download
+all the needed data before the market opens each day and how you
+can optimize your operational procedures in actual execution.
+(Do not underestimate the time required for preparing your or-
+ders before the market opens. It took me some 20 minutes to down-
+load and parse all my historical data each morning, and it took an-
+other 15 minutes or so to transmit all the orders to my account. If
+your trading strategy depends on data or news prior to the market
+open that cannot be more than 35 minutes old, then you need to
+either ﬁgure out a different execution environment or modify your
+
+Distance: 1.0015490055084229
+Chunk size: None
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: paragraph
+Length: 724
+
+A
+t this point, you should have backtested a good strategy
+(maybe something like the pair-trading strategy in Example
+3.6), picked a brokerage (e.g., Interactive Brokers), and have
+set up a good operating environment (at ﬁrst, nothing more than a
+computer, a high-speed Internet connection, and a real-time news-
+feed). You are almost ready to execute your trading strategy—after
+you have implemented an automated trading system (ATS) to gener-
+ate and transmit your orders to your brokerage for execution. This
+chapter is about building such an automated trading system and
+ways to minimize trading costs and divergence with your expected
+performance based on your backtests.
+WHAT AN AUTOMATED TRADING SYSTEM
+CAN DO FOR YOU
+
+Distance: 1.0063227415084839
+Chunk size: None
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: paragraph
+Length: 1537
+
+performance of the strategy from its backtest performance. Issues
+discussed here include:
+r Data: Split/dividend adjustments, noise in daily high/low, and
+survivorship bias.
+r Performance measurement: Annualized Sharpe ratio and maxi-
+mum drawdown.
+r Look-ahead bias: Using unobtainable future information for past
+trading decisions.
+r Data-snooping bias: Using too many parameters to ﬁt historical
+data, and avoiding it using large enough sample, out-of-sample
+testing, and sensitivity analysis.
+r Transaction cost: Impact of transaction costs on performance.
+r Strategy reﬁnement: Common ways to make small variations on
+the strategy to optimize performance.
+After going through this chapter and working through some of
+the examples and exercises, you should have gained some hands-on
+experience in how to retrieve historical data and backtest a strategy
+with either Excel or MATLAB.
+When one starts testing a strategy, it may not be possible to
+avoid all these pitfalls due to constraints of time and other re-
+sources. In this case, it is okay to skip a few precautions to achieve
+a quick sense of whether the strategy has potential and is worthy of
+closer examination. Sometimes, even the most thorough and careful
+backtest cannot reveal problems that would be obvious after a few
+months of paper or real trading. One can always revisit each of these
+issues after the model has gone live.
+Once you have backtested a strategy with reasonable perfor-
+mance, you are now ready to take the next step in setting up your
+trading business.
+
+Distance: 0.6040545701980591
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 491
+
+common errors plaguing this process. But more than just perform-
+ing due diligence, doing the backtest yourself allows you to exper-
+iment with variations of the original strategy, thereby reﬁning and
+improving the strategy.
+In this chapter, I will describe the common platforms that can
+be used for backtesting, various sources of historical data useful for
+backtesting, a minimal set of standard performance measures that a
+backtest should provide, common pitfalls to avoid, and simple re-
+
+Distance: 0.6274168491363525
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 232
+
+backtest should provide, common pitfalls to avoid, and simple re-
+ﬁnements and improvements to strategies. A few fully developed
+backtesting examples will also be presented to illustrate the prin-
+ciples and techniques described.
+31
+
+Distance: 0.8337527513504028
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 472
+
+proﬁcient at it, will enable you to backtest trading strategies much
+more efﬁciently, and may also allow you to retrieve and process
+data much more easily than you otherwise can. This tool is called
+MATLAB®, and it is a mathematical platform that many institutional
+quantitative strategists and portfolio managers use. Therefore, I will
+demonstrate how to backtest the majority of strategies using MAT-
+LAB. In fact, I have included a brief tutorial in the appendix on how
+
+Distance: 0.8627266883850098
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 460
+
+one faces them on a daily, ongoing basis. Backtesting also won’t re-
+veal the operational difﬁculties, such as how fast you can download
+all the needed data before the market opens each day and how you
+can optimize your operational procedures in actual execution.
+(Do not underestimate the time required for preparing your or-
+ders before the market opens. It took me some 20 minutes to down-
+load and parse all my historical data each morning, and it took an-
+
+Distance: 0.8663150072097778
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 448
+
+Example 3.4
+COMMON BACKTESTING PITFALLS
+TO AVOID
+Backtesting is the process of creating the historical trades given the
+historical information available at that time, and then ﬁnding out
+what the subsequent performance of those trades is. This process
+seems easy given that the trades were made using a computer algo-
+rithm in our case, but there are numerous ways in which it can go
+wrong. Usually, an erroneous backtest would produce a historical
+
+****************************************************************************************************
+Query: What trading strategies exist?
+
+Distances: [0.6962166428565979, 0.7108439803123474, 0.7728362679481506, 0.7936999201774597, 0.8489996790885925, 0.6726877689361572, 0.6737455725669861, 0.6747775077819824, 0.6946857571601868, 0.7061023116111755]
+Chunk sizes: [None, None, None, None, None, 500, 500, 500, 500, 500]
+Sources: ['resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/forex_trading.pdf', 'resources/books/trading_strategies/forex_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/forex_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf']
+Splitters: ['paragraph', 'paragraph', 'paragraph', 'paragraph', 'paragraph', 'recursive', 'recursive', 'recursive', 'recursive', 'recursive']
+Lengths: [543, 599, 920, 1424, 1419, 458, 496, 434, 449, 459]
+------------------------------
+Distance: 0.6962166428565979
+Chunk size: None
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: paragraph
+Length: 543
+
+This book is deﬁnitely not designed as an encyclopedia of quantita-
+tive trading techniques or terminologies. It will not even be about
+speciﬁc proﬁtable strategies (although you can reﬁne the few ex-
+ample strategies embedded here to make them quite proﬁtable.) In-
+stead, this is a book that teaches you how to ﬁnd a proﬁtable strategy
+yourself. It teaches you the characteristics of a good strategy, how
+to reﬁne and backtest a strategy to ensure that it has good historical
+performance, and, more importantly, to ensure that it will remain
+
+Distance: 0.7108439803123474
+Chunk size: None
+Source: resources/books/trading_strategies/forex_trading.pdf
+Splitter: paragraph
+Length: 599
+
+Forex trading strategies can be developed by following popular trading styles which are day trad­
+ing, carry trade, buy and hold strategy, hedging, portfolio trading, spread trading, swing trading, 
+order trading and algorithmic trading.
+Using and developing trading strategies mostly depends on understanding your strengths and 
+weaknesses.In order to be successful in trade you should find the best way of trading that suits your 
+personality.There is no fixed “right” way of trading; the right way for others may not work for you. 
+Below you can read about each trading style and define your own.
+
+Distance: 0.7728362679481506
+Chunk size: None
+Source: resources/books/trading_strategies/forex_trading.pdf
+Splitter: paragraph
+Length: 920
+
+One of the most powerful means of winning a trade is the portfolio of Forex trading strat­
+egies applied by traders in different situations. Following a single system all the time is 
+not enough for a successful trade. Each trader should know how to face up to all market 
+conditions, which, however, is not so easy, and requires a deep study and understanding of 
+economics.
+In order to help you meet your educational needs and create your own portfolio of trading 
+strategies, IFC Markets provides you both with reliable resources on trading and with com­
+plete information of all the popular and simple forex trading strategies applied by successful 
+traders.
+The trading strategies we represent are suitable for all traders who are novice in trade or 
+want to improve their skills. All the strategies classified and explained below are for educa­
+tional purposes and can be applied by each trader in a different way.
+
+Distance: 0.7936999201774597
+Chunk size: None
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: paragraph
+Length: 1424
+
+T
+his is the surprise: Finding a trading idea is actually not the
+hardest part of building a quantitative trading business. There
+are hundreds, if not thousands, of trading ideas that are in
+the public sphere at any time, accessible to anyone at little or no
+cost. Many authors of these trading ideas will tell you their com-
+plete methodologies in addition to their backtest results. There are
+ﬁnance and investment books, newspapers and magazines, main-
+stream media web sites, academic papers available online or in the
+nearest public library, trader forums, blogs, and on and on. Some of
+the ones I ﬁnd valuable are listed in Table 2.1, but this is just a small
+fraction of what is available out there.
+In the past, because of my own academic bent, I regularly
+perused the various preprints published by business school pro-
+fessors or downloaded the latest online ﬁnance journal articles
+to scan for good prospective strategies. In fact, the ﬁrst strategy
+I traded when I became independent was based on such academic
+research. (It was a version of the PEAD strategy referenced in
+Chapter 7.) Increasingly, however, I have found that many strate-
+gies described by academics are either too complicated, out of date
+(perhaps the once-proﬁtable strategies have already lost their power
+due to competition), or require expensive data to backtest (such as
+historical fundamental data). Furthermore, many of these academic
+9
+
+Distance: 0.8489996790885925
+Chunk size: None
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: paragraph
+Length: 1419
+
+T
+he ﬁrst six chapters of this book covered most of the ba-
+sic knowledge needed to research, develop, and execute your
+own quantitative strategy. This chapter explains important
+themes in quantitative trading in more detail. These themes form the
+bases of statistical arbitrage trading, and most quantitative traders
+are conversant in some if not most of these topics. They are also
+very helpful in informing our intuition about trading.
+I will describe the two basic categories of trading strategies:
+mean-reverting versus momentum strategies. Periods of mean-
+reverting and trending behaviors are examples of what some traders
+call regimes, and the switch between different regimes is a topic of
+discussion here. Mean-reverting strategies derive their mathemati-
+cal justiﬁcation from the concepts of stationarity and cointegration
+of time series, which I will cover next. Then I will describe a the-
+ory that many hedge funds use to manage large portfolios and one
+that has caused much turmoil in their performances: namely, factor
+models. Other categories of strategies that traders frequently dis-
+cuss are seasonal trading and high-frequency strategies. All trading
+strategies require a way to exit their positions; I will describe the dif-
+ferent logical ways to do this. Finally, I ponder the question of how
+to best enhance the returns of a strategy: through higher leverage or
+trading higher-beta stocks?
+115
+
+Distance: 0.6726877689361572
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 458
+
+P1: JYS
+c02 JWBK321-Chan September 24, 2008 13:47 Printer: Yet to come
+CHAPTER 2
+Fishing for Ideas
+Where Can We Find
+Good Strategies?
+T
+his is the surprise: Finding a trading idea is actuallynot the
+hardest part of building a quantitative trading business. There
+are hundreds, if not thousands, of trading ideas that are in
+the public sphere at any time, accessible to anyone at little or no
+cost. Many authors of these trading ideas will tell you their com-
+
+Distance: 0.6737455725669861
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 496
+
+look for those strategies that ﬂy under the radar of most institutional
+investors, for example, strategies that have very low capacities be-
+cause they trade too often, strategies that trade very few stocks ev-
+ery day, or strategies that have very infrequent positions (such as
+some seasonal trades in commodity futures described in Chapter 7).
+Those niches are the ones that are likely still to be proﬁtable because
+they have not yet been completely arbitraged away by the gigantic
+hedge funds.
+
+Distance: 0.6747775077819824
+Chunk size: 500
+Source: resources/books/trading_strategies/forex_trading.pdf
+Splitter: recursive
+Length: 434
+
+Forex trading strategies can be developed by following popular trading styles which are day trad-
+ing, carry trade, buy and hold strategy, hedging, portfolio trading, spread trading, swing trading, 
+order trading and algorithmic trading.
+   Using and developing trading strategies mostly depends on understanding your strengths and 
+weaknesses.In order to be successful in trade you should find the best way of trading that suits your
+
+Distance: 0.6946857571601868
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 449
+
+bases of statistical arbitrage trading, and most quantitative traders
+are conversant in some if not most of these topics. They are also
+very helpful in informing our intuition about trading.
+I will describe the two basic categories of trading strategies:
+mean-reverting versus momentum strategies. Periods of mean-
+reverting and trending behaviors are examples of what some traders
+callregimes, and the switch between different regimes is a topic of
+
+Distance: 0.7061023116111755
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 459
+
+vive over the long term, and also some psychological pitfalls to avoid
+if you want an enjoyable (and not just proﬁtable) life as a trader.
+Even though the basic techniques for ﬁnding a good strategy
+should work for any tradable securities, I have focused my ex-
+amples on an area of trading I personally know best: statistical
+arbitrage trading in stocks. While I discuss sources of historical
+data on stocks, futures, and foreign currencies in the chapter on
+
+****************************************************************************************************
+Query: What is the best technical indicators?
+
+Distances: [0.7739889025688171, 1.0333961248397827, 1.0830332040786743, 1.0911275148391724, 1.1442004442214966, 0.8003740310668945, 0.8058176636695862, 0.8450422883033752, 0.9135961532592773, 0.934173583984375]
+Chunk sizes: [None, None, None, None, None, 500, 500, 500, 500, 500]
+Sources: ['resources/books/trading_strategies/forex_trading.pdf', 'resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf', 'resources/books/trading_strategies/optimizing-params-using-bayesen-optimization.pdf', 'resources/books/trading_strategies/forex_trading.pdf', 'resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf', 'resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf', 'resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf', 'resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf', 'resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf', 'resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf']
+Splitters: ['paragraph', 'paragraph', 'paragraph', 'paragraph', 'paragraph', 'recursive', 'recursive', 'recursive', 'recursive', 'recursive']
+Lengths: [758, 605, 595, 911, 688, 455, 297, 489, 498, 476]
+------------------------------
+Distance: 0.7739889025688171
+Chunk size: None
+Source: resources/books/trading_strategies/forex_trading.pdf
+Splitter: paragraph
+Length: 758
+
+Technical indicators are calculations which are based on the price and volume of a security. They 
+are used both to confirm the trend and the quality of chart patterns, and to help traders determine the 
+buy and sell signals.The indicators can be applied separately to form buy and sell signals, as well as 
+can be used together, in conjunction with chart patterns and price movement.
+Technical analysis indicators can form buy and sell signals through crossovers and divergence. 
+Crossovers are reflected when price moves through the moving average or when two different 
+moving averages cross each other. Divergence happens when the price trend and the indicator 
+trend move in opposite directions indicating that the direction of price trend is weakening.
+
+Distance: 1.0333961248397827
+Chunk size: None
+Source: resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf
+Splitter: paragraph
+Length: 605
+
+[49] B. LeBaron, Empirical regularities from interacting long and short memory in-
+vestors in an agent-based ﬁnancial market, IEEE Transactions on Evolutionary
+Computation, 5, 2001, 442–455.
+Technical indicators are statistics of the market that quan-
+tify market trends. Most technical indicators have been de-
+veloped by professional traders using trial and error. It is
+common practice to use rules based on technical indicators
+to choose the timing of buy and sell orders. These rules
+are called buy and sell “signals”. In this work we use a
+combination of market indicators and trading signals. We
+12
+
+Distance: 1.0830332040786743
+Chunk size: None
+Source: resources/books/trading_strategies/optimizing-params-using-bayesen-optimization.pdf
+Splitter: paragraph
+Length: 595
+
+• Simplicity: The Supertrend indicator boasts a straightforward calculation, making it readily interpretable for
+traders of all experience levels [Sahoo et al., 2017].
+• Trend Identification: It’s dynamic nature allows for effective identification of both uptrends (price consistently
+above the Supertrend line) and downtrends (price consistently below the Supertrend line) [Bhuiyan et al.,
+2016].
+• Reduced False Signals: Compared to some other trend-following indicators, the Supertrend may generate
+fewer false signals due to its incorporation of the ATR, which helps account for volatility .
+
+Distance: 1.0911275148391724
+Chunk size: None
+Source: resources/books/trading_strategies/forex_trading.pdf
+Splitter: paragraph
+Length: 911
+
+Forex technical analysis is the study of market action primarily through the use of charts for the 
+purpose of forecasting future price trends. Forex traders can develop strategies based on various 
+technical analysis tools including market trend, volume, range,support and resistance levels, chart 
+patterns and indicators, as well as conduct a Multiple Time Frame Analysis using different time-
+frame charts.
+Technical analysis strategy is a crucial method of evaluating assets based on the analysis and 
+statistics of past market action, such as past prices and past volume. The main goal of technical 
+analysts is not the measuring of asset’s underlying value, they attempt to use charts or other tools 
+of technical analysis to determine patterns that will help to forecast future market activity. Their firm 
+belief is that the future performance of markets can be indicated by the historical performance.
+
+Distance: 1.1442004442214966
+Chunk size: None
+Source: resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf
+Splitter: paragraph
+Length: 688
+
+100
+−
+100
+1 +
+SMAt(Pup
+n , n1)
+SMAt(Pdn
+n , n1)
+where n1 = 8, 14, and 20
+and n is the length of the time series
+RSIt(n)
+Relative strength index:
+compares the days that stock
+prices ﬁnish up against those periods that stock prices ﬁnish
+down. Technical analysts calculate this indicator using 9,
+14 or 25 periods. A buy signal is when RSIt(n) crosses
+below a lower band of 30 (oversold), and a sell signal when
+RSIt(n) crosses above an upper band of 70 (overbought)
+P up
+t
+=
+ P c
+t
+if P c
+t > P c
+t−1
+empty
+Otherwise
+P dn
+t
+=
+ P c
+t
+if P c
+t < P c
+t−1
+empty
+Otherwise
+Pup
+n
+= (P up
+t−n, P up
+t−n+1, P up
+t−n+2, . . . , P up
+t
+)
+Pdn
+n
+= (P dn
+t−n, P dn
+t−n+1, P dn
+t−n+2, . . . , P dn
+t
+)
+
+Distance: 0.8003740310668945
+Chunk size: 500
+Source: resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf
+Splitter: recursive
+Length: 455
+
+a group of well-known technical indicators and invest-
+ment signals introduced in the appendix: simple and ex-
+ponential moving average, Bollinger bands, acceleration,
+momentum, rate of change, moving average convergence
+divergence, relative strength index, stochastic oscillators,
+Williams indicator, money ﬂow index, on balance volume,
+accumulation/distribution line, Chaikin oscillator, negative
+and positive volume index, and price-volume trend. Addi-
+
+Distance: 0.8058176636695862
+Chunk size: 500
+Source: resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf
+Splitter: recursive
+Length: 297
+
+analysis indicators and is also able to select the best param-
+eters of the technical indicators. Additionally, the online
+learning layer combines the output of several ADTs and
+suggests a short or long position. Finally, the risk manage-
+ment layer can validate the trading signal when it exceeds
+
+Distance: 0.8450422883033752
+Chunk size: 500
+Source: resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf
+Splitter: recursive
+Length: 489
+
+Springer, 2003).
+Appendix. Investment signals for automated
+trading system
+Technical indicators are statistics of the market that quan-
+tify market trends. Most technical indicators have been de-
+veloped by professional traders using trial and error. It is
+common practice to use rules based on technical indicators
+to choose the timing of buy and sell orders. These rules
+are called buy and sell “signals”. In this work we use a
+combination of market indicators and trading signals. We
+12
+
+Distance: 0.9135961532592773
+Chunk size: 500
+Source: resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf
+Splitter: recursive
+Length: 498
+
+value of another indicator. The input to our learning sys-
+tem includes both signals and indicators. We use normal-
+ized indicators, by which we mean indicators whose value
+does not change if all the prices in the sequence are multi-
+plied by a constant factor. This is important when working
+with adjusted stock prices.
+Additionally, we recalculate a selected group of indi-
+cators and their rules with three different values of the main
+parameters that are close to the industry practice. So, our
+
+Distance: 0.934173583984375
+Chunk size: 500
+Source: resources/books/trading_strategies/automated-trading-with-boosting-and-expert-weighting.pdf
+Splitter: recursive
+Length: 476
+
+neous recalculation of the technical indicators with several
+values of their parameters. Then the boosting algorithm
+would select the best combination of parameters and tech-
+nical indicators. Our initial parameters were the parame-
+ters recommended in the literature. We tested 16 different
+variations of the initial parameters and did not ﬁnd a major
+6Information about R and Rmetrics can be found at <http://cran.r-
+project.org>and at <http://www.rmetrics.org>respectively.
+
+****************************************************************************************************
+Query: What is the win rate of trading strategies?
+
+Distances: [0.8627051711082458, 0.8701274394989014, 0.8859233260154724, 0.902222216129303, 0.9058374762535095, 0.7218985557556152, 0.7240676283836365, 0.7494775652885437, 0.7716880440711975, 0.793379008769989]
+Chunk sizes: [None, None, None, None, None, 500, 500, 500, 500, 500]
+Sources: ['resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/theory_of_quantitative_trading.pdf', 'resources/books/trading_strategies/theory_of_quantitative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/forex_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/theory_of_quantitative_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf', 'resources/books/trading_strategies/forex_trading.pdf', 'resources/books/trading_strategies/quantative_trading.pdf']
+Splitters: ['paragraph', 'paragraph', 'paragraph', 'paragraph', 'paragraph', 'recursive', 'recursive', 'recursive', 'recursive', 'recursive']
+Lengths: [543, 1090, 937, 835, 920, 496, 479, 485, 248, 491]
+------------------------------
+Distance: 0.8627051711082458
+Chunk size: None
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: paragraph
+Length: 543
+
+This book is deﬁnitely not designed as an encyclopedia of quantita-
+tive trading techniques or terminologies. It will not even be about
+speciﬁc proﬁtable strategies (although you can reﬁne the few ex-
+ample strategies embedded here to make them quite proﬁtable.) In-
+stead, this is a book that teaches you how to ﬁnd a proﬁtable strategy
+yourself. It teaches you the characteristics of a good strategy, how
+to reﬁne and backtest a strategy to ensure that it has good historical
+performance, and, more importantly, to ensure that it will remain
+
+Distance: 0.8701274394989014
+Chunk size: None
+Source: resources/books/trading_strategies/theory_of_quantitative_trading.pdf
+Splitter: paragraph
+Length: 1090
+
+Example of the use of this methodology
+I report the following practical example; the figure shows the trend of a hypothetical stock. The 
+value of this stock on a thousand time intervals rises one unit 60% of the time and goes down by one 
+unit 40% of the time. In order to simplify the calculations the price movement is unitary. Now let us 
+look at two strategies that execute 500 trades, each trade lasts an interval of time. The first strategy 
+execute only buys  and in order to choose when to buy, flips a coin, if it win opens a trades if loses 
+it waits for the next unit of time and repeats the operation. The second strategy, on the other hand, 
+is a strategy that sells only, but does not do it in a random way, it uses information that allows it a 
+10% advantage in determining the drops of the value stock.
+The first strategy gets a profit of 100 by winning 60% of trades. Now we calculate the probability 
+of obtaining a better result in a random way, to do this we use the binomial cumulative distribution 
+function with the following parameters:
+p = 60% (probability of win)
+
+Distance: 0.8859233260154724
+Chunk size: None
+Source: resources/books/trading_strategies/theory_of_quantitative_trading.pdf
+Splitter: paragraph
+Length: 937
+
+By using the binomial distribution formula, given a value of L, we can obtain the probability 
+of achieving better results with the random strategy described above. The results for the L values 
+ranging from 10 to 200 are shown in Figure 1. Looking at the figure, we see how the probability 
+tends asymptotically toward 50%. Therefore, we have a 50% chance of getting better or worse 
+results. Basically, the strategy described in the paradox tends asymptotically toward a random 
+strategy. Consequently, the doubling-down strategy turns out to be a strategy that does not 
+implement useful information for improving our likelihood of victory. Thus, using the cognitive 
+aspect as a method of evaluation has proven the irrationality of the strategy.
+We use very similar approaches, where the strategy being evaluated is compared with an 
+equivalent random strategy, in the financial field to analyse the results generated by a trading
+24
+
+Distance: 0.902222216129303
+Chunk size: None
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: paragraph
+Length: 835
+
+A
+ll trading strategies suffer occasional losses, technically
+known as drawdowns. The drawdowns may last a few min-
+utes or a few years. To proﬁt from a quantitative trading busi-
+ness, it is essential to manage your risks in a way that limits your
+drawdowns to a tolerable level and yet be positioned to use opti-
+mal leverage of your equity to achieve maximum possible growth of
+your wealth. Furthermore, if you have more than one strategy, you
+will also need to ﬁnd a way to optimally allocate capital among them
+so as to maximize overall risk-adjusted return.
+The optimal allocation of capital and the optimal leverage to use
+so as to strike the right balance between risk management and max-
+imum growth is the focus of this chapter, and the central tool we
+use is called the Kelly formula.
+OPTIMAL CAPITAL ALLOCATION
+AND LEVERAGE
+
+Distance: 0.9058374762535095
+Chunk size: None
+Source: resources/books/trading_strategies/forex_trading.pdf
+Splitter: paragraph
+Length: 920
+
+One of the most powerful means of winning a trade is the portfolio of Forex trading strat­
+egies applied by traders in different situations. Following a single system all the time is 
+not enough for a successful trade. Each trader should know how to face up to all market 
+conditions, which, however, is not so easy, and requires a deep study and understanding of 
+economics.
+In order to help you meet your educational needs and create your own portfolio of trading 
+strategies, IFC Markets provides you both with reliable resources on trading and with com­
+plete information of all the popular and simple forex trading strategies applied by successful 
+traders.
+The trading strategies we represent are suitable for all traders who are novice in trade or 
+want to improve their skills. All the strategies classified and explained below are for educa­
+tional purposes and can be applied by each trader in a different way.
+
+Distance: 0.7218985557556152
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 496
+
+is of ultimate importance.)
+One approximation that I will make is that the probability dis-
+tribution of the returns of each of the trading strategyi is Gaussian,
+with a ﬁxed meanmi and standard deviationsi. (The returns should
+be net of all ﬁnancing costs; that is, they should be excess returns.)
+This is a common approximation in ﬁnance, but it can be quite
+inaccurate. Certain big losses in the ﬁnancial markets occur with
+far higher frequencies (or viewed alternatively, at far higher magni-
+
+Distance: 0.7240676283836365
+Chunk size: 500
+Source: resources/books/trading_strategies/theory_of_quantitative_trading.pdf
+Splitter: recursive
+Length: 479
+
+Using these data, we get a probability to get better results randomly of the 48.3%. 
+   Now let us consider the second strategy, this strategy has a total result of zero in practice it 
+performs 250 winning trades and 250 losing trades (the 10% advantage allows it to increase the 
+probability of victory from 40% to 50%). Also in this case, we calculate the probability of obtaining 
+better results randomly, to do this we use the formula of the binomial cumulative distribution
+
+Distance: 0.7494775652885437
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 485
+
+fraction of what is available out there.
+In the past, because of my own academic bent, I regularly
+perused the various preprints published by business school pro-
+fessors or downloaded the latest online ﬁnance journal articles
+to scan for good prospective strategies. In fact, the ﬁrst strategy
+I traded when I became independent was based on such academic
+research. (It was a version of the PEAD strategy referenced in
+Chapter 7.) Increasingly, however, I have found that many strate-
+
+Distance: 0.7716880440711975
+Chunk size: 500
+Source: resources/books/trading_strategies/forex_trading.pdf
+Splitter: recursive
+Length: 248
+
+it once it moves in an unexpected direction. This strategy, unlike most trading strategies already 
+discussed, is not used to make a profit; it rather aims to reduce the risk and uncertainty.
+23
+Share: www.ifcmarkets.comStart practicing
+your skills
+
+Distance: 0.793379008769989
+Chunk size: 500
+Source: resources/books/trading_strategies/quantative_trading.pdf
+Splitter: recursive
+Length: 491
+
+trading quantitatively, this book skillfully addresses 
+how to:
+ Find a viable trading strategy that you’re both comfortable 
+wi
+th and confident in
+ Backtest your strategy—with MATLAB ®, Excel, and other 
+platforms—to ensure good historical performance
+ Build and implement an automated trading system to 
+ex
+ecute your strategy
+ Scale up or wind down your strategies depending on their 
+re
+al-world profitability
+ Manage the money and risks involved in holding positions 
+generated by
+

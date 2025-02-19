@@ -38,6 +38,7 @@ def load_document_semantic(resource: str, percentile: float):
                 "chunk_size": percentile,
                 "text_index": texts.index(text),
                 "splitter": "semantic",
+                "length": len(text.page_content),
             },
         )
 
@@ -61,6 +62,7 @@ def load_document_recursive(resource: str, chunk_size: int):
                 "chunk_size": chunk_size,
                 "text_index": texts.index(text),
                 "splitter": "recursive",
+                "length": len(text.page_content),
             },
         )
 
@@ -84,6 +86,7 @@ def load_document_by_paragraph(resource: str):
                 "theme": "theory",
                 "text_index": texts.index(text),
                 "splitter": "paragraph",
+                "length": len(text.page_content),
             },
         )
 
@@ -122,7 +125,7 @@ def main():
         print(f"Processing {pdf_file}")
         load_document_by_paragraph(pdf_file)
         load_document_recursive(pdf_file, 1500)
-        load_document_semantic(pdf_file, 500)
+        load_document_recursive(pdf_file, 500)
 
     print("Done")
 
