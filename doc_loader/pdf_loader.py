@@ -1,11 +1,16 @@
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_core.documents import Document
-from database import ChromaDB
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from sentence_transformers import SentenceTransformer
+from langchain_experimental.text_splitter import SemanticChunker
+from langchain_openai.embeddings import OpenAIEmbeddings
+from database import VectorDB
+from functools import reduce
+from itertools import chain
 
 
-db = ChromaDB()
+
+db = VectorDB()
 transformer = SentenceTransformer("all-MiniLM-L6-v2")
 
 
@@ -14,17 +19,40 @@ def load_pdf(file_path: str) -> list[Document]:
     return loader.load_and_split()
 
 
-def load_document(resource: str):
+def load_document_semantic(resource: str, percentile: float):
     documents = load_pdf(resource)
     print(f"Loaded {len(documents)} pages")
-    chunk_size = 1000
-    texts = relative_text_splitter(documents, chunk_size)
-    print(f"Split into {len(texts)} texts")
+    texts = semantic_text_splitter(documents, percentile=percentile)
+    print(f"Semantic Splitter texts size:{len(texts)}")
+    for text in texts:
+        # print(f"Processing {text.page_content}\n")
+        embeddings = transformer.encode(text.page_content)
+        collection = db.get_theory_collection()
+        collection.add(
+            ids=f"{hash(text.page_content)}_{percentile}_{texts.index(text)}",
+            embeddings=embeddings,
+            documents=text.page_content,
+            metadatas={
+                **text.metadata,
+                "type": "book",
+                "theme": "theory",
+                "chunk_size": percentile,
+                "text_index": texts.index(text),
+                "splitter": "semantic",
+            },
+        )
+
+
+def load_document_recursive(resource: str, chunk_size: int):
+    documents = load_pdf(resource)
+    print(f"Loaded {len(documents)} pages")
+    texts = recursive_text_splitter(documents, chunk_size)
+    print(f"Recursive Splitter texts size:{len(texts)}")
     for text in texts:
         embeddings = transformer.encode(text.page_content)
         collection = db.get_theory_collection()
         collection.add(
-            ids=[f"{hash(text.page_content)}_{texts.index(text)}"],
+            ids=f"{hash(text.page_content)}_{chunk_size}_{texts.index(text)}",
             embeddings=embeddings,
             documents=text.page_content,
             metadatas={
@@ -33,17 +61,12 @@ def load_document(resource: str):
                 "theme": "theory",
                 "chunk_size": chunk_size,
                 "text_index": texts.index(text),
+                "splitter": "recursive",
             },
         )
-    results = collection.query(
-        query_texts=["out-of-sample performance"],
-        n_results=3,
-        where={"type": "book"},
-    )
-    print(f"Results: {results}")
 
 
-def relative_text_splitter(
+def recursive_text_splitter(
     documents: list[Document], chunk_size=1000
 ) -> list[Document]:
     return RecursiveCharacterTextSplitter(
@@ -54,6 +77,16 @@ def relative_text_splitter(
     ).split_documents(documents)
 
 
+def semantic_text_splitter(
+    documents: list[Document], percentile: float
+) -> list[Document]:
+    return SemanticChunker(
+        embeddings=OpenAIEmbeddings(),
+        breakpoint_threshold_type="percentile",
+        breakpoint_threshold_amount=percentile,
+    ).split_documents(documents)
+
+
 def main():
     import os
     import glob
@@ -61,9 +94,12 @@ def main():
     pdf_files = glob.glob(
         os.path.join("resources", "books", "trading_strategies", "*.pdf")
     )
+
     for pdf_file in pdf_files:
         print(f"Processing {pdf_file}")
-        load_document(pdf_file)
+        load_document_recursive(pdf_file, chunk_size=2000)
+
+    print("Done")
 
 
 if __name__ == "__main__":

@@ -2,16 +2,7 @@
 Database package for handling SQLite and ChromaDB operations.
 """
 
-__all__ = ["Database", "ChromaDB"]
+__all__ = ["VectorDB", "Database"]
 
-
-def __getattr__(name):
-    if name == "Database":
-        from .database import Database
-
-        return Database
-    elif name == "ChromaDB":
-        from .chroma import ChromaDB
-
-        return ChromaDB
-    raise AttributeError(f"module '{__name__}' has no attribute '{name}'")
+from .vector_db import VectorDB
+from .database import Database
