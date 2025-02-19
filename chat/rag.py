@@ -17,6 +17,7 @@ class CombinedQueryResult(TypedDict):
     metadatas: List[List[Metadata]]
     distances: List[List[float]]
 
+
 class Rag:
     def __init__(self):
         self.db = VectorDB()
@@ -24,19 +25,17 @@ class Rag:
 
     def query(self, queries: list[str]) -> QueryResult:
         # Query with where filter to get only chunks of size 1000
-        return self.collection.query(
-            query_texts=queries, n_results=10
-        )
-        
+        return self.collection.query(query_texts=queries, n_results=20)
+
     def multi_query(self, queries: list[str]) -> CombinedQueryResult:
-        bigger_context = self.collection.query(
-            query_texts=queries, n_results=2, where={"chunk_size": 2000}
+        paragraph_context = self.collection.query(
+            query_texts=queries, n_results=10, where={"splitter": "paragraph"}
         )
-        medium_context = self.collection.query(
-            query_texts=queries, n_results=5, where={"chunk_size": 1000}
+        chunked_context = self.collection.query(
+            query_texts=queries, n_results=10, where={"chunk_size": 1500}
         )
-        
-        smaller_context = self.collection.query(
+
+        small_chunks = self.collection.query(
             query_texts=queries, n_results=10, where={"chunk_size": 500}
         )
 
@@ -46,7 +45,7 @@ class Rag:
             "distances": [],
             "metadatas": [],
             "documents": [],
-            "embeddings": None
+            "embeddings": None,
         }
 
         # Helper function to safely get and extend lists
@@ -55,7 +54,7 @@ class Rag:
                 target_list.extend(source_result[key])
 
         # Merge all results
-        for context in [bigger_context, medium_context, smaller_context]:
+        for context in [paragraph_context, chunked_context, small_chunks]:
             safe_extend(merged_results["ids"], context, "ids")
             safe_extend(merged_results["distances"], context, "distances")
             safe_extend(merged_results["metadatas"], context, "metadatas")
@@ -66,35 +65,52 @@ class Rag:
             distances=merged_results["distances"],
             metadatas=merged_results["metadatas"],
             documents=merged_results["documents"],
-            embeddings=merged_results["embeddings"]
+            embeddings=merged_results["embeddings"],
         )
-
-
-
 
 
 if __name__ == "__main__":
     rag = Rag()
-    results = rag.multi_query(['What is the best way to optimize trading strategy?'])
+    queries = [
+        "Create trading strategy for crypto trading?",
+        "I need to optimize weights?",
+        "How to do backtesting?",
+        "What trading strategies exist?",
+        "What is the best technical indicators?",
+        "What is the win rate of trading strategies?",
+    ]
 
-    distances = [
-        distance for distances in results.get("distances") for distance in distances
-    ]
-    chunk_sizes = [
-        metadata["chunk_size"]
-        for metadatas in results.get("metadatas")
-        for metadata in metadatas
-    ]
-    source = [
-        metadata["source"]
-        for metadatas in results.get("metadatas")
-        for metadata in metadatas
-    ]
-    content = [
-        document for documents in results.get("documents") for document in documents
-    ]
-    print(f"Distances: {distances}\n")
-    print(f"Chunk sizes: {chunk_sizes}\n")
-    print(f"Source: {source}\n")
-    for i, c in enumerate(content):
-        print(f"{c}\n\n\n")
+    for query in queries:
+        result = rag.multi_query([query])
+        print("*" * 100)
+        print(f"Query: {query}\n")
+        distances = [
+            distance for distances in result.get("distances") for distance in distances
+        ]
+        chunk_sizes = [
+            metadata["chunk_size"] if "chunk_size" in metadata else None
+            for metadatas in result.get("metadatas")
+            for metadata in metadatas
+        ]
+        source = (
+            [
+                metadata["source"]
+                for metadatas in result.get("metadatas")
+                for metadata in metadatas
+            ],
+        )
+        splitter = [
+            metadata["splitter"] if "splitter" in metadata else None
+            for metadatas in result.get("metadatas")
+            for metadata in metadatas
+        ]
+        content = [
+            document for documents in result.get("documents") for document in documents
+        ]
+
+        for i, c in enumerate(content):
+            print(f"Distance: {distances[i]}\n")
+            print(f"Chunk size: {chunk_sizes[i]}\n")
+            print(f"Source: {source[i]}\n")
+            print(f"Splitter: {splitter[i]}\n")
+            print(f"{c}\n\n\n")
