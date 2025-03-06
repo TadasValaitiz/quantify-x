@@ -3,6 +3,8 @@ import json
 from datetime import datetime
 from typing import Dict, List, Optional, Any, Union
 
+from database.types import ChatMessage
+
 
 class ChatDatabase:
     def __init__(self, db_path: str = "frontend.db"):
@@ -227,24 +229,26 @@ class ChatDatabase:
         self.connection.commit()
 
     # Message methods
-    def add_message(
-        self,
-        conversation_id: int,
-        role: str,
-        content: str,
-        context: Optional[Dict] = None,
-    ) -> int:
+    def add_message(self, chat_message: ChatMessage) -> int:
         """Add a message to a conversation and return its ID."""
         cursor = self.connection.cursor()
-        now = datetime.now().isoformat()
-        context_json = json.dumps(context) if context else None
+        now = chat_message.created_at
+        context_json = (
+            json.dumps(chat_message.context) if chat_message.context else None
+        )
 
         cursor.execute(
             """
         INSERT INTO messages (conversation_id, role, content, context, created_at)
         VALUES (?, ?, ?, ?, ?)
         """,
-            (conversation_id, role, content, context_json, now),
+            (
+                chat_message.conversation_id,
+                chat_message.role,
+                chat_message.content,
+                context_json,
+                chat_message.created_at,
+            ),
         )
 
         # Update the conversation's updated_at timestamp
@@ -252,7 +256,7 @@ class ChatDatabase:
             """
         UPDATE conversations SET updated_at = ? WHERE id = ?
         """,
-            (now, conversation_id),
+            (now, chat_message.conversation_id),
         )
 
         self.connection.commit()
@@ -261,7 +265,7 @@ class ChatDatabase:
             raise ValueError("Failed to add message: no ID returned")
         return msg_id
 
-    def get_messages(self, conversation_id: int) -> List[Dict[str, Any]]:
+    def get_messages(self, conversation_id: int) -> List[ChatMessage]:
         """Get all messages for a conversation."""
         cursor = self.connection.cursor()
         cursor.execute(
@@ -275,10 +279,7 @@ class ChatDatabase:
 
         messages = []
         for message in cursor.fetchall():
-            msg_dict = dict(message)
-            if msg_dict.get("context"):
-                msg_dict["context"] = json.loads(msg_dict["context"])
-            messages.append(msg_dict)
+            messages.append(ChatMessage.from_dict(message))
 
         return messages
 

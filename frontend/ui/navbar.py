@@ -20,25 +20,24 @@ def render_navbar(
     navbar_container = st.container()
 
     with navbar_container:
-        col1, col2, col3 = st.columns([1, 3, 1])
+        col1, spacer, col2 = st.columns([4, 2, 1], gap="large")
 
         # App logo/name
         with col1:
-            st.markdown("### 🤖 AI Chat")
+            st.markdown("#### Trading Strategy builder ")
 
-        # Spacer
-        with col2:
+        with spacer:
             st.write("")
 
         # User account section
-        with col3:
+        with col2:
             if user_info:
                 # User is logged in
                 login_type = user_info.get("login_type", "anonymous")
                 name = user_info.get("name", "Anonymous User")
 
                 # Display user info and logout button
-                with st.expander(f"👤 {name}"):
+                with st.popover(f"👤 {name}"):
                     st.write(f"Login: {login_type}")
                     if st.button("Logout", key="logout_btn"):
                         on_logout()
@@ -46,6 +45,3 @@ def render_navbar(
                 # User is not logged in
                 if st.button("Login", key="login_btn"):
                     on_login()
-
-    # Add a separator below the navbar
-    st.markdown("---")

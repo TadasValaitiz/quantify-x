@@ -1,7 +1,28 @@
+from operator import itemgetter
 import os
 from typing import List, Dict, Any, Optional
-import openai
 import streamlit as st
+from pydantic import SecretStr
+
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.callbacks.base import BaseCallbackHandler
+from langchain_core.prompts import ChatPromptTemplate, FewShotChatMessagePromptTemplate
+from langchain_core.runnables import RunnablePassthrough, RunnableLambda
+
+from .prompts import message_with_context
+
+
+class StreamingCallback(BaseCallbackHandler):
+    """Callback handler for streaming tokens to a StreamHandler."""
+
+    def __init__(self, stream_handler):
+        self.stream_handler = stream_handler
+
+    def on_llm_new_token(self, token: str, **kwargs) -> None:
+        """Run on new token."""
+        self.stream_handler.update(token)
 
 
 class StreamHandler:
@@ -10,16 +31,16 @@ class StreamHandler:
     def __init__(self, container):
         self.container = container
         self.text = ""
-        self.placeholder = container.empty()
+        self.reasoning = container.empty()
 
     def update(self, text_chunk: str) -> None:
         """Update the displayed text with a new chunk."""
         self.text += text_chunk
-        self.placeholder.markdown(self.text + "▌")
+        self.reasoning.markdown(self.text + "▌")
 
     def finish(self) -> None:
         """Finalize the displayed text."""
-        self.placeholder.markdown(self.text)
+        self.reasoning.markdown(self.text)
 
     def get_text(self) -> str:
         """Get the full text."""
@@ -27,60 +48,23 @@ class StreamHandler:
 
 
 class AIService:
-    """Service for interacting with AI models using OpenAI API directly."""
+    """Service for interacting with AI models using Langchain."""
 
-    def __init__(self, model: str = "o3-mini-2025-01-31"):
+    def __init__(self):
         """Initialize the AI service with a specific model."""
+
         openai_api_key = os.getenv("OPENAI_API_KEY")
-        if not openai_api_key:
+        if openai_api_key:
+            self.openai_api_key = SecretStr(openai_api_key)
+        else:
             raise ValueError("OPENAI_API_KEY environment variable is not set")
-
-        self.model = model
-        # Set the API key at the module level
-        openai.api_key = openai_api_key
-
-    def generate_response(
-        self, messages: List[Dict[str, str]], system_prompt: Optional[str] = None
-    ) -> str:
-        """
-        Generate a response without streaming.
-
-        Args:
-            messages: List of message dictionaries with 'role' and 'content' keys
-            system_prompt: Optional system prompt to prepend
-
-        Returns:
-            The generated response as a string
-        """
-        # Convert messages to the format expected by OpenAI
-        openai_messages = []
-
-        # Add system prompt if provided
-        if system_prompt:
-            openai_messages.append({"role": "system", "content": system_prompt})
-
-        # Add the rest of the messages
-        for msg in messages:
-            openai_messages.append({"role": msg["role"], "content": msg["content"]})
-
-        try:
-            # Using OpenAI API v0.28.1 syntax
-            response = openai.ChatCompletion.create(
-                model=self.model, messages=openai_messages, temperature=0.7
-            )
-
-            # In v0.28.1, the response structure is different
-            content = response.choices[0].message["content"]
-            return content if content is not None else ""
-        except Exception as e:
-            st.error(f"Error generating response: {e}")
-            return "Sorry, I couldn't generate a response. Please try again."
 
     def generate_response_stream(
         self,
-        messages: List[Dict[str, str]],
+        message,
         container,
         system_prompt: Optional[str] = None,
+        model: str = "gpt-4o-mini-2024-07-18",
     ) -> str:
         """
         Generate a response with streaming to a Streamlit container.
@@ -93,34 +77,35 @@ class AIService:
         Returns:
             The complete generated response as a string
         """
-        # Convert messages to the format expected by OpenAI
-        openai_messages = []
-
-        # Add system prompt if provided
-        if system_prompt:
-            openai_messages.append({"role": "system", "content": system_prompt})
-
-        # Add the rest of the messages
-        for msg in messages:
-            openai_messages.append({"role": msg["role"], "content": msg["content"]})
-
         stream_handler = StreamHandler(container)
+        streaming_callback = StreamingCallback(stream_handler)
 
         try:
-            # Using OpenAI API v0.28.1 syntax for streaming
-            response_stream = openai.ChatCompletion.create(
-                model=self.model, messages=openai_messages, temperature=0.7, stream=True
+            # Configure LLM for streaming
+            llm = ChatOpenAI(
+                model=model,
+                api_key=self.openai_api_key,  # Convert string to SecretStr
+                temperature=0.2,
+                streaming=True,
+                callbacks=[streaming_callback],
             )
 
-            # Process the streaming response for v0.28.1
-            for chunk in response_stream:
-                if chunk.get("choices") and len(chunk["choices"]) > 0:
-                    delta = chunk["choices"][0].get("delta", {})
-                    if "content" in delta and delta["content"]:
-                        stream_handler.update(delta["content"])
+            chain = (
+                {
+                    "context": "None",
+                    "question": itemgetter("question"),
+                }
+                | ChatPromptTemplate.from_template(message_with_context)
+                | llm
+            )
+            # Generate streaming response
+            response = chain.invoke({"question": message})
 
+            print(response)
+            # Finalize the displayed text
             stream_handler.finish()
-            return stream_handler.get_text()
+            return str(response.content)
+
         except Exception as e:
             st.error(f"Error generating streaming response: {e}")
-            return "Sorry, I couldn't generate a response. Please try again."
+            return str(e)

@@ -3,25 +3,26 @@ from typing import Dict, Any, Optional
 
 # Default dark theme colors
 DARK_THEME = {
-    "primary": "#6C63FF",     # Purple for primary actions
-    "secondary": "#4E4B70",   # Lighter purple for secondary elements
+    "primary": "#6C63FF",  # Purple for primary actions
+    "secondary": "#4E4B70",  # Lighter purple for secondary elements
     "background": "#1E1E2E",  # Dark blue/purple for main background
-    "surface": "#292A3E",     # Slightly lighter background for cards
-    "text": "#E6E6FA",        # Light lavender for text
-    "success": "#00BFA5",     # Teal for success messages
-    "error": "#F07178",       # Coral for errors
-    "warning": "#FFCB6B",     # Amber for warnings
-    "info": "#82AAFF",        # Light blue for information
-    "chat_user": "#6C63FF",   # User message bubble color
-    "chat_bot": "#4E4B70",    # Bot message bubble color
-    "sidebar": "#292A3E",     # Sidebar background color
-    "border": "#3F3F5F",      # Border color
+    "surface": "#292A3E",  # Slightly lighter background for cards
+    "text": "#E6E6FA",  # Light lavender for text
+    "success": "#00BFA5",  # Teal for success messages
+    "error": "#F07178",  # Coral for errors
+    "warning": "#FFCB6B",  # Amber for warnings
+    "info": "#82AAFF",  # Light blue for information
+    "chat_user": "#6C63FF",  # User message bubble color
+    "chat_bot": "#4E4B70",  # Bot message bubble color
+    "sidebar": "#292A3E",  # Sidebar background color
+    "border": "#3F3F5F",  # Border color
 }
+
 
 def apply_theme(custom_theme: Optional[Dict[str, str]] = None) -> None:
     """
     Apply theme to the Streamlit app.
-    
+
     Args:
         custom_theme: Optional custom theme that overrides the default dark theme
     """
@@ -29,9 +30,10 @@ def apply_theme(custom_theme: Optional[Dict[str, str]] = None) -> None:
     theme = DARK_THEME.copy()
     if custom_theme:
         theme.update(custom_theme)
-    
+
     # Apply theme to Streamlit
-    st.markdown(f"""
+    st.markdown(
+        f"""
     <style>
         :root {{
             --primary-color: {theme["primary"]};
@@ -110,14 +112,16 @@ def apply_theme(custom_theme: Optional[Dict[str, str]] = None) -> None:
             border-color: var(--border-color);
         }}
     </style>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
 
 def get_theme_colors() -> Dict[str, str]:
     """
     Get the current theme colors.
-    
+
     Returns:
         Dictionary of theme colors
     """
-    return DARK_THEME.copy() 
+    return DARK_THEME.copy()
