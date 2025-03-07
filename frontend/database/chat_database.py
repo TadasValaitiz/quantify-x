@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 from typing import Dict, List, Optional, Any, Union
 
-from database.types import ChatMessage
+from shared.types import ChatMessage, ContextDict
 
 
 class ChatDatabase:
@@ -186,7 +186,7 @@ class ChatDatabase:
         self,
         conversation_id: int,
         name: Optional[str] = None,
-        context: Optional[Dict] = None,
+        context: Optional[ContextDict] = None,
     ) -> None:
         """Update a conversation's name and/or context."""
         cursor = self.connection.cursor()
@@ -200,7 +200,7 @@ class ChatDatabase:
 
         if context is not None:
             updates.append("context = ?")
-            params.append(json.dumps(context))
+            params.append(json.dumps(context.model_dump()))
 
         if not updates:
             return
@@ -213,6 +213,19 @@ class ChatDatabase:
         cursor.execute(query, params)
 
         self.connection.commit()
+
+    def update_conversation_context(
+        self, conversation_id: int, context: ContextDict
+    ) -> None:
+        """Update only the context of a conversation."""
+        name = (
+            context.trading_context.name_of_conversation
+            if context.trading_context
+            else None
+        )
+        self.update_conversation(
+            conversation_id=conversation_id, name=name, context=context
+        )
 
     def delete_conversation(self, conversation_id: int) -> None:
         """Delete a conversation and all its messages."""
@@ -234,7 +247,9 @@ class ChatDatabase:
         cursor = self.connection.cursor()
         now = chat_message.created_at
         context_json = (
-            json.dumps(chat_message.context) if chat_message.context else None
+            json.dumps(chat_message.context.model_dump())
+            if chat_message.context
+            else None
         )
 
         cursor.execute(

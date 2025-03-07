@@ -1,6 +1,8 @@
+from typing import Optional
 from database import ChatDatabase
 import streamlit as st
 from auth.firebase_auth import FirebaseAuth
+from shared.types import ContextDict
 from utils import (
     load_env_vars,
     generate_conversation_name,
@@ -48,6 +50,20 @@ class ConversationService:
         self.db.update_conversation(
             conversation_id=st.session_state.current_conversation_id, name=new_name
         )
+
+    def get_conversation_context(self, conversation_id: int) -> Optional[ContextDict]:
+        """Get a conversation by its ID.
+
+        Args:
+            conversation_id: The ID of the conversation to retrieve
+
+        Returns:
+            The conversation data dictionary or None if not found
+        """
+        dict = self.db.get_conversation(conversation_id)
+        if dict and dict.get("context"):
+            return ContextDict(**dict.get("context"))
+        return None
 
     def get_conversations(self):
         """Get all conversations for the current user."""

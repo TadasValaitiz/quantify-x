@@ -2,49 +2,66 @@ from operator import itemgetter
 import os
 from typing import List, Dict, Any, Optional
 import streamlit as st
-from pydantic import SecretStr
+from pydantic import BaseModel, Field, SecretStr
 
+from langchain.output_parsers import PydanticOutputParser
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.callbacks.base import BaseCallbackHandler
 from langchain_core.prompts import ChatPromptTemplate, FewShotChatMessagePromptTemplate
 from langchain_core.runnables import RunnablePassthrough, RunnableLambda
+from shared.types import ChatMessage, ContextDict, TradingContextCollection
 
-from .prompts import message_with_context
-
-
-class StreamingCallback(BaseCallbackHandler):
-    """Callback handler for streaming tokens to a StreamHandler."""
-
-    def __init__(self, stream_handler):
-        self.stream_handler = stream_handler
-
-    def on_llm_new_token(self, token: str, **kwargs) -> None:
-        """Run on new token."""
-        self.stream_handler.update(token)
+from .prompts import message_with_context, message_with_context_collection
 
 
 class StreamHandler:
     """Handler for streaming responses to Streamlit."""
 
-    def __init__(self, container):
-        self.container = container
+    def __init__(self):
         self.text = ""
-        self.reasoning = container.empty()
+        self.reasoning = ""
+        self.steps = []
 
-    def update(self, text_chunk: str) -> None:
+    def reasoning_update(self, text_chunk: str) -> None:
         """Update the displayed text with a new chunk."""
         self.text += text_chunk
-        self.reasoning.markdown(self.text + "▌")
+        print(text_chunk)
+        self.reasoning = self.text + "▌"
 
-    def finish(self) -> None:
+    def reasoning_finish(self) -> None:
         """Finalize the displayed text."""
-        self.reasoning.markdown(self.text)
+        print(f"reasoning_finish: {self.text}")
+        self.reasoning = self.text
+
+    def step_update(self, step: str) -> None:
+        """Update important step info"""
+        self.steps.append(step)
+
+    def get_steps(self) -> List[str]:
+        """Get the steps."""
+        return self.steps
 
     def get_text(self) -> str:
         """Get the full text."""
         return self.text
+
+
+class StreamingCallback(BaseCallbackHandler):
+    """Callback handler for streaming tokens to a StreamHandler."""
+
+    def __init__(self, stream_handler: StreamHandler):
+        self.stream_handler = stream_handler
+
+    def on_llm_new_token(self, token: str, **kwargs) -> None:
+        """Run on new token."""
+        self.stream_handler.reasoning_update(token)
+
+    def on_llm_end(self, response, **kwargs) -> None:
+        """Run when LLM ends running"""
+        print(f"on_llm_end: {response}")
+        self.stream_handler.reasoning_finish()
 
 
 class AIService:
@@ -61,11 +78,11 @@ class AIService:
 
     def generate_response_stream(
         self,
-        message,
-        container,
-        system_prompt: Optional[str] = None,
+        message: ChatMessage,
+        stream_handler: StreamHandler,
         model: str = "gpt-4o-mini-2024-07-18",
-    ) -> str:
+        context: Optional[ContextDict] = None,
+    ) -> str | TradingContextCollection:
         """
         Generate a response with streaming to a Streamlit container.
 
@@ -77,7 +94,6 @@ class AIService:
         Returns:
             The complete generated response as a string
         """
-        stream_handler = StreamHandler(container)
         streaming_callback = StreamingCallback(stream_handler)
 
         try:
@@ -90,21 +106,30 @@ class AIService:
                 callbacks=[streaming_callback],
             )
 
+            parser = PydanticOutputParser(pydantic_object=TradingContextCollection)
+            format_instructions = parser.get_format_instructions()
+
+            # Create a prompt that includes format instructions
+            prompt_template = ChatPromptTemplate.from_template(
+                message_with_context_collection
+            )
+
             chain = (
                 {
-                    "context": "None",
+                    "context": itemgetter("context"),
                     "question": itemgetter("question"),
+                    "format_instructions": lambda _: format_instructions,
                 }
-                | ChatPromptTemplate.from_template(message_with_context)
+                | prompt_template
                 | llm
+                | parser
             )
-            # Generate streaming response
-            response = chain.invoke({"question": message})
+            context_str = context.to_prompt_context() if context else ""
 
-            print(response)
-            # Finalize the displayed text
-            stream_handler.finish()
-            return str(response.content)
+            response: TradingContextCollection = chain.invoke(
+                {"question": message.content, "context": context_str}
+            )
+            return response
 
         except Exception as e:
             st.error(f"Error generating streaming response: {e}")

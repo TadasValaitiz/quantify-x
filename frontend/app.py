@@ -107,7 +107,7 @@ def main():
     # Render sidebar with conversations
     render_sidebar(user_info=current_user,conversation_service=conversation_service)
     # Render chat interface
-    render_page_content(user_info=current_user, conversation_service=conversation_service)
+    render_page_content(user_info=current_user, conversation_service=conversation_service,ai_service=ai_service)
 
 if __name__ == "__main__":
     main()
