@@ -2,6 +2,9 @@
 
 A RAG-based system for creating and evaluating trading strategies. Uses SQLite for structured data storage and ChromaDB for vector embeddings. Implements RAG-fusion and RAG decomposition techniques for strategy comparison and evaluation.
 
+## Demo
+Visit https://quantify.streamlit.app/
+
 ## Architecture
 
 ```

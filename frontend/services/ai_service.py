@@ -70,7 +70,22 @@ class AIService:
     def __init__(self):
         """Initialize the AI service with a specific model."""
 
-        openai_api_key = os.getenv("OPENAI_API_KEY")
+        openai_api_key = None
+
+        try:
+            if "langchain" in st.secrets:
+                os.environ["LANGCHAIN_API_KEY"] = st.secrets["langchain"]["api_key"]
+                os.environ["LANGCHAIN_ENDPOINT"] = st.secrets["langchain"]["endpoint"]
+                os.environ["LANGCHAIN_TRACING_V2"] = str(
+                    st.secrets["langchain"].get("tracing_v2", "true")
+                ).lower()
+
+            if "api_keys" in st.secrets:
+                openai_api_key = st.secrets["api_keys"]["openai"]
+
+        except Exception as e:
+            raise ValueError("Secrets mechanism is not available")
+
         if openai_api_key:
             self.openai_api_key = SecretStr(openai_api_key)
         else:
