@@ -6,7 +6,7 @@ from typing import Dict, Any, Optional, List
 # Internal modules
 from auth import FirebaseAuth
 from database import ChatDatabase
-from services import AIService,ConversationService
+from services import AIService, ConversationService
 from ui import (
     apply_theme,
     render_sidebar,
@@ -38,16 +38,18 @@ init_session_state()
 
 # Initialize database and services
 db = ChatDatabase()
-auth = FirebaseAuth()
+firebase_auth = FirebaseAuth()  # Keep FirebaseAuth for compatibility
 ai_service = AIService()
-conversation_service = ConversationService(db, auth)
+conversation_service = ConversationService(db, firebase_auth)
+
 
 def handle_login():
     """Handle user login."""
-    success, user_info = auth.anonymous_login()
+    # Use Firebase auth for now
+    success, user_info = firebase_auth.anonymous_login()
 
-    if user_info:
-        # Create or retrieve user in the databas
+    if success and user_info:
+        # Create or retrieve user in the database
         user = db.get_user_by_id(user_info["localId"])
 
         if user:
@@ -69,10 +71,9 @@ def handle_login():
 
 def handle_logout():
     """Handle user logout."""
-    auth.logout()
+    firebase_auth.logout()
     st.session_state.current_conversation_id = None
     st.rerun()
-
 
 
 def handle_send_message(message_text: str):
@@ -95,7 +96,7 @@ def handle_send_message(message_text: str):
 def main():
     """Main application function."""
     # Get current user if logged in
-    current_user = auth.get_current_user()
+    current_user = firebase_auth.get_current_user()
 
     # Render navigation bar
     render_navbar(
@@ -105,9 +106,15 @@ def main():
     # Get user conversations (if logged in)
 
     # Render sidebar with conversations
-    render_sidebar(user_info=current_user,conversation_service=conversation_service)
+    render_sidebar(user_info=current_user, conversation_service=conversation_service)
     # Render chat interface
-    render_page_content(user_info=current_user, conversation_service=conversation_service,ai_service=ai_service)
+    render_page_content(
+        user_info=current_user,
+        conversation_service=conversation_service,
+        ai_service=ai_service,
+        firebase_auth=firebase_auth,
+    )
+
 
 if __name__ == "__main__":
     main()

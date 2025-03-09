@@ -2,7 +2,14 @@ import streamlit as st
 from typing import Dict, Any, Optional, Tuple, cast
 
 from .types import FirebaseUserDict
-from .auth_functions import sign_in_anonymous
+from .auth_functions import (
+    sign_in_anonymous,
+    sign_in_with_email_and_password,
+    create_user_with_email_and_password,
+    send_email_verification,
+    send_password_reset_email,
+    get_account_info,
+)
 from .local_storage import LStorage
 
 
@@ -62,6 +69,124 @@ class FirebaseAuth:
             # Handle error but don't show in UI to avoid confusing user
             print(f"Authentication error: {str(e)}")
             return False, None
+
+    def email_password_login(
+        self, email: str, password: str
+    ) -> Tuple[bool, Optional[FirebaseUserDict]]:
+        """
+        Perform email/password login using Firebase.
+
+        Args:
+            email: User's email address
+            password: User's password
+
+        Returns:
+            Tuple of (success, user_info)
+        """
+        try:
+            # Use the sign_in_with_email_and_password function from auth_functions
+            user_info = sign_in_with_email_and_password(email, password)
+            if user_info is None:
+                return False, None
+
+            # Convert to proper type with all required fields
+            firebase_user: FirebaseUserDict = {
+                "localId": user_info["localId"],
+                "idToken": user_info["idToken"],
+                "refreshToken": user_info["refreshToken"],
+                "expiresIn": user_info["expiresIn"],
+                "login_type": "password",
+                "auth_provider": "password",
+                "email": user_info.get("email"),
+                "name": None,  # Could be populated from account info if needed
+            }
+
+            # Store in session state
+            st.session_state["firebase_user"] = firebase_user
+            # Also store in local storage for persistence across sessions
+            self.storage.set("firebase_user", cast(Dict[str, Any], firebase_user))
+
+            return True, firebase_user
+        except Exception as e:
+            print(f"Email/password login error: {str(e)}")
+            return False, None
+
+    def create_user(
+        self, email: str, password: str
+    ) -> Tuple[bool, Optional[FirebaseUserDict]]:
+        """
+        Create a new user with email and password.
+
+        Args:
+            email: User's email address
+            password: User's password
+
+        Returns:
+            Tuple of (success, user_info)
+        """
+        try:
+            # Use the create_user_with_email_and_password function from auth_functions
+            user_info = create_user_with_email_and_password(email, password)
+            if user_info is None:
+                return False, None
+
+            # Convert to proper type with all required fields
+            firebase_user: FirebaseUserDict = {
+                "localId": user_info["localId"],
+                "idToken": user_info["idToken"],
+                "refreshToken": user_info["refreshToken"],
+                "expiresIn": user_info["expiresIn"],
+                "login_type": "password",
+                "auth_provider": "password",
+                "email": user_info.get("email"),
+                "name": None,
+            }
+
+            # Automatically log in the user after account creation
+            st.session_state["firebase_user"] = firebase_user
+            self.storage.set("firebase_user", cast(Dict[str, Any], firebase_user))
+
+            return True, firebase_user
+        except Exception as e:
+            print(f"User creation error: {str(e)}")
+            return False, None
+
+    def send_verification_email(self) -> bool:
+        """
+        Send email verification to the current user.
+
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+            # Get current user
+            user = self.get_current_user()
+            if user is None or user.get("idToken") is None:
+                return False
+
+            # Send verification email using the id token
+            send_email_verification(user["idToken"])
+            return True
+        except Exception as e:
+            print(f"Email verification error: {str(e)}")
+            return False
+
+    def reset_password(self, email: str) -> bool:
+        """
+        Send password reset email to the specified email address.
+
+        Args:
+            email: Email address to send password reset to
+
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+            send_password_reset_email(email)
+            return True
+        except Exception as e:
+            print(f"Password reset error: {str(e)}")
+            return False
 
     def logout(self) -> bool:
         """

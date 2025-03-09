@@ -2,18 +2,21 @@ import json
 import streamlit as st
 from auth.types import FirebaseUserDict
 from typing import Optional
+from auth.firebase_auth import FirebaseAuth
 from shared.types import ChatMessage, TradingContextCollection, ContextDict
 from services import ConversationService, ChatService, AIService, StreamHandler
+from ui.login import login_page
 
 
 def render_page_content(
     user_info: Optional[FirebaseUserDict],
     conversation_service: ConversationService,
     ai_service: AIService,
+    firebase_auth: FirebaseAuth,
 ):
 
     if user_info is None:
-        st.write("Please log in to continue.")
+        login_page(firebase_auth)
     else:
         render_conversation(conversation_service, ai_service)
 
@@ -28,10 +31,12 @@ def render_conversation(
         context = conversation_service.get_conversation_context(current_conversation_id)
         chat_service = ChatService(current_conversation_id)
         render_chat_messages(chat_service)
-        chat_input(chat_service, ai_service,context)
+        chat_input(chat_service, ai_service, context)
 
 
-def chat_input(chat_service: ChatService, ai_service: AIService, context: Optional[ContextDict]):
+def chat_input(
+    chat_service: ChatService, ai_service: AIService, context: Optional[ContextDict]
+):
     if user_message := st.chat_input("Type your message here..."):
         message = chat_service.add_user_message(user_message)
         with st.chat_message("user"):
