@@ -219,7 +219,7 @@ class ChatDatabase:
     ) -> None:
         """Update only the context of a conversation."""
         name = (
-            context.trading_context.name_of_conversation
+            context.trading_context.strategy_name
             if context.trading_context
             else None
         )

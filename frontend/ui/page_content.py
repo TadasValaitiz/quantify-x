@@ -45,7 +45,7 @@ def chat_input(chat_service: ChatService, ai_service: AIService, context: Option
                 if isinstance(response, TradingContextCollection):
                     r: TradingContextCollection = response
                     message = chat_service.add_assistant_message(
-                        r.assistant_response_summary or "No response",
+                        r.direct_answer or "No response",
                         ContextDict(trading_context=r) if r.trading_topic else None,
                     )
                     st.markdown(message.to_conversation_message())

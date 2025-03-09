@@ -95,3 +95,13 @@ class MessageType(TypedDict):
     type: Literal[
         0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20
     ]
+
+
+class StrategyType(TypedDict):
+    id: Optional[int]
+    message_id: str
+    timestamp: str
+    flags: int
+    reactions: int
+    content: str
+    strategy: Dict

@@ -5,7 +5,7 @@ from typing import Optional, List
 import requests
 
 from dotenv import load_dotenv
-from discord_types import MessageType
+from shared.discord_types import MessageType
 from database.database import Database
 
 load_dotenv()

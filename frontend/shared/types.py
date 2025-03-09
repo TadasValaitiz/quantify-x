@@ -1,52 +1,80 @@
 from datetime import datetime
 import json
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 from pydantic import BaseModel, Field
 
 
 class TradingContextCollection(BaseModel):
     trading_topic: bool = Field(
-        default=False,
-        description="Whether the topic is about trading, or not related and user needs to be returned to trading topic",
+        description="Whether the conversation is strictly about trading, or if the user needs redirection back to trading topics.",
     )
-    name_of_conversation: Optional[str] = Field(
+    strategy_name: Optional[str] = Field(
         default=None,
-        description="Name of 1-3 words of trading strategy if name not exist",
+        description="Concise and descriptive name for the automated trading strategy (2-5 words).",
+    )
+    strategy_type: Optional[
+        Literal[
+            "Trend-following",
+            "Momentum-based",
+            "Reversal",
+            "Breakout",
+            "Mean Reversion",
+            "Volatility-based",
+            "Event-driven",
+            "Time-based",
+            "Hybrid",
+        ]
+    ] = Field(
+        default=None,
+        description="The core type of automated trading strategy chosen by the user.",
     )
     assistant_response_summary: Optional[str] = Field(
-        description="Summary of the assistant response, use long form, that will be presented to user"
+        description="Detailed summary explaining the assistant's responses and decisions, suitable for the user."
     )
     assistant_reasoning: Optional[List[str]] = Field(
-        description="AI Assistant reasoning steps, if reasoning exist in context, append to this list"
+        default_factory=list,
+        description="Chronological list of reasoning steps by the assistant, updated with each interaction.",
     )
     followup_questions: Optional[List[str]] = Field(
-        description="Followup questions to the user, if any fields are not clear for trading strategy, these questions are uniq and cannot be repeated"
+        default_factory=list,
+        description="Specific, unique, and non-repeating follow-up questions posed to clarify aspects of the strategy.",
     )
     direct_answer: Optional[str] = Field(
-        description="Direct AI assistant answer when user ask questions, clarifies about strategy, or wants additional information",
+        description="Direct, detailed, and clear answer from the assistant addressing user's specific questions."
     )
     trading_idea: Optional[str] = Field(
-        description="Trading idea, a paragraph about trading idea, how it might work"
+        description="Detailed explanation of the user's automated trading idea, including rationale and expected edge."
     )
-    trading_indicators: Optional[List[str]] = Field(
-        description="Trading indicators with short description how they work"
+    indicators_and_signals: Optional[List[str]] = Field(
+        description="Detailed list of indicators or signals, their calculation, logic, parameters, and their role in the strategy."
     )
     entry_conditions: Optional[List[str]] = Field(
-        description="Long form information about Entry conditions, Risk management, stop loss/take profit."
+        description="Comprehensive description of entry conditions including indicator thresholds, patterns, and exact logic for automation."
     )
     exit_conditions: Optional[List[str]] = Field(
-        description="Long form information about Exit conditions, Risk management, stop loss/take profit"
+        description="Detailed explanation of automated exit conditions (take-profit, stop-loss, trailing stop) with risk management logic."
+    )
+    position_sizing: Optional[str] = Field(
+        description="Explicit description of position sizing or money management strategy (fixed size, percentage, volatility-based, etc.)."
+    )
+    risk_management_rules: Optional[List[str]] = Field(
+        description="Specific rules and procedures for managing risk, drawdowns, maximum daily losses, etc."
     )
     markets_and_timeframes: Optional[List[str]] = Field(
-        description="Markets which user wants to trade, trading windows, trading hours anything related with market regime"
+        description="Clearly defined markets (stocks, crypto, forex), symbols, exchanges, and precise timeframes or sessions targeted."
+    )
+    order_types: Optional[List[str]] = Field(
+        description="Types of orders used in the strategy (Market, Limit, Stop, Stop-Limit, etc.) and the reasoning behind each type."
     )
     user_inputs: List[str] = Field(
-        default=[],
-        description="User inputs, if previous input exist, AI assistant needs to append to this list",
+        description="Cumulative log of all user inputs throughout the conversation.",
+    )
+    additional_info: Optional[str] = Field(
+        description="Additional information about the strategy that is not covered by the other fields."
     )
     confirmed: bool = Field(
         default=False,
-        description="User explicit confirmation that this strategy is good, don' fill this field without user confirmation",
+        description="Flag explicitly confirming the strategy design as final. Only true after explicit user confirmation.",
     )
 
     def to_conversation_message(self):
@@ -72,12 +100,14 @@ class TradingContextCollection(BaseModel):
 
         # Main trading strategy information
         if self.trading_idea:
-            markdown += f"#### Trading Idea\n{self.trading_idea}\n\n"
+            if self.strategy_type:
+                markdown += f"#### Strategy ({self.strategy_type})\n\n"
+            markdown += f"###### Trading Idea\n{self.trading_idea}\n\n"
 
         # Trading indicators with bullet points
-        if self.trading_indicators and len(self.trading_indicators) > 0:
-            markdown += "#### Trading Indicators\n"
-            for indicator in self.trading_indicators:
+        if self.indicators_and_signals and len(self.indicators_and_signals) > 0:
+            markdown += "#### Trading Indicators and Signals\n"
+            for indicator in self.indicators_and_signals:
                 markdown += f"* {indicator}\n"
             markdown += "\n"
 
@@ -100,6 +130,23 @@ class TradingContextCollection(BaseModel):
             markdown += "#### Target Markets\n"
             for market in self.markets_and_timeframes:
                 markdown += f"* {market}\n"
+            markdown += "\n"
+
+        if self.order_types and len(self.order_types) > 0:
+            markdown += "#### Order Types\n"
+            for order_type in self.order_types:
+                markdown += f"* {order_type}\n"
+            markdown += "\n"
+
+        if self.risk_management_rules and len(self.risk_management_rules) > 0:
+            markdown += "#### Risk Management Rules\n"
+            for risk_management_rule in self.risk_management_rules:
+                markdown += f"* {risk_management_rule}\n"
+            markdown += "\n"
+
+        if self.position_sizing and len(self.position_sizing) > 0:
+            markdown += "#### Position Sizing\n"
+            markdown += f"{self.position_sizing}\n"
             markdown += "\n"
 
         if self.direct_answer:
@@ -122,12 +169,14 @@ class TradingContextCollection(BaseModel):
 
         # Main trading strategy information
         if self.trading_idea:
-            markdown += f"#### Trading Idea\n{self.trading_idea}\n\n"
+            if self.strategy_type:
+                markdown += f"#### Strategy ({self.strategy_type})\n\n"
+            markdown += f"###### Trading Idea\n{self.trading_idea}\n\n"
 
         # Trading indicators with bullet points
-        if self.trading_indicators and len(self.trading_indicators) > 0:
-            markdown += "#### Trading Indicators\n"
-            for indicator in self.trading_indicators:
+        if self.indicators_and_signals and len(self.indicators_and_signals) > 0:
+            markdown += "#### Trading Indicators and Signals\n"
+            for indicator in self.indicators_and_signals:
                 markdown += f"* {indicator}\n"
             markdown += "\n"
 
@@ -150,6 +199,23 @@ class TradingContextCollection(BaseModel):
             markdown += "#### Target Markets\n"
             for market in self.markets_and_timeframes:
                 markdown += f"* {market}\n"
+            markdown += "\n"
+
+        if self.order_types and len(self.order_types) > 0:
+            markdown += "#### Order Types\n"
+            for order_type in self.order_types:
+                markdown += f"* {order_type}\n"
+            markdown += "\n"
+
+        if self.risk_management_rules and len(self.risk_management_rules) > 0:
+            markdown += "#### Risk Management Rules\n"
+            for risk_management_rule in self.risk_management_rules:
+                markdown += f"* {risk_management_rule}\n"
+            markdown += "\n"
+
+        if self.position_sizing and len(self.position_sizing) > 0:
+            markdown += "#### Position Sizing\n"
+            markdown += f"{self.position_sizing}\n"
             markdown += "\n"
 
         # User inputs with bullet points
