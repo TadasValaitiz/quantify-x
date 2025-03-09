@@ -11,3 +11,10 @@ User strategy: {question}
 
 {format_instructions}
 """
+
+rag_fusion = """
+You are professional trading strategy expert that generates multiple search queries based on a single input query.
+Generate multiple search queries related to: {question}
+
+Output (4 queries):
+"""

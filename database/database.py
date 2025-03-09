@@ -1,7 +1,7 @@
-from shared.discord_types import MessageType, StrategyType
+from shared import MessageType, StrategyType, TradingStrategyDefinition
 import sqlite3
 import json
-from typing import List, Optional, Dict, Any
+from typing import List, Optional, Dict, Any, Union, TypedDict, cast
 from datetime import datetime, timezone
 
 
@@ -154,7 +154,7 @@ class Database:
                     strategy["flags"],
                     strategy["reactions"],
                     strategy["content"],
-                    json.dumps(strategy["strategy"]),
+                    strategy["strategy"].model_dump_json(),
                     current_time,
                 ),
             )
@@ -185,7 +185,7 @@ class Database:
             "flags": row[3],
             "reactions": row[4],
             "content": row[5],
-            "strategy": json.loads(row[6]),
+            "strategy": TradingStrategyDefinition(**json.loads(row[6])),
         }
 
     def list_strategies(self, limit: int = 100, offset: int = 0) -> List[StrategyType]:
@@ -212,11 +212,94 @@ class Database:
                     "flags": row[3],
                     "reactions": row[4],
                     "content": row[5],
-                    "strategy": json.loads(row[6]),
+                    "strategy": TradingStrategyDefinition(**json.loads(row[6])),
                 }
             )
 
         return strategies
+
+    def list_strategies_by_ids(self, ids: List[int]) -> List[StrategyType]:
+        """
+        List strategies that match the given IDs.
+
+        Args:
+            ids: List of strategy IDs to retrieve
+
+        Returns:
+            List of matching strategies
+        """
+        if not ids:
+            return []
+
+        placeholders = ",".join("?" * len(ids))
+        query = f"""
+            SELECT id, message_id, timestamp, flags, reactions, content, strategy_json 
+            FROM discord_strategies 
+            WHERE id IN ({placeholders})
+            ORDER BY timestamp DESC
+        """
+
+        cursor = self.conn.execute(query, ids)
+
+        return [
+            {
+                "id": row[0],
+                "message_id": row[1],
+                "timestamp": row[2],
+                "flags": row[3],
+                "reactions": row[4],
+                "content": row[5],
+                "strategy": TradingStrategyDefinition(**json.loads(row[6])),
+            }
+            for row in cursor
+        ]
+
+    def get_strag(self, strat_id: int) -> Optional[StrategyType]:
+        """
+        Shorthand method for get_strategy.
+
+        Args:
+            strat_id: ID of the strategy to retrieve
+
+        Returns:
+            Strategy if found, None otherwise
+        """
+        return self.get_strategy(strat_id)
+
+    def get_strag_by_msg(self, message_id: str) -> Optional[StrategyType]:
+        """
+        Get a strategy by its associated message ID.
+
+        Args:
+            message_id: The message ID to look up
+
+        Returns:
+            Strategy if found, None otherwise
+        """
+        cursor = self.conn.execute(
+            """
+            SELECT id, message_id, timestamp, flags, reactions, content, strategy_json 
+            FROM discord_strategies
+            WHERE message_id = ?
+            LIMIT 1
+            """,
+            (message_id,),
+        )
+
+        row = cursor.fetchone()
+
+        if row is None:
+            return None
+
+        return {
+            "id": row[0],
+            "message_id": row[1],
+            "timestamp": row[2],
+            "flags": row[3],
+            "reactions": row[4],
+            "content": row[5],
+            "strategy": TradingStrategyDefinition(**json.loads(row[6])),
+        }
 
     def strategy_count(self) -> int:
         """
@@ -224,6 +307,22 @@ class Database:
         """
         cursor = self.conn.execute("SELECT COUNT(*) FROM discord_strategies")
         return cursor.fetchone()[0]
+
+    def delete_strategy(self, strategy_id: int) -> bool:
+        """
+        Delete a strategy from the database.
+
+        Args:
+            strategy_id: ID of the strategy to delete
+
+        Returns:
+            True if strategy was deleted, False otherwise
+        """
+        with self.conn:
+            cursor = self.conn.execute(
+                "DELETE FROM discord_strategies WHERE id = ?", (strategy_id,)
+            )
+            return cursor.rowcount > 0
 
     def close(self):
         self.conn.close()

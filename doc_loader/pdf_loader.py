@@ -5,7 +5,6 @@ from sentence_transformers import SentenceTransformer
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_openai.embeddings import OpenAIEmbeddings
 from database import VectorDB
-
 from doc_loader.paragraph_splitter import paragraphs_text_splitter
 
 
@@ -66,6 +65,7 @@ def load_document_recursive(resource: str, chunk_size: int):
             },
         )
 
+
 def load_document_by_paragraph(resource: str):
     texts = paragraphs_text_splitter(resource)
     print(f"Paragraph text Splitter texts size:{len(texts)}")
@@ -90,6 +90,7 @@ def load_document_by_paragraph(resource: str):
             },
         )
 
+
 def recursive_text_splitter(
     documents: list[Document], chunk_size=1000
 ) -> list[Document]:
@@ -109,8 +110,6 @@ def semantic_text_splitter(
         breakpoint_threshold_type="percentile",
         breakpoint_threshold_amount=percentile,
     ).split_documents(documents)
-
-
 
 
 def main():
