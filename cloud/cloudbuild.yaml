@@ -1,0 +1,142 @@
+steps:
+  # Build the container image with cache
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '--cache-from'
+      - 'europe-west1-docker.pkg.dev/quantify-x/quantify-x/streamlit-app:latest'
+      - '-t'
+      - 'europe-west1-docker.pkg.dev/quantify-x/quantify-x/streamlit-app:${_COMMIT_SHA}'
+      - '-t'
+      - 'europe-west1-docker.pkg.dev/quantify-x/quantify-x/streamlit-app:latest'
+      - '.'
+  
+  # Push the container image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'europe-west1-docker.pkg.dev/quantify-x/quantify-x/streamlit-app:${_COMMIT_SHA}'
+
+  # Also push the latest tag
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'europe-west1-docker.pkg.dev/quantify-x/quantify-x/streamlit-app:latest'
+    id: 'push'
+
+  # ----------------------------------------
+  # DEPLOYMENT SECTION
+  # This section handles the deployment of the built image to Cloud Run
+  # and configures the domain mapping for the service.
+  # ----------------------------------------
+  
+  # Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud run deploy quantify-x \
+          --image=europe-west1-docker.pkg.dev/quantify-x/quantify-x/streamlit-app:${_COMMIT_SHA} \
+          --region=europe-west1 \
+          --platform=managed \
+          --set-env-vars="OPENAI_API_KEY=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,GEMINI_API_KEY=AIzaSyDZyCXwYbP5GYALOy90GqPIgQEGEpOh3bE,LANGCHAIN_TRACING_V2=true,LANGCHAIN_ENDPOINT=https://api.smith.langchain.com,LANGCHAIN_API_KEY=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" \
+          --allow-unauthenticated \
+          --min-instances=0 \
+          --cpu=1 \
+          --memory=1Gi
+    id: 'deploy'
+    waitFor: ['push']
+
+  # Configure domain mapping
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        if ! gcloud run domain-mappings describe --domain=quantifyx.zowo.io --region=europe-west1 2>/dev/null; then
+          echo "Creating new domain mapping for quantifyx.zowo.io"
+          gcloud run domain-mappings create --service=quantify-x --region=europe-west1 --domain=quantifyx.zowo.io
+        else
+          echo "Domain mapping for quantifyx.zowo.io already exists"
+        fi
+    id: 'domain-mapping'
+    waitFor: ['deploy']
+        
+  # Update DNS records in Cloud DNS (with timeout)
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        # Wait for domain mapping to be ready (with timeout)
+        echo "Waiting for domain mapping to be ready..."
+        START_TIME=$$(date +%s)
+        MAX_WAIT_TIME=300  # 5 minutes timeout
+        
+        while true; do
+          # Check if we've exceeded the timeout
+          CURRENT_TIME=$$(date +%s)
+          ELAPSED_TIME=$$((CURRENT_TIME - START_TIME))
+          
+          if [ $$ELAPSED_TIME -gt $$MAX_WAIT_TIME ]; then
+            echo "Timeout waiting for domain mapping to become active"
+            echo "DNS configuration will need to be done manually"
+            exit 0  # Exit successfully to not fail the build
+          fi
+          
+          MAPPING_STATUS=$$(gcloud run domain-mappings describe --domain=quantifyx.zowo.io --region=europe-west1 --format='value(status.conditions[0].status)' 2>/dev/null || echo "")
+          if [[ "$$MAPPING_STATUS" == "ACTIVE" ]]; then
+            break
+          fi
+          echo "Domain mapping not ready yet, waiting 10 seconds... ($$ELAPSED_TIME seconds elapsed)"
+          sleep 10
+        done
+        
+        # Get the IP addresses for the domain mapping
+        IP_ADDRESSES=$$(gcloud run domain-mappings describe --domain=quantifyx.zowo.io --region=europe-west1 --format='value(status.resourceRecords.rrdata)')
+        
+        echo "Got IP addresses: $$IP_ADDRESSES"
+        
+        # Check if record already exists
+        EXISTING_RECORD=$$(gcloud dns record-sets list --zone=zowo-io --name=quantifyx.zowo.io. --type=A --format='value(name)' 2>/dev/null || echo "")
+        
+        if [[ -n "$$EXISTING_RECORD" ]]; then
+          echo "Removing existing DNS record for quantifyx.zowo.io"
+          gcloud dns record-sets delete quantifyx.zowo.io. --zone=zowo-io --type=A
+        fi
+        
+        # Add new A record with the IP addresses
+        echo "Creating A record for quantifyx.zowo.io with IP(s): $$IP_ADDRESSES"
+        for IP in $$IP_ADDRESSES; do
+          gcloud dns record-sets create quantifyx.zowo.io. --zone=zowo-io --type=A --ttl=300 --rrdatas="$$IP"
+        done
+        
+        echo "DNS configuration complete!"
+    id: 'dns-config'
+    waitFor: ['domain-mapping']
+
+# Final success step to indicate completion
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      echo "Build and deployment successfully completed at $$(date)"
+      echo "The application should be available at https://quantifyx.zowo.io"
+  id: 'success'
+  waitFor: ['dns-config']
+
+# Store images in Artifact Registry
+images:
+  - 'europe-west1-docker.pkg.dev/quantify-x/quantify-x/streamlit-app:${_COMMIT_SHA}'
+  - 'europe-west1-docker.pkg.dev/quantify-x/quantify-x/streamlit-app:latest'
+
+# Default substitutions
+substitutions:
+  _COMMIT_SHA: manual-build
+
+# Specific options for this build
+options:
+  logging: CLOUD_LOGGING_ONLY
+  machineType: 'E2_HIGHCPU_8'

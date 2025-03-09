@@ -40,10 +40,11 @@ def rag_fusion_chain(question: str):
 
 
 def main():
-    strategies = db.list_strategies(limit=1000)
-    for strategy in strategies:
-        print(strategy)
-        vector_db.add_strategy(strategy)
+    # strategies = db.list_strategies(limit=1000)
+    # for strategy in strategies:
+    #     print(strategy)
+    #     vector_db.add_strategy(strategy)
+    rag_fusion_chain("What is the best strategy for a scalping strategy?")
 
 
 if __name__ == "__main__":

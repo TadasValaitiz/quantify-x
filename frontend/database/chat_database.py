@@ -7,7 +7,7 @@ from shared.types import ChatMessage, ContextDict
 
 
 class ChatDatabase:
-    def __init__(self, db_path: str = "frontend.db"):
+    def __init__(self, db_path: str = "data/frontend.db"):
         """Initialize database connection and create tables if they don't exist."""
         self.connection = sqlite3.connect(db_path, check_same_thread=False)
         self.connection.row_factory = sqlite3.Row

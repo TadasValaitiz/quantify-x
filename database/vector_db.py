@@ -10,7 +10,7 @@ class VectorDB:
     db: ClientAPI
 
     def __init__(self):
-        self.db = chromadb.PersistentClient("./chroma-db")
+        self.db = chromadb.PersistentClient("data/chroma-db")
 
     def get_theory_collection(self) -> Collection:
         try:

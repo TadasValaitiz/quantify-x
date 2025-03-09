@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 
 
 class Database:
-    def __init__(self, db_path: str = "messages.db"):
+    def __init__(self, db_path: str = "data/messages.db"):
         self.conn = sqlite3.connect(db_path)
         self._create_tables()
 

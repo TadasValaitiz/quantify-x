@@ -1,0 +1,24 @@
+{
+  "policies": [
+    {
+      "name": "keep-latest-3-versions",
+      "condition": {
+        "tagState": "TAGGED",
+        "tagPrefixes": [],
+        "olderThan": "",
+        "newerThan": "",
+        "tagCount": 3,
+        "packageNamePrefixes": []
+      },
+      "action": "KEEP"
+    },
+    {
+      "name": "delete-untagged-after-30-days",
+      "condition": {
+        "tagState": "UNTAGGED",
+        "olderThan": "30d"
+      },
+      "action": "DELETE"
+    }
+  ]
+} 

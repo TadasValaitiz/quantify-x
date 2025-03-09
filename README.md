@@ -37,8 +37,10 @@ A RAG-based system for creating and evaluating trading strategies. Uses SQLite f
 
 ### Installation
 ```bash
-git clone https://github.com/yourusername/tvalai-AE.2.5.git
+git clone git@github.com:TuringCollegeSubmissions/tvalai-AE.2.5.git
 cd tvalai-AE.2.5
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 streamlit run frontend/app.py
 ```
