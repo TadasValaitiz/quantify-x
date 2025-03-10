@@ -39,6 +39,13 @@ class ChatService:
             self.db.update_conversation_context(self.conversation_id, context)
 
         return message
+    
+    def add_error_msg(self, error: str):
+        message = ChatMessage.new_message(
+            self.conversation_id, "error", error, None
+        )
+        self.append_session_state(message)
+        return message
 
     def add_context_message(self, context: ContextDict):
         message = ChatMessage.new_message(self.conversation_id, "ai", "", context)

@@ -58,7 +58,8 @@ def chat_input(
                     message = chat_service.add_assistant_message(content, ctx)
                     st.markdown(message.to_message_str())
                 else:
-                    st.write(response)
+                    message = chat_service.add_error_msg(response)
+                    st.markdown(response)
         st.rerun()
 
 
