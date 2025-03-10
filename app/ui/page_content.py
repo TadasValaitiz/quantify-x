@@ -126,10 +126,10 @@ def chat_input(
                 st.session_state.steps_history = []
             else:
                 message = chat_service.add_error_msg(response)
-                st.markdown(response)
+                st.error(response)
 
                 # Clear session state for next conversation
-                st.session_state.steps_history = []
+            st.session_state.steps_history = []
         st.rerun()
 
 
@@ -151,4 +151,8 @@ def render_chat_message(message: ChatMessage):
                     st.markdown(message.context.user_strategy.message_str(short=False))
 
     with st.chat_message(message.role):
-        st.markdown(message.to_message_str())
+        if message.role == "error":
+            print(message)
+            st.error(message.content)
+        else:
+            st.markdown(message.to_message_str())

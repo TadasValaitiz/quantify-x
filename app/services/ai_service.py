@@ -54,6 +54,7 @@ class StreamHandler:
         self.on_step_update = on_step_update
         self.on_reasoning_update = on_reasoning_update
         self.on_reasoning_finish = on_reasoning_finish
+
     def reasoning_update(self, text_chunk: str) -> None:
         """Update the displayed text with a new chunk."""
         # Ensure the key exists before accessing it
@@ -73,7 +74,7 @@ class StreamHandler:
 
         self.reasoning[self.current_step] = self.text[self.current_step]
         self.on_reasoning_update(self.current_step, self.reasoning[self.current_step])
-        
+
         # Call the reasoning_finish callback for the current step
         self.on_reasoning_finish(self.current_step, self.reasoning[self.current_step])
 
@@ -481,5 +482,50 @@ class AIService:
             return result
 
         except Exception as e:
-            st.error(f"Error generating streaming response: {e}")
-            return str(e)
+            import traceback
+            import sys
+
+            # Get the full stack trace
+            exc_type, exc_value, exc_traceback = sys.exc_info()
+            stack_trace = traceback.format_exception(exc_type, exc_value, exc_traceback)
+            stack_trace_str = "".join(stack_trace)
+
+            # Check if OpenAI API key exists and is valid
+            api_key_info = ""
+            try:
+                # Get the first few and last few characters of the API key for debugging
+                # (avoid exposing the full key for security)
+                if hasattr(self, "openai_api_key") and self.openai_api_key:
+                    api_key_value = self.openai_api_key.get_secret_value()
+                    if api_key_value:
+                        prefix = api_key_value[:4]
+                        suffix = api_key_value[-4:] if len(api_key_value) > 8 else ""
+                        masked_key = f"{prefix}...{suffix}"
+                        api_key_info += f"✅ API Key exists (starts with {prefix}, ends with {suffix})\n"
+                        api_key_info += f"Length: {len(api_key_value)} characters\n"
+                    else:
+                        api_key_info += "❌ API Key exists but is empty\n"
+                else:
+                    api_key_info += "❌ API Key is not set\n"
+            except Exception as key_error:
+                api_key_info += f"❌ Error checking API key: {str(key_error)}\n"
+
+            # Format the error message with stack trace and API key info
+            error_message = f"""
+Error Details
+
+```
+{type(e).__name__}
+Error Message: {str(e)}
+```
+API Key Status:
+```
+{api_key_info}
+```
+Stack Trace:
+```
+{stack_trace_str}
+```
+"""
+            # Return the detailed error message
+            return error_message

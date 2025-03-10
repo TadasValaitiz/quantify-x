@@ -44,6 +44,7 @@ class ChatService:
         message = ChatMessage.new_message(
             self.conversation_id, "error", error, None
         )
+        self.db.add_message(message)
         self.append_session_state(message)
         return message
 
