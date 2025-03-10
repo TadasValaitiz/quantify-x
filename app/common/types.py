@@ -163,6 +163,58 @@ class TradingStrategyDefinition(BaseModel):
 
         return markdown
 
+    def message_str(self):
+        markdown = ""
+
+        if self.strategy_name:
+            markdown += f"#### {self.strategy_name}Strategy type: ({self.strategy_type})\n\n"
+
+        if self.trading_idea:
+            markdown += f"#### Trading Idea\n{self.trading_idea}\n\n"
+
+        if self.indicators_and_signals and len(self.indicators_and_signals) > 0:
+            markdown += "#### Trading Indicators and Signals\n"
+            for indicator in self.indicators_and_signals:
+                markdown += f"* {indicator}\n"
+            markdown += "\n"
+
+        if self.entry_conditions and len(self.entry_conditions) > 0:
+            markdown += "#### Entry Conditions\n"
+            for condition in self.entry_conditions:
+                markdown += f"* {condition}\n"
+            markdown += "\n"
+
+        if self.exit_conditions and len(self.exit_conditions) > 0:
+            markdown += "#### Exit Conditions\n"
+            for condition in self.exit_conditions:
+                markdown += f"* {condition}\n"
+            markdown += "\n"
+
+        if self.markets_and_timeframes and len(self.markets_and_timeframes) > 0:
+            markdown += "#### Target Markets\n"
+            for market in self.markets_and_timeframes:
+                markdown += f"* {market}\n"
+            markdown += "\n"
+
+        if self.order_types and len(self.order_types) > 0:
+            markdown += "#### Order Types\n"
+            for order_type in self.order_types:
+                markdown += f"* {order_type}\n"
+            markdown += "\n"
+
+        if self.risk_management_rules and len(self.risk_management_rules) > 0:
+            markdown += "#### Risk Management Rules\n"
+            for risk_management_rule in self.risk_management_rules:
+                markdown += f"* {risk_management_rule}\n"
+            markdown += "\n"
+
+        if self.position_sizing and len(self.position_sizing) > 0:
+            markdown += "#### Position Sizing\n"
+            markdown += f"{self.position_sizing}\n"
+            markdown += "\n"
+
+        return markdown
+
     def to_vector_db_search(self):
         markdown = ""
 

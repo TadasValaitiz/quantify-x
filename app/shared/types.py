@@ -71,16 +71,17 @@ class UserStrategy(BaseModel):
         description="Additional information about the strategy that is not covered by the other fields.",
     )
 
-    def message_str(self):
+    def message_str(self, short:bool=True):
         markdown = ""
 
-        if self.followup_questions and len(self.followup_questions) > 0:
-            if self.direct_answer:
-                markdown += f"{self.direct_answer}\n\n"
-            markdown += "#### Follow-up Questions\n"
-            for i, question in enumerate(self.followup_questions, 1):
-                markdown += f"{i}. {question}\n"
-            return markdown
+        if short:
+            if self.followup_questions and len(self.followup_questions) > 0:
+                if self.direct_answer:
+                    markdown += f"{self.direct_answer}\n\n"
+                markdown += "#### Follow-up Questions\n"
+                for i, question in enumerate(self.followup_questions, 1):
+                    markdown += f"{i}. {question}\n"
+                return markdown
 
         # Summary if available
         if self.assistant_response_summary:
@@ -278,7 +279,16 @@ class ContextDict(BaseModel):
             conversations=[],
             evaluation=None,
         )
-
+        
+    def new_run(self):
+        return ContextDict(
+            user_strategy=self.user_strategy,
+            rag_strategies=[],
+            route=None,
+            conversations=self.conversations,
+            evaluation=None,
+        )
+    
     def last_qa(self):
         return self.conversations[-1] if len(self.conversations) > 0 else None
 

@@ -1,11 +1,24 @@
 import streamlit as st
+from shared import ChatMessage, ContextDict
 from auth import FirebaseUserDict, FirebaseAuth
 from typing import Optional
-from shared import ContextDict
 from services import ConversationService, ChatService, AIService, StreamHandler
 from ui.login import login_page
 from database import ChatDatabase
 
+welcome = """
+
+Your AI-powered assistant for developing and evaluating trading strategies.
+
+### What You Can Do:
+
+* **Build Trading Strategies** - Create custom strategies with specific entry/exit conditions
+* **Research Technical Indicators** - Learn about indicators and how to apply them effectively
+* **Evaluate Performance** - Get AI-powered feedback on your strategy's strengths and weaknesses
+* **Compare with Existing Approaches** - See how your ideas stack up against established methods
+
+Start by New Conversation and describe your trading idea!
+"""
 
 def render_page_content(
     user_info: Optional[FirebaseUserDict],
@@ -26,7 +39,9 @@ def render_conversation(
 ):
     current_conversation_id = st.session_state.current_conversation_id
     if current_conversation_id is None:
-        st.title("No Conversation Selected")
+        st.markdown(welcome)
+        st.button("Start New Conversation", on_click=conversation_service.handle_new_conversation)
+
     else:
         context = conversation_service.get_conversation_context(current_conversation_id)
         chat_service = ChatService(current_conversation_id)
@@ -44,13 +59,11 @@ def chat_input(
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
                 handler = StreamHandler()
-                print(f"Generating response for message: {message.content}")
                 response = ai_service.generate_response_stream(
                     message=message.content,
                     initial_context=context,
                     stream_handler=handler,
                 )
-                print(f"Response: {response}")
                 if isinstance(response, ContextDict):
                     ctx: ContextDict = response
                     lastAnswer = response.last_qa_answer()
@@ -65,5 +78,19 @@ def chat_input(
 
 def render_chat_messages(chat_service: ChatService):
     for message in chat_service.get_messages():
-        with st.chat_message(message.role):
+        render_chat_message(message)
+
+def render_chat_message(message: ChatMessage):
+    if message.role == "assistant" and message.context is not None:
+        if len(message.context.rag_strategies) >0:
+                with st.chat_message(message.role):
+                        for strategy in message.context.rag_strategies:
+                            with st.expander("RAG Strategies"):
+                                st.markdown(strategy.message_str())
+        if message.context.user_strategy is not None:
+                with st.chat_message(message.role):
+                    with st.expander("User Strategy"):
+                        st.markdown(message.context.user_strategy.message_str(short=False))
+ 
+    with st.chat_message(message.role):
             st.markdown(message.to_message_str())

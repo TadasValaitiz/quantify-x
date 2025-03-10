@@ -46,12 +46,10 @@ class StreamHandler:
     def reasoning_update(self, text_chunk: str) -> None:
         """Update the displayed text with a new chunk."""
         self.text += text_chunk
-        print(text_chunk)
         self.reasoning = self.text + "▌"
 
     def reasoning_finish(self) -> None:
         """Finalize the displayed text."""
-        print(f"reasoning_finish: {self.text}")
         self.reasoning = self.text
 
     def step_update(self, step: str) -> None:
@@ -79,7 +77,6 @@ class StreamingCallback(BaseCallbackHandler):
 
     def on_llm_end(self, response, **kwargs) -> None:
         """Run when LLM ends running"""
-        print(f"on_llm_end: {response}")
         self.stream_handler.reasoning_finish()
 
 
@@ -137,7 +134,9 @@ class AIService:
 
         if initial_context is None:
             initial_context = ContextDict.empty()
-
+        else:
+            initial_context = initial_context.new_run()
+        
         try:
             llm = ChatOpenAI(
                 model=model,
