@@ -3,11 +3,11 @@ import json
 from typing import Any, Dict, List, Literal, Optional
 from pydantic import BaseModel, Field
 
+# Absolute import from the root common module
+from common import TradingStrategyDefinition
 
-class TradingContextCollection(BaseModel):
-    trading_topic: bool = Field(
-        description="Whether the conversation is strictly about trading, or if the user needs redirection back to trading topics.",
-    )
+
+class UserStrategy(BaseModel):
     strategy_name: Optional[str] = Field(
         default=None,
         description="Concise and descriptive name for the automated trading strategy (2-5 words).",
@@ -66,18 +66,12 @@ class TradingContextCollection(BaseModel):
     order_types: Optional[List[str]] = Field(
         description="Types of orders used in the strategy (Market, Limit, Stop, Stop-Limit, etc.) and the reasoning behind each type."
     )
-    user_inputs: List[str] = Field(
-        description="Cumulative log of all user inputs throughout the conversation.",
-    )
     additional_info: Optional[str] = Field(
-        description="Additional information about the strategy that is not covered by the other fields."
-    )
-    confirmed: bool = Field(
-        default=False,
-        description="Flag explicitly confirming the strategy design as final. Only true after explicit user confirmation.",
+        default=None,
+        description="Additional information about the strategy that is not covered by the other fields.",
     )
 
-    def to_conversation_message(self):
+    def message_str(self):
         markdown = ""
 
         if self.followup_questions and len(self.followup_questions) > 0:
@@ -153,80 +147,64 @@ class TradingContextCollection(BaseModel):
             markdown += "---\n"
             markdown += f"{self.direct_answer}\n\n"
 
-        if not self.confirmed:
-            markdown += f"\nDo you Confirm this strategy? If yes, write Confirm\n"
-
         return markdown
 
-    def to_prompt_context(self):
+    def context_str(self):
         markdown = ""
-
-        # Add reasoning if available (in a Streamlit-friendly format)
-        if self.assistant_reasoning and len(self.assistant_reasoning) > 0:
-            markdown += "#### Reasoning\n"
-            for reasoning in self.assistant_reasoning:
-                markdown += f"* {reasoning}\n\n"
 
         # Main trading strategy information
         if self.trading_idea:
             if self.strategy_type:
-                markdown += f"#### Strategy ({self.strategy_type})\n\n"
-            markdown += f"###### Trading Idea\n{self.trading_idea}\n\n"
+                markdown += f"Strategy ({self.strategy_type})\n\n"
+            markdown += f"Trading Idea\n{self.trading_idea}\n\n"
 
         # Trading indicators with bullet points
         if self.indicators_and_signals and len(self.indicators_and_signals) > 0:
-            markdown += "#### Trading Indicators and Signals\n"
+            markdown += "Trading Indicators and Signals\n"
             for indicator in self.indicators_and_signals:
-                markdown += f"* {indicator}\n"
+                markdown += f"- {indicator}\n"
             markdown += "\n"
 
         # Entry conditions with bullet points
         if self.entry_conditions and len(self.entry_conditions) > 0:
-            markdown += "#### Entry Conditions\n"
+            markdown += "Entry Conditions\n"
             for condition in self.entry_conditions:
-                markdown += f"* {condition}\n"
+                markdown += f"- {condition}\n"
             markdown += "\n"
 
         # Exit conditions with bullet points
         if self.exit_conditions and len(self.exit_conditions) > 0:
-            markdown += "#### Exit Conditions\n"
+            markdown += "Exit Conditions\n"
             for condition in self.exit_conditions:
-                markdown += f"* {condition}\n"
+                markdown += f"- {condition}\n"
             markdown += "\n"
 
         # Markets with bullet points
         if self.markets_and_timeframes and len(self.markets_and_timeframes) > 0:
-            markdown += "#### Target Markets\n"
+            markdown += "Target Markets\n"
             for market in self.markets_and_timeframes:
-                markdown += f"* {market}\n"
+                markdown += f"- {market}\n"
             markdown += "\n"
 
         if self.order_types and len(self.order_types) > 0:
-            markdown += "#### Order Types\n"
+            markdown += "Order Types\n"
             for order_type in self.order_types:
-                markdown += f"* {order_type}\n"
+                markdown += f"- {order_type}\n"
             markdown += "\n"
 
         if self.risk_management_rules and len(self.risk_management_rules) > 0:
-            markdown += "#### Risk Management Rules\n"
+            markdown += "Risk Management Rules\n"
             for risk_management_rule in self.risk_management_rules:
-                markdown += f"* {risk_management_rule}\n"
+                markdown += f"- {risk_management_rule}\n"
             markdown += "\n"
 
         if self.position_sizing and len(self.position_sizing) > 0:
-            markdown += "#### Position Sizing\n"
+            markdown += "Position Sizing\n"
             markdown += f"{self.position_sizing}\n"
             markdown += "\n"
 
-        # User inputs with bullet points
-        if self.user_inputs and len(self.user_inputs) > 0:
-            markdown += "#### User Inputs\n"
-            for user_input in self.user_inputs:
-                markdown += f"* {user_input}\n"
-            markdown += "\n"
-
         if self.followup_questions and len(self.followup_questions) > 0:
-            markdown += "#### Previous Followup Questions\n"
+            markdown += "Previous Followup Questions\n"
             markdown += "If user answers these questions, don't repeat in your answer\n"
             for i, question in enumerate(self.followup_questions, 1):
                 markdown += f"{i}. {question}\n"
@@ -234,21 +212,147 @@ class TradingContextCollection(BaseModel):
 
         return markdown
 
+    def followup_str(self):
+        markdown = ""
+        if self.followup_questions and len(self.followup_questions) > 0:
+            markdown += "Previous Followup Questions\n"
+            for i, question in enumerate(self.followup_questions, 1):
+                markdown += f"{i}. {question}\n"
+        return markdown
+
+
+class RouteContext(BaseModel):
+    message_type: Optional[
+        Literal["non-related", "follow-up", "instruction", "question", "evaluation"]
+    ] = Field(
+        default="non-related",
+        description="Message type based on user input",
+    )
+
+
+class QaContext(BaseModel):
+    question: str
+    answer: Optional[str]
+
+
+class EvaluationContext(BaseModel):
+    positive_points: Optional[List[str]]
+    negative_points: Optional[List[str]]
+    score: Optional[int]
+
+    def to_message_str(self):
+        markdown = "### Evaluation:\n"
+
+        # Add reasoning if available (in a Streamlit-friendly format)
+        if self.positive_points and len(self.positive_points) > 0:
+            markdown += "#### Positive points:\n"
+            for points in self.positive_points:
+                markdown += f"* {points}\n"
+            markdown += "\n"
+
+        if self.negative_points and len(self.negative_points) > 0:
+            markdown += "#### Negative points:\n"
+            for points in self.negative_points:
+                markdown += f"* {points}\n"
+            markdown += "\n"
+
+        if self.score:
+            markdown += f"#### Score: {self.score}\n"
+
+        return markdown
+
 
 class ContextDict(BaseModel):
-    trading_context: Optional[TradingContextCollection]
+    user_strategy: Optional[UserStrategy]
+    rag_strategies: List[TradingStrategyDefinition]
+    route: Optional[RouteContext]
+    conversations: List[QaContext]
+    evaluation: Optional[EvaluationContext]
 
-    def to_prompt_context(self):
-        return (
-            self.trading_context.to_prompt_context() if self.trading_context else None
+    @classmethod
+    def empty(cls) -> "ContextDict":
+        return cls(
+            user_strategy=None,
+            rag_strategies=[],
+            route=None,
+            conversations=[],
+            evaluation=None,
         )
 
-    def to_conversation_message(self):
-        return (
-            self.trading_context.to_conversation_message()
-            if self.trading_context
-            else None
-        )
+    def last_qa(self):
+        return self.conversations[-1] if len(self.conversations) > 0 else None
+
+    def last_qa_answer(self):
+        last_qa = self.last_qa()
+        return last_qa.answer if last_qa else ""
+
+    def to_full_strategy_context(self):
+        return self.user_strategy.context_str() if self.user_strategy else ""
+
+    def conversation_context(self, number_of_questions: int = 3):
+        markdown = ""
+        if len(self.conversations) > 0:
+            markdown += "Conversation History\n\n"
+            for conversation in self.conversations[-number_of_questions:]:
+                markdown += f"Question: {conversation.question}\n\n"
+                markdown += f"Answer:{conversation.answer}\n\n"
+                markdown += "----\n"
+        return markdown
+
+    def router_context(self):
+        return self.strategy_with_conversation()
+
+    def rag_context(self):
+        markdown = ""
+        if self.rag_strategies:
+            markdown += "Strategies from RAG for ideas\n\n"
+            for strategy in self.rag_strategies:
+                markdown += strategy.context_str()
+                markdown += "----\n"
+        markdown += self.conversation_context(number_of_questions=2)
+        return markdown
+
+    def strategy_with_rag(self):
+        markdown = ""
+        if self.user_strategy:
+            markdown += "User Generated Strategy\n\n"
+            markdown += self.user_strategy.context_str()
+        markdown += self.rag_context()
+
+        return markdown
+
+    def strategy_with_conversation(self):
+        markdown = ""
+        if self.user_strategy:
+            markdown += "User Generated Strategy\n\n"
+            markdown += self.user_strategy.context_str()
+            markdown += "\n\n"
+        markdown += self.conversation_context(number_of_questions=2)
+        return markdown
+
+    def to_message_str(self):
+        msg = ""
+        last_qa_answer = self.last_qa_answer()
+
+        if self.route and self.route.message_type:
+            if self.route.message_type == "non-related":
+                if last_qa_answer:
+                    msg += last_qa_answer
+            elif self.route.message_type == "instruction":
+                if self.user_strategy:
+                    msg += self.user_strategy.message_str()
+            elif self.route.message_type == "follow-up":
+                if self.user_strategy:
+                    msg += self.user_strategy.message_str()
+            elif self.route.message_type == "question":
+                if last_qa_answer:
+                    msg += last_qa_answer
+            elif self.route.message_type == "evaluation":
+                if self.user_strategy:
+                    msg += self.user_strategy.message_str()
+                if self.evaluation:
+                    msg += self.evaluation.to_message_str()
+        return msg
 
 
 class ChatMessage(BaseModel):
@@ -277,9 +381,9 @@ class ChatMessage(BaseModel):
             created_at=created_at,
         )
 
-    def to_conversation_message(self):
+    def to_message_str(self):
         if self.context:
-            return self.context.to_conversation_message()
+            return self.context.to_message_str()
         return self.content
 
     @classmethod

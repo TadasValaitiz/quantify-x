@@ -1,11 +1,11 @@
+import time
+from typing import Optional
 import streamlit as st
-from urllib.parse import parse_qs, urlparse
-
-# Use the correct import path as seen in app.py
-from auth import FirebaseAuth
+from auth import FirebaseAuth, FirebaseUserDict
+from database import ChatDatabase
 
 
-def login_page(firebase_auth: FirebaseAuth):
+def login_page(firebase_auth: FirebaseAuth, db: ChatDatabase):
     """
     Display the login page with authentication options
     """
@@ -31,7 +31,7 @@ def login_page(firebase_auth: FirebaseAuth):
                     success, user = firebase_auth.email_password_login(email, password)
                     if success:
                         st.success("Login successful!")
-                        st.rerun()
+                        handle_login(db, user)
                     else:
                         st.error("Invalid email or password")
 
@@ -42,7 +42,7 @@ def login_page(firebase_auth: FirebaseAuth):
             success, user = firebase_auth.anonymous_login()
             if success:
                 st.success("Logged in anonymously!")
-                st.rerun()
+                handle_login(db, user)
             else:
                 st.error("Anonymous login failed")
 
@@ -85,3 +85,27 @@ def login_page(firebase_auth: FirebaseAuth):
             if st.button("Logout"):
                 firebase_auth.logout()
                 st.rerun()
+
+
+def handle_login(db: ChatDatabase, user_info: Optional[FirebaseUserDict]):
+    """Handle user login."""
+
+    if user_info:
+        # Create or retrieve user in the database
+        user = db.get_user_by_id(user_info["localId"])
+
+        if user:
+            # Existing user
+            db.update_user_last_login(user["local_id"])
+        else:
+            # New user
+            db.create_user(
+                id=user_info["localId"],
+                email=user_info["email"],
+                name=user_info["name"],
+                login_type=user_info["login_type"],
+                auth_provider=user_info["auth_provider"],
+            )
+
+        time.sleep(1)
+        st.rerun()

@@ -111,87 +111,54 @@ class TradingStrategyDefinition(BaseModel):
         validate_assignment = True
         extra = "ignore"  # Ignore extra fields
 
-    def to_prompt_context(self):
+    def context_str(self):
         markdown = ""
 
         if self.strategy_name:
-            markdown += f"#### Trading Idea\n{self.strategy_name}\n\n"
-
-        if self.assistant_response_summary:
-            markdown += f"#### Assistant Response Summary\n{self.assistant_response_summary}\n\n"
-
-        # Add reasoning if available (in a Streamlit-friendly format)
-        if self.assistant_reasoning and len(self.assistant_reasoning) > 0:
-            markdown += "#### Reasoning\n"
-            for reasoning in self.assistant_reasoning:
-                markdown += f"* {reasoning}\n\n"
+            markdown += f"{self.strategy_name}Strategy type: ({self.strategy_type})\n\n"
 
         if self.trading_idea:
-            if self.strategy_type:
-                markdown += f"#### Strategy ({self.strategy_type})\n\n"
-            markdown += f"###### Trading Idea\n{self.trading_idea}\n\n"
+            markdown += f"Trading Idea\n{self.trading_idea}\n\n"
 
-        # Trading indicators with bullet points
         if self.indicators_and_signals and len(self.indicators_and_signals) > 0:
-            markdown += "#### Trading Indicators and Signals\n"
+            markdown += "Trading Indicators and Signals\n"
             for indicator in self.indicators_and_signals:
-                markdown += f"* {indicator}\n"
+                markdown += f"- {indicator}\n"
             markdown += "\n"
 
-        # Entry conditions with bullet points
         if self.entry_conditions and len(self.entry_conditions) > 0:
-            markdown += "#### Entry Conditions\n"
+            markdown += "Entry Conditions\n"
             for condition in self.entry_conditions:
                 markdown += f"* {condition}\n"
             markdown += "\n"
 
-        # Exit conditions with bullet points
         if self.exit_conditions and len(self.exit_conditions) > 0:
-            markdown += "#### Exit Conditions\n"
+            markdown += "Exit Conditions\n"
             for condition in self.exit_conditions:
                 markdown += f"* {condition}\n"
             markdown += "\n"
 
-        # Markets with bullet points
         if self.markets_and_timeframes and len(self.markets_and_timeframes) > 0:
-            markdown += "#### Target Markets\n"
+            markdown += "Target Markets\n"
             for market in self.markets_and_timeframes:
-                markdown += f"* {market}\n"
+                markdown += f"- {market}\n"
             markdown += "\n"
 
         if self.order_types and len(self.order_types) > 0:
-            markdown += "#### Order Types\n"
+            markdown += "Order Types\n"
             for order_type in self.order_types:
-                markdown += f"* {order_type}\n"
+                markdown += f"- {order_type}\n"
             markdown += "\n"
 
         if self.risk_management_rules and len(self.risk_management_rules) > 0:
-            markdown += "#### Risk Management Rules\n"
+            markdown += "Risk Management Rules\n"
             for risk_management_rule in self.risk_management_rules:
-                markdown += f"* {risk_management_rule}\n"
+                markdown += f"- {risk_management_rule}\n"
             markdown += "\n"
 
         if self.position_sizing and len(self.position_sizing) > 0:
-            markdown += "#### Position Sizing\n"
+            markdown += "Position Sizing\n"
             markdown += f"{self.position_sizing}\n"
-            markdown += "\n"
-
-        if self.search_queries and len(self.search_queries) > 0:
-            markdown += "#### Search Queries\n"
-            for query in self.search_queries:
-                markdown += f"{query}\n"
-            markdown += "\n"
-
-        if self.source_urls and len(self.source_urls) > 0:
-            markdown += "#### Source URLs\n"
-            for url in self.source_urls:
-                markdown += f"* {url}\n"
-            markdown += "\n"
-
-        if self.questions_about_strategy and len(self.questions_about_strategy) > 0:
-            markdown += "#### Questions about strategy\n"
-            for question in self.questions_about_strategy:
-                markdown += f"{question}\n"
             markdown += "\n"
 
         return markdown
@@ -202,13 +169,11 @@ class TradingStrategyDefinition(BaseModel):
         if self.trading_idea:
             markdown += f"{self.trading_idea}\n\n"
 
-        # Entry conditions with bullet points
         if self.entry_conditions and len(self.entry_conditions) > 0:
             for condition in self.entry_conditions:
                 markdown += f"{condition}\n"
             markdown += "\n"
 
-        # Exit conditions with bullet points
         if self.exit_conditions and len(self.exit_conditions) > 0:
             for condition in self.exit_conditions:
                 markdown += f"{condition}\n"
@@ -225,3 +190,4 @@ class TradingStrategyDefinition(BaseModel):
             markdown += "\n"
 
         return markdown
+

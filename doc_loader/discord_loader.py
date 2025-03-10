@@ -2,15 +2,14 @@ from functools import partial
 from operator import itemgetter
 from time import sleep
 
-from database.database import Database
-from shared.discord_types import MessageType, StrategyType
+from app.database import Database
+from app.common import MessageType, StrategyType, TradingStrategyDefinition
+from app.common.utils import check_langsmith, load_openai_llm
 from langchain.output_parsers import PydanticOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 
-from shared.types import TradingStrategyDefinition
 from doc_loader.prompts import strategy_evaluation
-from shared.utils import check_langsmith, load_openai_llm
 
 
 llm = load_openai_llm()

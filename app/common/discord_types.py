@@ -1,7 +1,6 @@
 from __future__ import annotations
 from typing import Dict, List, Literal, NotRequired, Optional, TypedDict
-
-from shared.types import TradingStrategyDefinition
+from .types import TradingStrategyDefinition
 
 
 class AuthorType(TypedDict):

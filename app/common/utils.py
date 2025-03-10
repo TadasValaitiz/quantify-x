@@ -1,28 +1,9 @@
-from functools import partial
-from operator import itemgetter
 import os
-from time import sleep
-
 from pydantic import SecretStr
-from database.database import Database
-from shared.discord_types import MessageType, StrategyType
 import tiktoken
-from sentence_transformers import SentenceTransformer
 from langchain_ollama import OllamaLLM
-from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
-from langchain.chains import LLMChain
-from langchain.prompts import PromptTemplate
 from typing import List, Tuple
-from langchain.output_parsers import PydanticOutputParser
 from langchain_openai import ChatOpenAI
-from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
-from langchain_core.output_parsers import StrOutputParser
-from langchain_core.callbacks.base import BaseCallbackHandler
-from langchain_core.prompts import ChatPromptTemplate, FewShotChatMessagePromptTemplate
-from langchain_core.runnables import RunnablePassthrough, RunnableLambda
-
-from shared.types import TradingStrategyDefinition
-from doc_loader.prompts import strategy_evaluation
 from langchain_core.documents import Document
 
 
@@ -32,6 +13,7 @@ def check_langsmith():
     lang_tracing = os.getenv("LANGCHAIN_TRACING_V2")
     if not lang_chain or not lang_endpoint or not lang_tracing:
         raise ValueError("LangSmith environment variables is not set")
+
 
 def load_openai_llm(
     model_name: str = "gpt-4o-mini-2024-07-18",
@@ -48,12 +30,14 @@ def load_openai_llm(
         streaming=True,
     )
 
+
 def load_ollama_llm(model_name="deepseek-r1", temperature=0.2):
     llm = OllamaLLM(
         model=model_name,
         temperature=temperature,
     )
     return llm
+
 
 def reciprocal_rank_fusion(results: List[List[Document]], k=60):
     """Reciprocal_rank_fusion that takes multiple lists of ranked documents
@@ -88,8 +72,10 @@ def reciprocal_rank_fusion(results: List[List[Document]], k=60):
     # Return the reranked results as a list of tuples, each containing the document and its fused score
     return reranked_results
 
+
 def take_top_k(ranked_docs: List[Tuple[Document, float]], k: int = 5) -> List[int]:
     return [doc.metadata.get("id", -1) for doc, score in ranked_docs[:k]]
+
 
 def num_tokens_from_string(string: str, encoding_name: str = "cl100k_base") -> int:
     """Returns the number of tokens in a text string."""

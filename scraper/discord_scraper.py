@@ -5,8 +5,8 @@ from typing import Optional, List
 import requests
 
 from dotenv import load_dotenv
-from shared.discord_types import MessageType
-from database.database import Database
+from app.common import MessageType
+from app.database import Database
 
 load_dotenv()
 

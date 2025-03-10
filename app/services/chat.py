@@ -1,7 +1,7 @@
 from typing import Dict, Optional
 from database.chat_database import ChatDatabase
 import streamlit as st
-from shared.types import ChatMessage, TradingContextCollection, ContextDict
+from shared import ChatMessage, UserStrategy, ContextDict
 
 
 class ChatService:

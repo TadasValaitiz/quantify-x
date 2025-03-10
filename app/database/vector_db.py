@@ -3,7 +3,7 @@ from chromadb.api import ClientAPI
 from chromadb import Collection
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
-from shared import StrategyType
+from common import StrategyType
 
 
 class VectorDB:

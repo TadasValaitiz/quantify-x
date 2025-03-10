@@ -1,8 +1,8 @@
 from typing import Optional
 from database import ChatDatabase
 import streamlit as st
-from auth.firebase_auth import FirebaseAuth
-from shared.types import ContextDict
+from auth import FirebaseAuth
+from shared import ContextDict
 from utils import (
     load_env_vars,
     generate_conversation_name,
@@ -62,7 +62,20 @@ class ConversationService:
         """
         dict = self.db.get_conversation(conversation_id)
         if dict and dict.get("context"):
-            return ContextDict(**dict.get("context"))
+            context = dict.get("context", {})
+            user_strategy = context.get("user_strategy", None)
+            rag_strategies = context.get("rag_strategies", [])
+            route = context.get("route", None)
+            conversations = context.get("conversations", [])
+            evaluation = context.get("evaluation", None)
+
+            return ContextDict(
+                user_strategy=user_strategy,
+                rag_strategies=rag_strategies,
+                route=route,
+                conversations=conversations,
+                evaluation=evaluation,
+            )
         return None
 
     def get_conversations(self):
@@ -71,4 +84,8 @@ class ConversationService:
         if not current_user:
             raise ValueError("Please log in to get conversations.")
 
-        return self.db.get_user_conversations(current_user.get("localId"))
+        # Get user ID and convert it to the required type
+        user_id = current_user.get("localId")
+        # Here we're assuming the database expects an integer user ID
+        # You'll need to modify this based on your actual database implementation
+        return self.db.get_user_conversations(user_id)

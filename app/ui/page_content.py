@@ -1,11 +1,10 @@
-import json
 import streamlit as st
-from auth.types import FirebaseUserDict
+from auth import FirebaseUserDict, FirebaseAuth
 from typing import Optional
-from auth.firebase_auth import FirebaseAuth
-from shared.types import ChatMessage, TradingContextCollection, ContextDict
+from shared import ContextDict
 from services import ConversationService, ChatService, AIService, StreamHandler
 from ui.login import login_page
+from database import ChatDatabase
 
 
 def render_page_content(
@@ -13,10 +12,11 @@ def render_page_content(
     conversation_service: ConversationService,
     ai_service: AIService,
     firebase_auth: FirebaseAuth,
+    db: ChatDatabase,
 ):
 
     if user_info is None:
-        login_page(firebase_auth)
+        login_page(firebase_auth, db)
     else:
         render_conversation(conversation_service, ai_service)
 
@@ -44,16 +44,19 @@ def chat_input(
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
                 handler = StreamHandler()
+                print(f"Generating response for message: {message.content}")
                 response = ai_service.generate_response_stream(
-                    message=message, context=context, stream_handler=handler
+                    message=message.content,
+                    initial_context=context,
+                    stream_handler=handler,
                 )
-                if isinstance(response, TradingContextCollection):
-                    r: TradingContextCollection = response
-                    message = chat_service.add_assistant_message(
-                        r.direct_answer or "No response",
-                        ContextDict(trading_context=r) if r.trading_topic else None,
-                    )
-                    st.markdown(message.to_conversation_message())
+                print(f"Response: {response}")
+                if isinstance(response, ContextDict):
+                    ctx: ContextDict = response
+                    lastAnswer = response.last_qa_answer()
+                    content = lastAnswer if lastAnswer else "No answer found"
+                    message = chat_service.add_assistant_message(content, ctx)
+                    st.markdown(message.to_message_str())
                 else:
                     st.write(response)
         st.rerun()
@@ -62,4 +65,4 @@ def chat_input(
 def render_chat_messages(chat_service: ChatService):
     for message in chat_service.get_messages():
         with st.chat_message(message.role):
-            st.markdown(message.to_conversation_message())
+            st.markdown(message.to_message_str())

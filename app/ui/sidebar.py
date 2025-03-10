@@ -1,7 +1,7 @@
 import streamlit as st
 from typing import List, Dict, Any, Optional, Callable
 import datetime
-from auth.types import FirebaseUserDict
+from auth import FirebaseUserDict
 from services import ConversationService
 
 

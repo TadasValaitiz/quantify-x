@@ -1,4 +1,4 @@
-from shared import MessageType, StrategyType, TradingStrategyDefinition
+from common import MessageType, StrategyType, TradingStrategyDefinition
 import sqlite3
 import json
 from typing import List, Optional, Dict, Any, Union, TypedDict, cast

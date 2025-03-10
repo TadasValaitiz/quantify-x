@@ -101,7 +101,7 @@ class ChatDatabase:
             return dict(user)
         return None
 
-    def get_user_by_id(self, user_id: int) -> Optional[Dict[str, Any]]:
+    def get_user_by_id(self, user_id: str) -> Optional[Dict[str, Any]]:
         """Get a user by their ID."""
         cursor = self.connection.cursor()
         cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
@@ -127,7 +127,7 @@ class ChatDatabase:
 
     # Conversation methods
     def create_conversation(
-        self, user_id: int, name: str, context: Optional[Dict] = None
+        self, user_id: str, name: str, context: Optional[Dict] = None
     ) -> int:
         """Create a new conversation and return its ID."""
         cursor = self.connection.cursor()
@@ -161,7 +161,7 @@ class ChatDatabase:
             return result
         return None
 
-    def get_user_conversations(self, user_id: int) -> List[Dict[str, Any]]:
+    def get_user_conversations(self, user_id: str) -> List[Dict[str, Any]]:
         """Get all conversations for a user."""
         cursor = self.connection.cursor()
         cursor.execute(
@@ -219,8 +219,8 @@ class ChatDatabase:
     ) -> None:
         """Update only the context of a conversation."""
         name = (
-            context.trading_context.strategy_name
-            if context.trading_context
+            context.user_strategy.strategy_name
+            if context.user_strategy
             else None
         )
         self.update_conversation(

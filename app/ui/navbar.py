@@ -1,11 +1,10 @@
 import streamlit as st
 from typing import Dict, Any, Optional, Callable
-from auth.types import FirebaseUserDict
+from auth import FirebaseUserDict
 
 
 def render_navbar(
     user_info: Optional[FirebaseUserDict],
-    on_login: Callable[[], None],
     on_logout: Callable[[], None],
 ) -> None:
     """
