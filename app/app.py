@@ -1,5 +1,5 @@
 # Import SQLite fix before any other imports
-from app.sqlite_fix import *
+from sqlite_fix import *
 
 import os
 import time

@@ -3,7 +3,7 @@ Database package for handling SQLite and ChromaDB operations.
 """
 
 # Import the SQLite fix before any other imports
-from app.sqlite_fix import *
+from sqlite_fix import *
 
 __all__ = ["VectorDB", "Database", "ChatDatabase"]
 
