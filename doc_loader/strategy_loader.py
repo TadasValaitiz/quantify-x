@@ -1,3 +1,4 @@
+import os
 from typing import List
 
 from app.database import Database, VectorDB
@@ -8,7 +9,7 @@ from doc_loader.prompts import strategy_evaluation, rag_fusion
 
 llm = load_openai_llm()
 db = Database()
-vector_db = VectorDB()
+vector_db = VectorDB(os.getenv("OPENAI_API_KEY"))
 
 
 def main():

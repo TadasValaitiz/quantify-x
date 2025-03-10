@@ -118,8 +118,6 @@ class AIService:
         """Initialize the AI service with a specific model."""
 
         openai_api_key = None
-        self.vector_db = VectorDB()
-        self.db = Database()
 
         try:
             if "langchain" in st.secrets:
@@ -135,7 +133,11 @@ class AIService:
         except Exception as e:
             raise ValueError("Secrets mechanism is not available")
 
+
+
         if openai_api_key:
+            self.vector_db = VectorDB(openai_api_key)
+            self.db = Database()
             self.openai_api_key = SecretStr(openai_api_key)
         else:
             raise ValueError("OPENAI_API_KEY environment variable is not set")
