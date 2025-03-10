@@ -33,15 +33,15 @@ def render_page_content(
     else:
         render_conversation(conversation_service, ai_service)
 
-
 def render_conversation(
     conversation_service: ConversationService, ai_service: AIService
 ):
     current_conversation_id = st.session_state.current_conversation_id
     if current_conversation_id is None:
         st.markdown(welcome)
-        st.button("Start New Conversation", on_click=conversation_service.handle_new_conversation)
-        st.rerun()
+        if st.button("Start New Conversation"):
+            conversation_service.handle_new_conversation()
+            st.rerun()
     else:
         context = conversation_service.get_conversation_context(current_conversation_id)
         chat_service = ChatService(current_conversation_id)
