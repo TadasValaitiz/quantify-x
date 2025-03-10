@@ -1,7 +1,7 @@
 import streamlit as st
 from shared import ChatMessage, ContextDict
 from auth import FirebaseUserDict, FirebaseAuth
-from typing import Optional
+from typing import List, Optional
 from services import ConversationService, ChatService, AIService, StreamHandler
 from ui.login import login_page
 from database import ChatDatabase
@@ -20,6 +20,7 @@ Your AI-powered assistant for developing and evaluating trading strategies.
 Start by New Conversation and describe your trading idea!
 """
 
+
 def render_page_content(
     user_info: Optional[FirebaseUserDict],
     conversation_service: ConversationService,
@@ -32,6 +33,7 @@ def render_page_content(
         login_page(firebase_auth, db)
     else:
         render_conversation(conversation_service, ai_service)
+
 
 def render_conversation(
     conversation_service: ConversationService, ai_service: AIService
@@ -56,23 +58,78 @@ def chat_input(
         message = chat_service.add_user_message(user_message)
         with st.chat_message("user"):
             st.write(user_message)
-        with st.chat_message("assistant"):
-            with st.spinner("Thinking..."):
-                handler = StreamHandler()
-                response = ai_service.generate_response_stream(
-                    message=message.content,
-                    initial_context=context,
-                    stream_handler=handler,
+
+        # Create a chat message container for the assistant
+        assistant_message = st.chat_message("assistant")
+
+        # Initialize session state for storing accumulated content
+        if "steps_history" not in st.session_state:
+            st.session_state.steps_history = []
+
+        # Create empty containers for steps and reasoning
+        with assistant_message:
+            # Container for accumulated steps history
+            steps_history_container = st.container()
+
+            # Display existing steps history
+            for step_data in st.session_state.steps_history:
+                with steps_history_container:
+                    st.markdown(body=f"**{step_data['step']}**")
+                    st.code(step_data["reasoning"])
+
+            # Containers for current step and reasoning
+            steps_container = st.empty()
+            reasoning_container = st.empty()
+
+            def on_step_update(step: str, steps: List[str]):
+                steps_container.markdown(body=f"{step}...")
+
+            def on_reasoning_update(step: str, reasoning: str):
+                reasoning_container.code(reasoning)
+
+            def on_reasoning_finish(step: str, reasoning: str):
+                # Add to session state to persist between reruns
+                st.session_state.steps_history.append(
+                    {"step": step, "reasoning": reasoning}
                 )
-                if isinstance(response, ContextDict):
-                    ctx: ContextDict = response
-                    lastAnswer = response.last_qa_answer()
-                    content = lastAnswer if lastAnswer else "No answer found"
-                    message = chat_service.add_assistant_message(content, ctx)
-                    st.markdown(message.to_message_str())
-                else:
-                    message = chat_service.add_error_msg(response)
-                    st.markdown(response)
+
+                # Clear the current step and reasoning containers
+                steps_container.empty()
+                reasoning_container.empty()
+
+                # Redisplay all steps including the new one
+                with steps_history_container:
+                    st.markdown(body=f"**{step}**")
+                    st.code(body=reasoning)
+
+            handler = StreamHandler(
+                on_step_update=on_step_update,
+                on_reasoning_update=on_reasoning_update,
+                on_reasoning_finish=on_reasoning_finish,
+            )
+
+            # No need for spinner since we have our own typing indicator
+            response = ai_service.generate_response_stream(
+                message=message.content,
+                initial_context=context,
+                stream_handler=handler,
+            )
+            if isinstance(response, ContextDict):
+                ctx: ContextDict = response
+                lastAnswer = response.last_qa_answer()
+                content = lastAnswer if lastAnswer else "No answer found"
+                message = chat_service.add_assistant_message(content, ctx)
+                # Add final message
+                st.markdown(message.to_message_str())
+
+                # Clear session state for next conversation
+                st.session_state.steps_history = []
+            else:
+                message = chat_service.add_error_msg(response)
+                st.markdown(response)
+
+                # Clear session state for next conversation
+                st.session_state.steps_history = []
         st.rerun()
 
 
@@ -80,17 +137,18 @@ def render_chat_messages(chat_service: ChatService):
     for message in chat_service.get_messages():
         render_chat_message(message)
 
+
 def render_chat_message(message: ChatMessage):
     if message.role == "assistant" and message.context is not None:
-        if len(message.context.rag_strategies) >0:
-                with st.chat_message(message.role):
-                        for strategy in message.context.rag_strategies:
-                            with st.expander("RAG Strategies"):
-                                st.markdown(strategy.message_str())
+        if len(message.context.rag_strategies) > 0:
+            with st.chat_message(message.role):
+                for strategy in message.context.rag_strategies:
+                    with st.expander("RAG Strategies"):
+                        st.markdown(strategy.message_str())
         if message.context.user_strategy is not None:
-                with st.chat_message(message.role):
-                    with st.expander("User Strategy"):
-                        st.markdown(message.context.user_strategy.message_str(short=False))
- 
+            with st.chat_message(message.role):
+                with st.expander("User Strategy"):
+                    st.markdown(message.context.user_strategy.message_str(short=False))
+
     with st.chat_message(message.role):
-            st.markdown(message.to_message_str())
+        st.markdown(message.to_message_str())

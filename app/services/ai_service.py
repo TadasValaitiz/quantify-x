@@ -38,29 +38,59 @@ from database import VectorDB, Database
 class StreamHandler:
     """Handler for streaming responses to Streamlit."""
 
-    def __init__(self):
-        self.text = ""
-        self.reasoning = ""
+    def __init__(
+        self,
+        on_step_update: Callable[[str, List[str]], None],
+        on_reasoning_update: Callable[[str, str], None],
+        on_reasoning_finish: Callable[[str, str], None],
+    ):
+        self.text = {}
+        self.reasoning = {}
         self.steps = []
-
+        self.current_step = "initial"
+        # Initialize the dictionaries with the initial step
+        self.text[self.current_step] = ""
+        self.reasoning[self.current_step] = ""
+        self.on_step_update = on_step_update
+        self.on_reasoning_update = on_reasoning_update
+        self.on_reasoning_finish = on_reasoning_finish
     def reasoning_update(self, text_chunk: str) -> None:
         """Update the displayed text with a new chunk."""
-        self.text += text_chunk
-        self.reasoning = self.text + "▌"
+        # Ensure the key exists before accessing it
+        if self.current_step not in self.text:
+            self.text[self.current_step] = ""
+            self.reasoning[self.current_step] = ""
+
+        self.text[self.current_step] += text_chunk
+        self.reasoning[self.current_step] = self.text[self.current_step] + "▌"
+        self.on_reasoning_update(self.current_step, self.reasoning[self.current_step])
 
     def reasoning_finish(self) -> None:
         """Finalize the displayed text."""
-        self.reasoning = self.text
+        # Ensure the key exists before accessing it
+        if self.current_step not in self.reasoning:
+            return
+
+        self.reasoning[self.current_step] = self.text[self.current_step]
+        self.on_reasoning_update(self.current_step, self.reasoning[self.current_step])
+        
+        # Call the reasoning_finish callback for the current step
+        self.on_reasoning_finish(self.current_step, self.reasoning[self.current_step])
 
     def step_update(self, step: str) -> None:
         """Update important step info"""
         self.steps.append(step)
+        self.current_step = step
+        # Initialize the dictionaries for the new step
+        self.text[self.current_step] = ""
+        self.reasoning[self.current_step] = ""
+        self.on_step_update(step, self.steps)
 
     def get_steps(self) -> List[str]:
         """Get the steps."""
         return self.steps
 
-    def get_text(self) -> str:
+    def get_text(self) -> Dict[str, str]:
         """Get the full text."""
         return self.text
 
@@ -136,14 +166,15 @@ class AIService:
             initial_context = ContextDict.empty()
         else:
             initial_context = initial_context.new_run()
-        
+
         try:
             llm = ChatOpenAI(
                 model=model,
                 api_key=self.openai_api_key,  # Convert string to SecretStr
                 temperature=0.0,
-                streaming=False,
-                timeout=60
+                streaming=True,
+                timeout=60,
+                callbacks=[streaming_callback],
             )
 
             def answer_update(answer: str, context: ContextDict):
@@ -169,6 +200,9 @@ class AIService:
                             "format_instructions": routing_parser.get_format_instructions(),
                         }
                     )
+                    | RunnablePassthrough(
+                        lambda x: stream_handler.step_update("Routing")
+                    )
                     | routing_prompt
                     | llm
                     | routing_parser
@@ -188,6 +222,9 @@ class AIService:
                         lambda _: {
                             "question": dict.get("question"),
                         }
+                    )
+                    | RunnablePassthrough(
+                        lambda x: stream_handler.step_update("Answering Message")
                     )
                     | general_message_prompt
                     | llm
@@ -211,6 +248,11 @@ class AIService:
                             "question": dict.get("question"),
                             "context": dict.get("context"),
                         }
+                    )
+                    | RunnablePassthrough(
+                        lambda x: stream_handler.step_update(
+                            "Answering Message with Context"
+                        )
                     )
                     | question_with_context_prompt
                     | llm
@@ -253,6 +295,11 @@ class AIService:
                             "format_instructions": trading_idea_parser.get_format_instructions(),
                         }
                     )
+                    | RunnablePassthrough(
+                        lambda x: stream_handler.step_update(
+                            step="Generating Trading Idea"
+                        )
+                    )
                     | trading_idea_template
                     | llm
                     | trading_idea_parser
@@ -283,6 +330,9 @@ class AIService:
                         }
                     )
                     | rag_fusion_prompt
+                    | RunnablePassthrough(
+                        lambda x: stream_handler.step_update(step="Querying Rag")
+                    )
                     | llm
                     | StrOutputParser()
                     | (lambda x: x.split("\n"))
@@ -313,6 +363,9 @@ class AIService:
                             "context": dict.get("context"),
                             "format_instructions": evaluation_parser.get_format_instructions(),
                         }
+                    )
+                    | RunnablePassthrough(
+                        lambda x: stream_handler.step_update(step="Evaluating")
                     )
                     | evaluation_prompt
                     | llm
