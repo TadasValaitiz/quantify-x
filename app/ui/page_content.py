@@ -41,7 +41,7 @@ def render_conversation(
     if current_conversation_id is None:
         st.markdown(welcome)
         st.button("Start New Conversation", on_click=conversation_service.handle_new_conversation)
-
+        st.rerun()
     else:
         context = conversation_service.get_conversation_context(current_conversation_id)
         chat_service = ChatService(current_conversation_id)

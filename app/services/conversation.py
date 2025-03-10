@@ -29,7 +29,6 @@ class ConversationService:
         )
 
         st.session_state.current_conversation_id = conv_id
-        st.rerun()
 
     def handle_select_conversation(self, conversation_id: int):
         """Handle selecting a conversation."""
