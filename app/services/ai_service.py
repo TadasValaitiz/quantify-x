@@ -142,8 +142,8 @@ class AIService:
                 model=model,
                 api_key=self.openai_api_key,  # Convert string to SecretStr
                 temperature=0.0,
-                streaming=True,
-                callbacks=[streaming_callback],
+                streaming=False,
+                timeout=60
             )
 
             def answer_update(answer: str, context: ContextDict):

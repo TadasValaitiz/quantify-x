@@ -358,8 +358,6 @@ class ContextDict(BaseModel):
                 if last_qa_answer:
                     msg += last_qa_answer
             elif self.route.message_type == "evaluation":
-                if self.user_strategy:
-                    msg += self.user_strategy.message_str()
                 if self.evaluation:
                     msg += self.evaluation.to_message_str()
         return msg
